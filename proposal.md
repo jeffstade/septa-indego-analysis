@@ -38,10 +38,32 @@ These metrics will allow stakeholders to explore some of the following questions
 
 ## Wireframe of dashboard
 
-TBD
+![][image-1]
+
+**Main overview page**
+
+This is the main overview page. It contains one map showing all transit locations (SEPTA, PATCO, INDEGO) in Philadelphia using a different style for each mode. There’s general overview text describing the current potential of unified transit in Philadelphia (eg. “On the whole, there are usually about XX stops/stations of different transit modes within a 5-minute walk from any given station. The most connected station is the XXXX.”)
+
+Users can then use a dropdown to navigate to an individual station. Being able to dig in on specific neighborhoods is a stretch goal, but the navigation for that is represented here in this mockup.
+
+The dashboard will always stay up-to-date with the most recent available station and ridership information.
+
+![][image-2]
+
+**Individual station detail page**
+
+Each station will have a detailed view. The view includes one map that will show that station and all stations within a particular radius (eg. 5 minute walk). A bar chart at the top of the page will provide a visualization of either the:  
+
+- a) total ridership at this and nearby stations and how this compares to the neighborhood and city averages (Stretch)
+- b) total number of nearby stations, by type
+
+There will also be navigation links to dig in on the nearby stations.
 
 [1]:	https://www.clippercard.com/ClipperWeb/where-to-use.html
 [2]:	https://move-pgh.com/what-is-move-pgh
 [3]:	https://transitfeeds.com/p/patco/533
 [4]:	https://kiosks.bicycletransit.workers.dev/phl
 [5]:	https://github.com/azavea/geo-data
+
+[image-1]:	/images/overview.jpg
+[image-2]:	/images/individual-station.jpg
