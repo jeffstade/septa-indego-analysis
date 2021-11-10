@@ -38,9 +38,8 @@ These metrics will allow stakeholders to explore some of the following questions
 
 ## Wireframe of dashboard
 
+### Main overview page
 ![][image-1]
-
-**Main overview page**
 
 This is the main overview page. It contains one map showing all transit locations (SEPTA, PATCO, INDEGO) in Philadelphia using a different style for each mode. There’s general overview text describing the current potential of unified transit in Philadelphia (eg. “On the whole, there are usually about XX stops/stations of different transit modes within a 5-minute walk from any given station. The most connected station is the XXXX.”)
 
@@ -48,9 +47,9 @@ Users can then use a dropdown to navigate to an individual station. Being able t
 
 The dashboard will always stay up-to-date with the most recent available station and ridership information.
 
-![][image-2]
+### Individual station detail page
 
-**Individual station detail page**
+![][image-2]
 
 Each station will have a detailed view. The view includes one map that will show that station and all stations within a particular radius (eg. 5 minute walk). A bar chart at the top of the page will provide a visualization of either the:  
 
