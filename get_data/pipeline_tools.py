@@ -126,3 +126,12 @@ def run_transform_gbq(dataset_name, table_name, sql_root):
     print(f'Creating or replacing table `musa509-lab09.{dataset_name}.{table_name}`...')
     query_job = client.query(f'CREATE OR REPLACE TABLE `musa509-lab09.{dataset_name}.{table_name}` AS ({query})')
     return query_job.result()
+
+def upload_to_gcs(local_file_name, gcs_bucket_name, gcs_blob_name):
+    print(f'Uploading to GCS file gs://{gcs_bucket_name}/{gcs_blob_name}...')
+
+    storage_robot = storage.Client()
+    bucket = storage_robot.bucket(gcs_bucket_name)
+    blob = bucket.blob(gcs_blob_name)
+    blob.upload_from_filename(local_file_name)
+    return blob.public_url

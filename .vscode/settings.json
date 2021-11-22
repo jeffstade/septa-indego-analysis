@@ -1,5 +1,12 @@
 {
     "files.associations": {
         "*.html": "jinja-html"
+    },
+    "files.exclude": {
+        "": true,
+        ".Ulysses*": true,
+        ".vscode": true,
+        "**/__pycache__": true,
+        "activate": true
     }
 }
