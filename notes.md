@@ -2,9 +2,8 @@
 
 ## Remaining ToDos
 
-- [ ] Set up scripts to run on airflow
+- [ ] Set up scripts to run on airflow (https://github.com/musa-509-fall-2021/lab-07-airflow-in-the-cloud)
 - [ ] Add remaining bus and indego data to overview map
 - [ ] Add statistics to overview
 - [ ] Create individual station query (want to get all stops that are on a different service or line than the current one)
 - [ ] Create individual station pages (show a map of the station, all nearby stations on a different line within a 5 minute walk, added value of linking bikes)
-
