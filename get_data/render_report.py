@@ -14,9 +14,9 @@ output_root = 'output'
 
 def main():
     # Download the map data.
-   # mapdata_df = pd.read_gbq('SELECT * FROM lab09.blockgroups_mapdata')
-   # mapdata_df.blockgroup_geom = gpd.GeoSeries.from_wkt(mapdata_df.blockgroup_geom)
-   # mapdata_gdf = gpd.GeoDataFrame(mapdata_df, geometry='blockgroup_geom')
+    mapdata_df = pd.read_gbq('SELECT * FROM finalproj.septa_bsl_stations')
+    mapdata_df.the_geom = gpd.GeoSeries.from_wkt(mapdata_df.the_geom)
+    mapdata_gdf = gpd.GeoDataFrame(mapdata_df, geometry='the_geom')
 
     # Download the chart data.
   #  chartdata_df = pd.read_gbq('SELECT * from lab09.blockgroups_chartdata')
@@ -29,7 +29,7 @@ def main():
     print(os.getcwd())
     template = env.get_template('index.html')
     output = template.render(
-    #    mapdata=mapdata_gdf.to_json(),
+        mapdata=mapdata_gdf.to_json(),
     #    chartdata=chartdata_df.to_dict('list'),
     #    listdata=listdata_df.to_dict('records'),
     )
@@ -40,7 +40,7 @@ def main():
         outfile.write(output)
         print(output)
         print(os.getcwd())
-    upload_to_gcs('output/index.html', 'jawnt_philadelphia', 'index.html')
+   # upload_to_gcs('output/index.html', 'jawnt_philadelphia', 'index.html')
 
 if __name__ == '__main__':
     main()
