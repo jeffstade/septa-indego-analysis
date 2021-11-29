@@ -24,11 +24,12 @@ import datetime as dt
 import os
 import sqlalchemy as sqa
 from pipeline_tools import gcs_to_db
+from airflow.models import Variable
 
 def main(**kwargs):
-    bucket_name = os.environ['PIPELINE_DATA_BUCKET']
-    project_name = os.environ['PIPELINE_PROJECT']
-    dataset_name = os.environ['PIPELINE_DATASET']
+    bucket_name = Variable.get("AIRFLOW_PIPELINE_DATA_BUCKET")
+    project_name = Variable.get("AIRFLOW_PIPELINE_PROJECT")
+    dataset_name = Variable.get("AIRFLOW_PIPELINE_DATASET")
 
     db = sqa.create_engine(f'bigquery://{project_name}/{dataset_name}')
 

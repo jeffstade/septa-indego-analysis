@@ -21,9 +21,10 @@ load_dotenv()
 import datetime as dt
 import os
 from pipeline_tools import gcs_to_local_file, http_to_gcs
+from airflow.models import Variable
 
 def main(**kwargs):
-    bucket_name = os.environ['PIPELINE_DATA_BUCKET']
+    bucket_name = Variable.get("AIRFLOW_PIPELINE_DATA_BUCKET")
 
     local_file_name = gcs_to_local_file(
         gcs_bucket_name=bucket_name,
