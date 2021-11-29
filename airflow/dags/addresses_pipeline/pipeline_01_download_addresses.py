@@ -13,6 +13,7 @@ environment variables to be set:
 """
 
 from dotenv import load_dotenv
+from airflow.models import Variable
 load_dotenv()
 
 import datetime as dt
@@ -20,7 +21,7 @@ import os
 from pipeline_tools import http_to_gcs
 
 def main(**kwargs):
-    bucket_name = os.environ['PIPELINE_DATA_BUCKET']  # <-- retrieve the bucket name from the environment
+    bucket_name = Variable.get("AIRFLOW_PIPELINE_DATA_BUCKET")  # <-- retrieve the bucket name from the environment
 
     http_to_gcs(
         request_method='get',
