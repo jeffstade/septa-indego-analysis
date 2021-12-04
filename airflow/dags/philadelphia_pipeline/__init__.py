@@ -8,6 +8,7 @@ from . import render_report
 
 with DAG(dag_id='jawnt_philadelphia_pipeline',
          schedule_interval='@daily',
+         start_date=datetime(2021, 12, 1),
          catchup=False) as dag:
 
     extract_raw_addresses = PythonOperator(
