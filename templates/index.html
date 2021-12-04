@@ -16,15 +16,6 @@
         crossorigin="anonymous" referrerpolicy="no-referrer"></script>
         <script src="https://kit.fontawesome.com/457a87d66e.js" crossorigin="anonymous"></script>
         <script type='text/javascript'>
-          /*  var mapdata = {"type": "FeatureCollection", "features": [{"id": "0", "type": "Feature", "properties": {"At_Street": "Pattison Ave", "Average_Saturday_Ridership": 2884, "Average_Sunday_Ridership": 3214, "Average_Weekday_Ridership": 2618, 
-            "Bench": "Yes", "City": "Philadelphia", "County": "Philadelphia", "Elevator": "Yes", "Escaltor": "Yes", "Fare_Information": "Yes", "GlobalID": "3995d35c-eb53-4f8e-89f5-03538c614e5d", "Handicap_Accesible": "Yes",
-            "Latitude": 39.905434, "Lighting": "Yes", "Longitude": -75.173936, "Low_Income_Area": "No", "Map": "Yes", "Minority_Area": "No", "Minority___Low_Income_Area": "No", "Municipality": "Philadelphia", "Number_of_Daily_Parking_Spaces": "N/A",
-            "Number_of_Permit_Parking_Spaces": "N/A", "OBJECTID": 1, "On_Street": "Broad St", "Owner": "SEPTA", "PA_State_House_District": 185, "PA_State_Senate_District": 1, "PA_US_Congressional_District": 1, "Parking_Available": "No",
-            "Philadelphia_City_Council_Distr": 2, "Platform_Type": "Subway", "Recycling_Bin": "Yes", "Restroom": "Yes", "Route": "Broad Street Line", "Schedule_Information": "Yes", "Shelter": "Yes", "State": "PA", "Station": "NRG",
-            "Station_Building": "Yes", "Stop_ID": 20001, "Street_Address": "3600 S. Broad St", "Taxi_Stand": "No", "Ticket_Office": "Yes", "Trash_Receptacle": "Yes", "Zip": 19145},
-            "geometry": {"type": "Point", "coordinates": [-84.6931630346183, 39.1201480385426]}
-            }]
-            } */
             var mapdata = {{mapdata}};
 
             const iconSubway = L.divIcon({
@@ -97,11 +88,11 @@
     }
 
     .icon-bike{
-        color: green;
+        color: #36b4e5;
         text-shadow: 2px 2px #CCC;
     }
     .icon-bike:hover{
-        color: red;
+        color: #0082cb;
         text-shadow: 2px 2px #CCC;
     }
   </style>
@@ -110,10 +101,9 @@
         <h1>Unifying SEPTA and Indego fares with Jawnt</h1>
 
   <div id="stationmap"></div>
-
   <div>
     <h3>Unified transit in Philadelphia</h3>
-    <p>In the Philadelphia region there are {{bus_station_count}} SEPTA bus <i class="fas fa-bus "></i> stops, {{subway_station_count}} SEPTA train <i class="fas fa-subway "></i> stops, and {{bike_station_count}} Indego bike share  <i class="fas fa-bicycle "></i> stations.</p>
+    <p>In the Philadelphia region there are {{counts.bus}} SEPTA bus <i class="fas fa-bus "></i> stops, {{counts.subway}} SEPTA subway <i class="fas fa-subway "></i> stops, and {{counts.bike}} Indego bike share  <i class="fas fa-bicycle "></i> stations.</p>
     <p>This interactive dashboard explores the benefits of unifying SEPTA and Indego stations.</p>
     <p>On the whole there are usually about XX Indego stops within a 5-minute walk from any given SEPTA stop. The most connected stop is XXX.</p>
 </div>
@@ -153,7 +143,9 @@
           break;
       }
       var marker = L.marker([location.properties.lat, location.properties.lon], {icon: iconToUse}).addTo(stationmap);
-      marker.bindPopup(location.properties.Station);
+      marker.bindPopup(
+          "<a href='"+location.properties.StationID+".html'>"+location.properties.Station +"</a>"
+        );
     });
 
   </script>
