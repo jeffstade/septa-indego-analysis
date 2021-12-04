@@ -1,8 +1,3 @@
-#####
-import os
-os.environ['GOOGLE_APPLICATION_CREDENTIALS'] = '/Users/jeffstern/Documents/UPenn/Courses/MUSA-509/keys/musa509-lab09-46a0d7200e51.json'
-#####
-
 import geopandas as gpd
 import pandas as pd
 from pathlib import Path

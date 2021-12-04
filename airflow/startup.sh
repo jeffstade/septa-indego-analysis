@@ -1,5 +1,8 @@
 #!/bin/bash
 
+# update dags from github
+git pull origin main
+
 # Get this scripts folder
 AIRFLOW_DIR=$(dirname $0)
 

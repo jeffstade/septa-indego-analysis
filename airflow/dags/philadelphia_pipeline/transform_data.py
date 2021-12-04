@@ -1,10 +1,3 @@
-#####
-import os
-
-os.environ['GOOGLE_APPLICATION_CREDENTIALS'] = '/Users/jeffstern/Documents/UPenn/Courses/MUSA-509/keys/musa509-lab09-46a0d7200e51.json'
-#####
-
-
 from pathlib import Path
 from pipeline_tools import run_transform_gbq
 from pipeline_tools import gcs_to_local_file
