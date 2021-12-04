@@ -14,33 +14,38 @@ output_root = 'output'
 
 def main():
     # Download the map data.
-    mapdata_df = pd.read_gbq('SELECT * FROM finalproj.septa_bsl_stations')
+    mapdata_df = pd.read_gbq("SELECT * FROM finalproj.combined_stations_fewer_buses")
     mapdata_df.the_geom = gpd.GeoSeries.from_wkt(mapdata_df.the_geom)
     mapdata_gdf = gpd.GeoDataFrame(mapdata_df, geometry='the_geom')
-
-    # Download the chart data.
-  #  chartdata_df = pd.read_gbq('SELECT * from lab09.blockgroups_chartdata')
-
-    # Download the population density list data.
- #   listdata_df = pd.read_gbq('SELECT * from lab09.blockgroups_listdata')
-
+    textdata_df = pd.read_gbq("SELECT * FROM finalproj.counts")
+    bike_station_count = textdata_df[textdata_df['Modal']=='Bike']['count'].item()
+    subway_station_count = textdata_df[textdata_df['Modal']=='Subway']['count'].item()
+    bus_station_count = textdata_df[textdata_df['Modal']=='Bus']['count'].item()
+    indego_df = pd.read_gbq("SELECT * FROM musa509-lab09.finalproj.indego_stations")
+    # mapdata_gdf[mapdatagdf['Modal'] == ]
     # Render the data into the template.
     env = Environment(loader=FileSystemLoader(template_root))
-    print(os.getcwd())
     template = env.get_template('index.html')
     output = template.render(
         mapdata=mapdata_gdf.to_json(),
-    #    chartdata=chartdata_df.to_dict('list'),
-    #    listdata=listdata_df.to_dict('records'),
+        bike_station_count = bike_station_count,
+        bus_station_count = bus_station_count,
+        subway_station_count = subway_station_count
     )
-
     # Save the rendered output to a file in the "output" folder.
     print(output_root)
     with open(output_root + '/index.html', mode='w') as outfile:
         outfile.write(output)
-        print(output)
-        print(os.getcwd())
    # upload_to_gcs('output/index.html', 'jawnt_philadelphia', 'index.html')
+
+
+    template_station = env.get_template('station.html')
+    for index, row in indego_df.iterrows():
+        output_station = template_station.render(station_name = row.name, station_address = row.address, lon = row.lon, lat=row.lat)
+        pagename = row.station_id + '.html'
+        with open(output_root + '/' + pagename, mode='w+') as outfile:
+            outfile.write(output_station)
+            #upload_to_gcs(output_root'/'+pagename, 'jawnt_philadelphia', pagename)
 
 if __name__ == '__main__':
     main()

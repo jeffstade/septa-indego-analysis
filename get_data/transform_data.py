@@ -13,7 +13,7 @@ import geopandas as gpd
 import json
 from shapely.geometry import Point
 
-sql_root = Path(__file__).parent / 'sql'
+sql_root = Path(__file__).parent.parent / 'sql'
 db_connection = 'musa509-lab09:us-central1:musa509-final'
 
 def main():
@@ -33,8 +33,7 @@ def main():
         d['the_geom'] = Point(d['lat'], d['lon'])
     gdf = gpd.GeoDataFrame(df).set_geometry('the_geom').set_crs('epsg:32129')
     geopandas_to_gbq(gdf, 'finalproj', 'indego_stations', replace_table=True)
-    """
-
+ 
     for tablename in ['septa_bus_stations','septa_bsl_stations','septa_mfl_stations']:
         latloncolumnnames = ('Lat','Lon') if tablename=='septa_bus_stations' else ('Latitude','Longitude')
         data = gcs_to_local_file(
@@ -49,7 +48,10 @@ def main():
             d['the_geom'] = Point(d[latloncolumnnames[0]],d[latloncolumnnames[1]])
         gdf = gpd.GeoDataFrame(df_prop).set_geometry('the_geom').set_crs('epsg:32129')
         geopandas_to_gbq(gdf, 'finalproj', tablename, replace_table=True)
-
+   """
+    run_transform_gbq('finalproj', 'combined_stations', sql_root)
+    run_transform_gbq('finalproj', 'combined_stations_fewer_buses', sql_root)
+    run_transform_gbq('finalproj', 'counts', sql_root)
 
 if __name__ == '__main__':
     main()

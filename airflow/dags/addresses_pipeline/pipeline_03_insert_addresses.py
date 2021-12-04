@@ -60,5 +60,7 @@ def main(**kwargs):
         db_conn=db, table_name='geocoded_address_results', column_names=geocoded_column_names
     )
 
+    
+
 if __name__ == '__main__':
     main()

@@ -16,7 +16,7 @@
         crossorigin="anonymous" referrerpolicy="no-referrer"></script>
         <script src="https://kit.fontawesome.com/457a87d66e.js" crossorigin="anonymous"></script>
         <script type='text/javascript'>
-            var mapdata = {"type": "FeatureCollection", "features": [{"id": "0", "type": "Feature", "properties": {"At_Street": "Pattison Ave", "Average_Saturday_Ridership": 2884, "Average_Sunday_Ridership": 3214, "Average_Weekday_Ridership": 2618, 
+          /*  var mapdata = {"type": "FeatureCollection", "features": [{"id": "0", "type": "Feature", "properties": {"At_Street": "Pattison Ave", "Average_Saturday_Ridership": 2884, "Average_Sunday_Ridership": 3214, "Average_Weekday_Ridership": 2618, 
             "Bench": "Yes", "City": "Philadelphia", "County": "Philadelphia", "Elevator": "Yes", "Escaltor": "Yes", "Fare_Information": "Yes", "GlobalID": "3995d35c-eb53-4f8e-89f5-03538c614e5d", "Handicap_Accesible": "Yes",
             "Latitude": 39.905434, "Lighting": "Yes", "Longitude": -75.173936, "Low_Income_Area": "No", "Map": "Yes", "Minority_Area": "No", "Minority___Low_Income_Area": "No", "Municipality": "Philadelphia", "Number_of_Daily_Parking_Spaces": "N/A",
             "Number_of_Permit_Parking_Spaces": "N/A", "OBJECTID": 1, "On_Street": "Broad St", "Owner": "SEPTA", "PA_State_House_District": 185, "PA_State_Senate_District": 1, "PA_US_Congressional_District": 1, "Parking_Available": "No",
@@ -24,13 +24,25 @@
             "Station_Building": "Yes", "Stop_ID": 20001, "Street_Address": "3600 S. Broad St", "Taxi_Stand": "No", "Ticket_Office": "Yes", "Trash_Receptacle": "Yes", "Zip": 19145},
             "geometry": {"type": "Point", "coordinates": [-84.6931630346183, 39.1201480385426]}
             }]
-            }
-            //var mapdata = {{mapdata}};
+            } */
+            var mapdata = {{mapdata}};
 
             const iconSubway = L.divIcon({
                 html: '<i class="fas fa-subway fa-3x"></i>',
                 iconSize: [20, 20],
                 className: 'icon-subway'
+            });
+
+            const iconBike = L.divIcon({
+                html: '<i class="fas fa-bicycle fa-3x"></i>',
+                iconSize: [20, 20],
+                className: 'icon-bike'
+            });
+            
+            const iconBus = L.divIcon({
+                html: '<i class="fas fa-bus fa-3x"></i>',
+                iconSize: [20, 20],
+                className: 'icon-bus'
             });
 
         </script>
@@ -75,6 +87,23 @@
         text-shadow: 2px 2px #CCC;
     }
 
+    .icon-bus{
+        color: orange;
+        text-shadow: 2px 2px #CCC;
+    }
+    .icon-bus:hover{
+        color: red;
+        text-shadow: 2px 2px #CCC;
+    }
+
+    .icon-bike{
+        color: green;
+        text-shadow: 2px 2px #CCC;
+    }
+    .icon-bike:hover{
+        color: red;
+        text-shadow: 2px 2px #CCC;
+    }
   </style>
     </head>
     <body>
@@ -84,16 +113,14 @@
 
   <div>
     <h3>Unified transit in Philadelphia</h3>
-    <p>In the Philadelphia region there are XX SEPTA bus <i class="fas fa-bus "></i> stops, XX SEPTA train <i class="fas fa-subway "></i> stops, and XX Indego bike share  <i class="fas fa-bicycle "></i> stations.</p>
+    <p>In the Philadelphia region there are {{bus_station_count}} SEPTA bus <i class="fas fa-bus "></i> stops, {{subway_station_count}} SEPTA train <i class="fas fa-subway "></i> stops, and {{bike_station_count}} Indego bike share  <i class="fas fa-bicycle "></i> stations.</p>
     <p>This interactive dashboard explores the benefits of unifying SEPTA and Indego stations.</p>
     <p>On the whole there are usually about XX Indego stops within a 5-minute walk from any given SEPTA stop. The most connected stop is XXX.</p>
 </div>
 
 
           <script>
-    /*
-        MAP OF POP. DENSITY ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-    */
+
     var initialCenter = [39.945, -75.154];  // <-- Latitude, Longitude
     var initialZoom = 13;
     var stationmap = L.map('stationmap', {
@@ -109,11 +136,24 @@
     	ext: 'png'
     });
     baseLayer.addTo(stationmap);
-
+  console.log({{textdata}});
     //iterates through the array object called from the server
     mapdata.features.forEach( function(location){
-        var marker = L.marker([location.properties.Latitude, location.properties.Longitude], {icon: iconSubway}).addTo(stationmap);
-        marker.bindPopup(location.properties.Station);
+      console.log(location.properties.Modal);
+      console.log(location);
+      switch (location.properties.Modal) {
+        case 'Subway':
+          iconToUse = iconSubway;
+          break;
+        case 'Bus':
+          iconToUse = iconBus;
+          break;
+        case 'Bike':
+          iconToUse = iconBike;
+          break;
+      }
+      var marker = L.marker([location.properties.lat, location.properties.lon], {icon: iconToUse}).addTo(stationmap);
+      marker.bindPopup(location.properties.Station);
     });
 
   </script>
