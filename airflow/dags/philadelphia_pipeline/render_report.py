@@ -27,7 +27,7 @@ def render_station_pages(template, station_data):
         pagename = row.station_id + '.html'
         with open(output_root + '/' + pagename, mode='w+') as outfile:
             outfile.write(output_station)
-            upload_to_gcs(output_root'/'+pagename, 'jawnt_philadelphia', pagename)
+            upload_to_gcs(output_root+ '/' + pagename, 'jawnt_philadelphia', pagename)
 
 def main():
     # Download the map data.
