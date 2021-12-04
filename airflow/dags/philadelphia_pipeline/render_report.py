@@ -15,7 +15,7 @@ def render_index(template, mapdata_gdf, counts):
     # Save the rendered output to a file in the "output" folder.
     with open(output_root + '/index.html', mode='w') as outfile:
         outfile.write(output)
-   # upload_to_gcs('output/index.html', 'jawnt_philadelphia', 'index.html')
+   upload_to_gcs('output/index.html', 'jawnt_philadelphia', 'index.html')
 
 def render_station_pages(template, station_data):
     for index, row in station_data.iterrows():
@@ -27,7 +27,7 @@ def render_station_pages(template, station_data):
         pagename = row.station_id + '.html'
         with open(output_root + '/' + pagename, mode='w+') as outfile:
             outfile.write(output_station)
-            #upload_to_gcs(output_root'/'+pagename, 'jawnt_philadelphia', pagename)
+            upload_to_gcs(output_root'/'+pagename, 'jawnt_philadelphia', pagename)
 
 def main():
     # Download the map data.
