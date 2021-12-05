@@ -1,0 +1,163 @@
+
+<html>
+    <head>
+        <title>Jawnt: SEPTA and Indego Connections</title>
+        <!-- Leaflet JavaScript library is below -->
+        <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"
+        integrity="sha512-XQoYMqMTK8LvdxXYG3nZ448hOEQiglfqkJs1NOQV44cWnUrBc8PkAOcXy20w0vlaXaVUearIOBhiXZ5V3ynxwA=="
+        crossorigin=""></script>
+        <!-- D3 JavaScript library is below -->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/5.16.0/d3.min.js"
+        integrity="sha512-FHsFVKQ/T1KWJDGSbrUhTJyS1ph3eRrxI228ND0EGaEp6v4a/vGwPWd3Dtd/+9cI7ccofZvl/wulICEurHN1pg=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+        <!-- C3 JavaScript library is below -->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/c3/0.7.20/c3.js"
+        integrity="sha512-11Z4MD9csmC3vH8Vd0eIPJBQu3uEHEqeznWEt3sLBCdQx3zm9mJbBcJH8WTcyGY9EXDE81BNpjE2vLosPK8cFQ=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+        <script src="https://kit.fontawesome.com/457a87d66e.js" crossorigin="anonymous"></script>
+        <script type='text/javascript'>
+            var mapdata = {"type": "FeatureCollection", "features": [{"id": "0", "type": "Feature", "properties": {"Modal": "Bus", "OBJECTID": 5959, "Route": "39", "Station": "Susquehanna Av & Hope St", "StationID": "651", "lat": 39.983319, "lon": -75.132979}, "geometry": {"type": "Point", "coordinates": [-75.132979, 39.983319]}}, {"id": "1", "type": "Feature", "properties": {"Modal": "Bus", "OBJECTID": 14560, "Route": "89", "Station": "Susquehanna Av & Hope St", "StationID": "651", "lat": 39.983319, "lon": -75.132979}, "geometry": {"type": "Point", "coordinates": [-75.132979, 39.983319]}}, {"id": "2", "type": "Feature", "properties": {"Modal": "Bus", "OBJECTID": 18258, "Route": "MFL", "Station": "Berks Station - MFL", "StationID": "2460", "lat": 39.978626, "lon": -75.133448}, "geometry": {"type": "Point", "coordinates": [-75.133448, 39.978626]}}, {"id": "3", "type": "Feature", "properties": {"Modal": "Bus", "OBJECTID": 14561, "Route": "89", "Station": "Susquehanna Av & Mascher St", "StationID": "16358", "lat": 39.983528, "lon": -75.134396}, "geometry": {"type": "Point", "coordinates": [-75.134396, 39.983528]}}, {"id": "4", "type": "Feature", "properties": {"Modal": "Bus", "OBJECTID": 5960, "Route": "39", "Station": "Susquehanna Av & Mascher St", "StationID": "16358", "lat": 39.983528, "lon": -75.134396}, "geometry": {"type": "Point", "coordinates": [-75.134396, 39.983528]}}, {"id": "5", "type": "Feature", "properties": {"Modal": "Bus", "OBJECTID": 5961, "Route": "39", "Station": "Susquehanna Av & Hancock St", "StationID": "16359", "lat": 39.983637, "lon": -75.135306}, "geometry": {"type": "Point", "coordinates": [-75.135306, 39.983637]}}, {"id": "6", "type": "Feature", "properties": {"Modal": "Bus", "OBJECTID": 14562, "Route": "89", "Station": "Susquehanna Av & Hancock St", "StationID": "16359", "lat": 39.983637, "lon": -75.135306}, "geometry": {"type": "Point", "coordinates": [-75.135306, 39.983637]}}, {"id": "7", "type": "Feature", "properties": {"Modal": "Bus", "OBJECTID": 8384, "Route": "57", "Station": "American St & Cecil B Moore Av", "StationID": "17620", "lat": 39.976247, "lon": -75.139364}, "geometry": {"type": "Point", "coordinates": [-75.139364, 39.976247]}}, {"id": "8", "type": "Feature", "properties": {"Modal": "Bus", "OBJECTID": 8385, "Route": "57", "Station": "American St & Berks St", "StationID": "17625", "lat": 39.979227, "lon": -75.138714}, "geometry": {"type": "Point", "coordinates": [-75.138714, 39.979227]}}, {"id": "9", "type": "Feature", "properties": {"Modal": "Bus", "OBJECTID": 8386, "Route": "57", "Station": "American St & Norris St", "StationID": "17626", "lat": 39.980734, "lon": -75.138401}, "geometry": {"type": "Point", "coordinates": [-75.138401, 39.980734]}}, {"id": "10", "type": "Feature", "properties": {"Modal": "Bus", "OBJECTID": 8387, "Route": "57", "Station": "American St & Diamond St", "StationID": "17628", "lat": 39.982215, "lon": -75.138076}, "geometry": {"type": "Point", "coordinates": [-75.138076, 39.982215]}}, {"id": "11", "type": "Feature", "properties": {"Modal": "Bus", "OBJECTID": 14553, "Route": "89", "Station": "Norris St & Cedar St", "StationID": "17792", "lat": 39.976799, "lon": -75.127206}, "geometry": {"type": "Point", "coordinates": [-75.127206, 39.976799]}}, {"id": "12", "type": "Feature", "properties": {"Modal": "Bus", "OBJECTID": 14554, "Route": "89", "Station": "Susquehanna Av & Memphis St", "StationID": "17793", "lat": 39.977845, "lon": -75.12784}, "geometry": {"type": "Point", "coordinates": [-75.12784, 39.977845]}}, {"id": "13", "type": "Feature", "properties": {"Modal": "Bus", "OBJECTID": 14555, "Route": "89", "Station": "Susquehanna Av & Tulip St", "StationID": "17794", "lat": 39.978533, "lon": -75.128439}, "geometry": {"type": "Point", "coordinates": [-75.128439, 39.978533]}}, {"id": "14", "type": "Feature", "properties": {"Modal": "Bus", "OBJECTID": 14556, "Route": "89", "Station": "Susquehanna Av & Frankford Av", "StationID": "17795", "lat": 39.979508, "lon": -75.129274}, "geometry": {"type": "Point", "coordinates": [-75.129274, 39.979508]}}, {"id": "15", "type": "Feature", "properties": {"Modal": "Bus", "OBJECTID": 14557, "Route": "89", "Station": "Susquehanna Av & Trenton Av", "StationID": "17796", "lat": 39.980367, "lon": -75.13005}, "geometry": {"type": "Point", "coordinates": [-75.13005, 39.980367]}}, {"id": "16", "type": "Feature", "properties": {"Modal": "Bus", "OBJECTID": 14558, "Route": "89", "Station": "Susquehanna Av & Amber St", "StationID": "17797", "lat": 39.981234, "lon": -75.130791}, "geometry": {"type": "Point", "coordinates": [-75.130791, 39.981234]}}, {"id": "17", "type": "Feature", "properties": {"Modal": "Bus", "OBJECTID": 14559, "Route": "89", "Station": "Susquehanna Av & Coral St", "StationID": "17798", "lat": 39.982138, "lon": -75.13159}, "geometry": {"type": "Point", "coordinates": [-75.13159, 39.982138]}}, {"id": "18", "type": "Feature", "properties": {"Modal": "Bus", "OBJECTID": 14399, "Route": "89", "Station": "Dauphin St & Emerald St", "StationID": "17799", "lat": 39.983797, "lon": -75.131501}, "geometry": {"type": "Point", "coordinates": [-75.131501, 39.983797]}}, {"id": "19", "type": "Feature", "properties": {"Modal": "Bus", "OBJECTID": 14400, "Route": "89", "Station": "Dauphin St & Coral St", "StationID": "17800", "lat": 39.982823, "lon": -75.13069}, "geometry": {"type": "Point", "coordinates": [-75.13069, 39.982823]}}, {"id": "20", "type": "Feature", "properties": {"Modal": "Bus", "OBJECTID": 14401, "Route": "89", "Station": "Dauphin St & Amber St", "StationID": "17801", "lat": 39.981901, "lon": -75.129878}, "geometry": {"type": "Point", "coordinates": [-75.129878, 39.981901]}}, {"id": "21", "type": "Feature", "properties": {"Modal": "Bus", "OBJECTID": 14402, "Route": "89", "Station": "Dauphin St & Frankford Av", "StationID": "17802", "lat": 39.98056, "lon": -75.128643}, "geometry": {"type": "Point", "coordinates": [-75.128643, 39.98056]}}, {"id": "22", "type": "Feature", "properties": {"Modal": "Bus", "OBJECTID": 908, "Route": "25", "Station": "Norris St & Tulip St", "StationID": "17803", "lat": 39.978045, "lon": -75.129599}, "geometry": {"type": "Point", "coordinates": [-75.129599, 39.978045]}}, {"id": "23", "type": "Feature", "properties": {"Modal": "Bus", "OBJECTID": 14405, "Route": "89", "Station": "Norris St & Tulip St", "StationID": "17803", "lat": 39.978045, "lon": -75.129599}, "geometry": {"type": "Point", "coordinates": [-75.129599, 39.978045]}}, {"id": "24", "type": "Feature", "properties": {"Modal": "Bus", "OBJECTID": 909, "Route": "25", "Station": "Norris St & Memphis St", "StationID": "17804", "lat": 39.977525, "lon": -75.128715}, "geometry": {"type": "Point", "coordinates": [-75.128715, 39.977525]}}, {"id": "25", "type": "Feature", "properties": {"Modal": "Bus", "OBJECTID": 14406, "Route": "89", "Station": "Norris St & Memphis St", "StationID": "17804", "lat": 39.977525, "lon": -75.128715}, "geometry": {"type": "Point", "coordinates": [-75.128715, 39.977525]}}, {"id": "26", "type": "Feature", "properties": {"Modal": "Bus", "OBJECTID": 14407, "Route": "89", "Station": "Norris St & Cedar St", "StationID": "17805", "lat": 39.976853, "lon": -75.12756}, "geometry": {"type": "Point", "coordinates": [-75.12756, 39.976853]}}, {"id": "27", "type": "Feature", "properties": {"Modal": "Bus", "OBJECTID": 910, "Route": "25", "Station": "Norris St & Cedar St", "StationID": "17805", "lat": 39.976853, "lon": -75.12756}, "geometry": {"type": "Point", "coordinates": [-75.12756, 39.976853]}}, {"id": "28", "type": "Feature", "properties": {"Modal": "Bus", "OBJECTID": 8528, "Route": "57", "Station": "American St & Diamond St", "StationID": "18076", "lat": 39.982385, "lon": -75.138205}, "geometry": {"type": "Point", "coordinates": [-75.138205, 39.982385]}}, {"id": "29", "type": "Feature", "properties": {"Modal": "Bus", "OBJECTID": 8529, "Route": "57", "Station": "American St & Norris St", "StationID": "18077", "lat": 39.980904, "lon": -75.13853}, "geometry": {"type": "Point", "coordinates": [-75.13853, 39.980904]}}, {"id": "30", "type": "Feature", "properties": {"Modal": "Bus", "OBJECTID": 8530, "Route": "57", "Station": "American St & Berks St", "StationID": "18078", "lat": 39.979397, "lon": -75.138843}, "geometry": {"type": "Point", "coordinates": [-75.138843, 39.979397]}}, {"id": "31", "type": "Feature", "properties": {"Modal": "Bus", "OBJECTID": 8531, "Route": "57", "Station": "American St & Cecil B Moore Av", "StationID": "18079", "lat": 39.976417, "lon": -75.139493}, "geometry": {"type": "Point", "coordinates": [-75.139493, 39.976417]}}, {"id": "32", "type": "Feature", "properties": {"Modal": "Bus", "OBJECTID": 18316, "Route": "MFO", "Station": "Front St & Berks St", "StationID": "19003", "lat": 39.978563, "lon": -75.133495}, "geometry": {"type": "Point", "coordinates": [-75.133495, 39.978563]}}, {"id": "33", "type": "Feature", "properties": {"Modal": "Bus", "OBJECTID": 18336, "Route": "MFO", "Station": "Front St & Berks St", "StationID": "19018", "lat": 39.978787, "lon": -75.133601}, "geometry": {"type": "Point", "coordinates": [-75.133601, 39.978787]}}, {"id": "34", "type": "Feature", "properties": {"Modal": "Bus", "OBJECTID": 3846, "Route": "5", "Station": "Frankford Av & Oxford St", "StationID": "23932", "lat": 39.973922, "lon": -75.133373}, "geometry": {"type": "Point", "coordinates": [-75.133373, 39.973922]}}, {"id": "35", "type": "Feature", "properties": {"Modal": "Bus", "OBJECTID": 902, "Route": "25", "Station": "Frankford Av & Oxford St", "StationID": "23932", "lat": 39.973922, "lon": -75.133373}, "geometry": {"type": "Point", "coordinates": [-75.133373, 39.973922]}}, {"id": "36", "type": "Feature", "properties": {"Modal": "Bus", "OBJECTID": 3847, "Route": "5", "Station": "Frankford Av & Palmer St", "StationID": "23933", "lat": 39.975179, "lon": -75.132659}, "geometry": {"type": "Point", "coordinates": [-75.132659, 39.975179]}}, {"id": "37", "type": "Feature", "properties": {"Modal": "Bus", "OBJECTID": 903, "Route": "25", "Station": "Frankford Av & Palmer St", "StationID": "23933", "lat": 39.975179, "lon": -75.132659}, "geometry": {"type": "Point", "coordinates": [-75.132659, 39.975179]}}, {"id": "38", "type": "Feature", "properties": {"Modal": "Bus", "OBJECTID": 904, "Route": "25", "Station": "Frankford Av & Montgomery Av", "StationID": "23934", "lat": 39.976738, "lon": -75.131778}, "geometry": {"type": "Point", "coordinates": [-75.131778, 39.976738]}}, {"id": "39", "type": "Feature", "properties": {"Modal": "Bus", "OBJECTID": 3848, "Route": "5", "Station": "Frankford Av & Montgomery Av", "StationID": "23934", "lat": 39.976738, "lon": -75.131778}, "geometry": {"type": "Point", "coordinates": [-75.131778, 39.976738]}}, {"id": "40", "type": "Feature", "properties": {"Modal": "Bus", "OBJECTID": 3849, "Route": "5", "Station": "Frankford Av & Berks St", "StationID": "23935", "lat": 39.977523, "lon": -75.131326}, "geometry": {"type": "Point", "coordinates": [-75.131326, 39.977523]}}, {"id": "41", "type": "Feature", "properties": {"Modal": "Bus", "OBJECTID": 905, "Route": "25", "Station": "Frankford Av & Berks St", "StationID": "23935", "lat": 39.977523, "lon": -75.131326}, "geometry": {"type": "Point", "coordinates": [-75.131326, 39.977523]}}, {"id": "42", "type": "Feature", "properties": {"Modal": "Bus", "OBJECTID": 3850, "Route": "5", "Station": "Frankford Av & Norris St", "StationID": "23936", "lat": 39.97852, "lon": -75.130471}, "geometry": {"type": "Point", "coordinates": [-75.130471, 39.97852]}}, {"id": "43", "type": "Feature", "properties": {"Modal": "Bus", "OBJECTID": 906, "Route": "25", "Station": "Frankford Av & Norris St", "StationID": "23936", "lat": 39.97852, "lon": -75.130471}, "geometry": {"type": "Point", "coordinates": [-75.130471, 39.97852]}}, {"id": "44", "type": "Feature", "properties": {"Modal": "Bus", "OBJECTID": 3851, "Route": "5", "Station": "Frankford Av & Susquehanna Av", "StationID": "23937", "lat": 39.979464, "lon": -75.12951}, "geometry": {"type": "Point", "coordinates": [-75.12951, 39.979464]}}, {"id": "45", "type": "Feature", "properties": {"Modal": "Bus", "OBJECTID": 3852, "Route": "5", "Station": "Frankford Av & Dauphin St", "StationID": "23938", "lat": 39.980399, "lon": -75.128561}, "geometry": {"type": "Point", "coordinates": [-75.128561, 39.980399]}}, {"id": "46", "type": "Feature", "properties": {"Modal": "Bus", "OBJECTID": 3853, "Route": "5", "Station": "Frankford Av & Trenton Av", "StationID": "23939", "lat": 39.981191, "lon": -75.12779}, "geometry": {"type": "Point", "coordinates": [-75.12779, 39.981191]}}, {"id": "47", "type": "Feature", "properties": {"Modal": "Bus", "OBJECTID": 4019, "Route": "25", "Station": "Memphis St & Dauphin St", "StationID": "24027", "lat": 39.978574, "lon": -75.126762}, "geometry": {"type": "Point", "coordinates": [-75.126762, 39.978574]}}, {"id": "48", "type": "Feature", "properties": {"Modal": "Bus", "OBJECTID": 4020, "Route": "25", "Station": "Memphis St & Susquehanna Av", "StationID": "24028", "lat": 39.97797, "lon": -75.127945}, "geometry": {"type": "Point", "coordinates": [-75.127945, 39.97797]}}, {"id": "49", "type": "Feature", "properties": {"Modal": "Bus", "OBJECTID": 4021, "Route": "25", "Station": "Memphis St & Norris St", "StationID": "24029", "lat": 39.977597, "lon": -75.12862}, "geometry": {"type": "Point", "coordinates": [-75.12862, 39.977597]}}, {"id": "50", "type": "Feature", "properties": {"Modal": "Bus", "OBJECTID": 4022, "Route": "25", "Station": "Memphis St & Berks St", "StationID": "24030", "lat": 39.976803, "lon": -75.129132}, "geometry": {"type": "Point", "coordinates": [-75.129132, 39.976803]}}, {"id": "51", "type": "Feature", "properties": {"Modal": "Bus", "OBJECTID": 4023, "Route": "25", "Station": "Memphis St & Montgomery St - FS", "StationID": "24031", "lat": 39.975796, "lon": -75.129715}, "geometry": {"type": "Point", "coordinates": [-75.129715, 39.975796]}}, {"id": "52", "type": "Feature", "properties": {"Modal": "Bus", "OBJECTID": 4024, "Route": "25", "Station": "Memphis St & Palmer St", "StationID": "24032", "lat": 39.974575, "lon": -75.130417}, "geometry": {"type": "Point", "coordinates": [-75.130417, 39.974575]}}, {"id": "53", "type": "Feature", "properties": {"Modal": "Bus", "OBJECTID": 4025, "Route": "25", "Station": "Palmer St & Tulip St", "StationID": "24033", "lat": 39.974872, "lon": -75.131278}, "geometry": {"type": "Point", "coordinates": [-75.131278, 39.974872]}}, {"id": "54", "type": "Feature", "properties": {"Modal": "Bus", "OBJECTID": 4026, "Route": "25", "Station": "Palmer St & Frankford Av", "StationID": "24034", "lat": 39.975321, "lon": -75.132575}, "geometry": {"type": "Point", "coordinates": [-75.132575, 39.975321]}}, {"id": "55", "type": "Feature", "properties": {"Modal": "Bus", "OBJECTID": 4027, "Route": "25", "Station": "Frankford Av & Oxford St", "StationID": "24092", "lat": 39.974145, "lon": -75.133407}, "geometry": {"type": "Point", "coordinates": [-75.133407, 39.974145]}}, {"id": "56", "type": "Feature", "properties": {"Modal": "Bus", "OBJECTID": 3931, "Route": "5", "Station": "Frankford Av & Oxford St", "StationID": "24092", "lat": 39.974145, "lon": -75.133407}, "geometry": {"type": "Point", "coordinates": [-75.133407, 39.974145]}}, {"id": "57", "type": "Feature", "properties": {"Modal": "Bus", "OBJECTID": 3924, "Route": "5", "Station": "Frankford Av & York St", "StationID": "24153", "lat": 39.981566, "lon": -75.127576}, "geometry": {"type": "Point", "coordinates": [-75.127576, 39.981566]}}, {"id": "58", "type": "Feature", "properties": {"Modal": "Bus", "OBJECTID": 3925, "Route": "5", "Station": "Frankford Av & Dauphin St", "StationID": "24154", "lat": 39.980631, "lon": -75.128478}, "geometry": {"type": "Point", "coordinates": [-75.128478, 39.980631]}}, {"id": "59", "type": "Feature", "properties": {"Modal": "Bus", "OBJECTID": 3926, "Route": "5", "Station": "Frankford Av & Susquehanna Av", "StationID": "24155", "lat": 39.979749, "lon": -75.129391}, "geometry": {"type": "Point", "coordinates": [-75.129391, 39.979749]}}, {"id": "60", "type": "Feature", "properties": {"Modal": "Bus", "OBJECTID": 14403, "Route": "89", "Station": "Frankford Av & Susquehanna Av", "StationID": "24155", "lat": 39.979749, "lon": -75.129391}, "geometry": {"type": "Point", "coordinates": [-75.129391, 39.979749]}}, {"id": "61", "type": "Feature", "properties": {"Modal": "Bus", "OBJECTID": 3927, "Route": "5", "Station": "Frankford Av & Norris St", "StationID": "24156", "lat": 39.978699, "lon": -75.130435}, "geometry": {"type": "Point", "coordinates": [-75.130435, 39.978699]}}, {"id": "62", "type": "Feature", "properties": {"Modal": "Bus", "OBJECTID": 3928, "Route": "5", "Station": "Frankford Av & Berks St", "StationID": "24157", "lat": 39.977657, "lon": -75.131384}, "geometry": {"type": "Point", "coordinates": [-75.131384, 39.977657]}}, {"id": "63", "type": "Feature", "properties": {"Modal": "Bus", "OBJECTID": 3929, "Route": "5", "Station": "Frankford Av & Montgomery Av", "StationID": "24158", "lat": 39.976872, "lon": -75.131837}, "geometry": {"type": "Point", "coordinates": [-75.131837, 39.976872]}}, {"id": "64", "type": "Feature", "properties": {"Modal": "Bus", "OBJECTID": 3930, "Route": "5", "Station": "Frankford Av & Palmer St", "StationID": "24159", "lat": 39.975464, "lon": -75.132658}, "geometry": {"type": "Point", "coordinates": [-75.132658, 39.975464]}}, {"id": "65", "type": "Feature", "properties": {"Modal": "Bus", "OBJECTID": 3508, "Route": "3", "Station": "Berks St & 3rd St", "StationID": "25396", "lat": 39.979453, "lon": -75.140119}, "geometry": {"type": "Point", "coordinates": [-75.140119, 39.979453]}}, {"id": "66", "type": "Feature", "properties": {"Modal": "Bus", "OBJECTID": 3509, "Route": "3", "Station": "Berks St & American St", "StationID": "25397", "lat": 39.979263, "lon": -75.138856}, "geometry": {"type": "Point", "coordinates": [-75.138856, 39.979263]}}, {"id": "67", "type": "Feature", "properties": {"Modal": "Bus", "OBJECTID": 3510, "Route": "3", "Station": "Berks St & 2nd St", "StationID": "25398", "lat": 39.979099, "lon": -75.137557}, "geometry": {"type": "Point", "coordinates": [-75.137557, 39.979099]}}, {"id": "68", "type": "Feature", "properties": {"Modal": "Bus", "OBJECTID": 3511, "Route": "3", "Station": "Berks St & Mascher St", "StationID": "25399", "lat": 39.978863, "lon": -75.135609}, "geometry": {"type": "Point", "coordinates": [-75.135609, 39.978863]}}, {"id": "69", "type": "Feature", "properties": {"Modal": "Bus", "OBJECTID": 3512, "Route": "3", "Station": "Berks St & Front St", "StationID": "25401", "lat": 39.97859, "lon": -75.133672}, "geometry": {"type": "Point", "coordinates": [-75.133672, 39.97859]}}, {"id": "70", "type": "Feature", "properties": {"Modal": "Bus", "OBJECTID": 3513, "Route": "3", "Station": "Front St & Norris St", "StationID": "25402", "lat": 39.979972, "lon": -75.133123}, "geometry": {"type": "Point", "coordinates": [-75.133123, 39.979972]}}, {"id": "71", "type": "Feature", "properties": {"Modal": "Bus", "OBJECTID": 3514, "Route": "3", "Station": "Front St & Coral St", "StationID": "25403", "lat": 39.98148, "lon": -75.132798}, "geometry": {"type": "Point", "coordinates": [-75.132798, 39.98148]}}, {"id": "72", "type": "Feature", "properties": {"Modal": "Bus", "OBJECTID": 3515, "Route": "3", "Station": "Front St & Susquehanna Av", "StationID": "25404", "lat": 39.982952, "lon": -75.132485}, "geometry": {"type": "Point", "coordinates": [-75.132485, 39.982952]}}, {"id": "73", "type": "Feature", "properties": {"Modal": "Bus", "OBJECTID": 3579, "Route": "3", "Station": "Front St & Susquehanna Av", "StationID": "25451", "lat": 39.983282, "lon": -75.132578}, "geometry": {"type": "Point", "coordinates": [-75.132578, 39.983282]}}, {"id": "74", "type": "Feature", "properties": {"Modal": "Bus", "OBJECTID": 3580, "Route": "3", "Station": "Front St & Diamond St", "StationID": "25452", "lat": 39.981712, "lon": -75.132915}, "geometry": {"type": "Point", "coordinates": [-75.132915, 39.981712]}}, {"id": "75", "type": "Feature", "properties": {"Modal": "Bus", "OBJECTID": 3581, "Route": "3", "Station": "Front St & Norris St", "StationID": "25453", "lat": 39.98024, "lon": -75.13324}, "geometry": {"type": "Point", "coordinates": [-75.13324, 39.98024]}}, {"id": "76", "type": "Feature", "properties": {"Modal": "Bus", "OBJECTID": 3583, "Route": "3", "Station": "Berks St & Mascher St", "StationID": "25455", "lat": 39.978951, "lon": -75.135348}, "geometry": {"type": "Point", "coordinates": [-75.135348, 39.978951]}}, {"id": "77", "type": "Feature", "properties": {"Modal": "Bus", "OBJECTID": 3584, "Route": "3", "Station": "Berks St & 2nd St", "StationID": "25456", "lat": 39.979197, "lon": -75.13732}, "geometry": {"type": "Point", "coordinates": [-75.13732, 39.979197]}}, {"id": "78", "type": "Feature", "properties": {"Modal": "Bus", "OBJECTID": 3585, "Route": "3", "Station": "Berks St & American St", "StationID": "25457", "lat": 39.979351, "lon": -75.138513}, "geometry": {"type": "Point", "coordinates": [-75.138513, 39.979351]}}, {"id": "79", "type": "Feature", "properties": {"Modal": "Bus", "OBJECTID": 3586, "Route": "3", "Station": "Berks St & 3rd St", "StationID": "25458", "lat": 39.979542, "lon": -75.139871}, "geometry": {"type": "Point", "coordinates": [-75.139871, 39.979542]}}, {"id": "80", "type": "Feature", "properties": {"Modal": "Bus", "OBJECTID": 907, "Route": "25", "Station": "Norris St & Frankford Av - FS", "StationID": "30894", "lat": 39.978449, "lon": -75.130353}, "geometry": {"type": "Point", "coordinates": [-75.130353, 39.978449]}}, {"id": "81", "type": "Feature", "properties": {"Modal": "Bus", "OBJECTID": 14404, "Route": "89", "Station": "Norris St & Frankford Av - FS", "StationID": "30894", "lat": 39.978449, "lon": -75.130353}, "geometry": {"type": "Point", "coordinates": [-75.130353, 39.978449]}}, {"id": "82", "type": "Feature", "properties": {"Modal": "Bus", "OBJECTID": 3582, "Route": "3", "Station": "Berks St & Front St - FS", "StationID": "31367", "lat": 39.978742, "lon": -75.133754}, "geometry": {"type": "Point", "coordinates": [-75.133754, 39.978742]}}, {"id": "83", "type": "Feature", "properties": {"Modal": "Bus", "OBJECTID": 18277, "Route": "MFL", "Station": "Berks Station - MFL", "StationID": "32167", "lat": 39.978626, "lon": -75.133566}, "geometry": {"type": "Point", "coordinates": [-75.133566, 39.978626]}}, {"id": "84", "type": "Feature", "properties": {"Modal": "Bike", "OBJECTID": 72, "Route": "", "Station": "Berks Station, MFL", "StationID": "bcycle_indego_3097", "lat": 39.97888, "lon": -75.13339}, "geometry": {"type": "Point", "coordinates": [-75.13339, 39.97888]}}, {"id": "85", "type": "Feature", "properties": {"Modal": "Bike", "OBJECTID": 141, "Route": "", "Station": "2nd & Norris", "StationID": "bcycle_indego_3226", "lat": 39.98101, "lon": -75.13721}, "geometry": {"type": "Point", "coordinates": [-75.13721, 39.98101]}}, {"id": "86", "type": "Feature", "properties": {"Modal": "Subway", "OBJECTID": 19, "Route": "Market-Frankford Line", "Station": "Berks", "StationID": "20084", "lat": 39.978634, "lon": -75.13349}, "geometry": {"type": "Point", "coordinates": [-75.13349, 39.978634]}}]};
+
+            const iconSubway = L.divIcon({
+                html: '<i class="fas fa-subway fa-2x"></i>',
+                iconSize: [20, 20],
+                className: 'icon-subway'
+            });
+
+            const iconBikePrimary = L.divIcon({
+                html: '<i class="fas fa-bicycle fa-6x"></i>',
+                iconSize: [20, 20],
+                className: 'icon-bike-primary'
+            });
+
+            const iconBike = L.divIcon({
+                html: '<i class="fas fa-bicycle fa-4x"></i>',
+                iconSize: [20, 20],
+                className: 'icon-bike'
+            });
+
+            const iconBus = L.divIcon({
+                html: '<i class="fas fa-bus fa-2x"></i>',
+                iconSize: [20, 20],
+                className: 'icon-bus'
+            });
+
+        </script>
+          <!-- Leaflet stylesheet is below -->
+        <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css"
+        integrity="sha512-xodZBNTC5n17Xt2atTPuE1HxjVMSvLVW9ocqUKLsCC5CXdbqCmblAshOMAS6/keqq/sMZMZ19scR4PsZChSR7A=="
+        crossorigin=""/>
+        <!-- C3 stylesheet is below -->
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/c3/0.7.20/c3.css"
+        integrity="sha512-GQSxWe9Cj4o4EduO7zO9HjULmD4olIjiQqZ7VJuwBxZlkWaUFGCxRkn39jYnD2xZBtEilm0m4WBG7YEmQuMs5Q=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+  <!-- Stylesheet for the report's custom layout is below -->
+  <style>
+    body {
+      font-family: sans;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      grid-template-rows: auto auto 1fr 1fr;
+      grid-template-areas:
+        "header header"
+        "map list"
+        "map chart1"
+        "map chart2";
+      column-gap: 1rem;
+      row-gap: 1rem;
+    }
+    h1 {
+      grid-area: header;
+    }
+    #stationmap {
+      grid-area: map;
+      height: 100%;
+    }
+
+    .icon-subway{
+        color: #f14728;
+        -webkit-text-stroke: 1px #edb9b0;
+    }
+    .icon-subway:hover{
+        color: #f14728;
+        -webkit-text-stroke: 1px #edb9b0;
+    }
+
+    .icon-bus{
+        color: #1f4fa3;
+        -webkit-text-stroke: 1px #98b6eb;
+    }
+    .icon-bus:hover{
+        color: #1f4fa3;
+        -webkit-text-stroke: 1px #98b6eb;
+    }
+
+    .icon-bike{
+        color: #36b4e5;
+        -webkit-text-stroke: 1px #FFF;
+    }
+    .icon-bike:hover{
+        color: #0082cb;
+        -webkit-text-stroke: 1px #FFF;
+    }
+    .icon-bike-primary{
+        color: #36b4e5;
+        -webkit-text-stroke: 2px #000;
+    }
+
+  </style>
+    </head>
+    <body>
+        <h1><a href='index.html'>All stations</a> >> Berks Station, MFL</h1>
+
+  <div id="stationmap"></div>
+  <div>
+    <p>Info about Berks Station, MFL.</p>
+</div>
+
+
+          <script>
+    var initialCenter = [39.97888, -75.13339];  // <-- Latitude, Longitude
+    var initialZoom = 16;
+    var stationmap = L.map('stationmap', {
+      zoomSnap: 0,
+      zoomDelta: 0.25
+    }).setView(initialCenter, initialZoom);
+
+    var baseLayer = new L.tileLayer('https://stamen-tiles-{s}.a.ssl.fastly.net/toner-background/{z}/{x}/{y}{r}.{ext}', {
+    	attribution: 'Map tiles by <a href="http://stamen.com">Stamen Design</a>, <a href="http://creativecommons.org/licenses/by/3.0">CC BY 3.0</a> &mdash; Map data &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
+    	subdomains: 'abcd',
+    	minZoom: 0,
+    	maxZoom: 20,
+    	ext: 'png'
+    });
+    baseLayer.addTo(stationmap);
+
+    mapdata.features.forEach( function(location){
+      console.log(location.properties.Modal);
+      console.log(location);
+      switch (location.properties.Modal) {
+        case 'Subway':
+          iconToUse = iconSubway;
+          break;
+        case 'Bus':
+          iconToUse = iconBus;
+          break;
+        case 'Bike':
+          iconToUse = iconBike;
+          break;
+      }
+      if(location.properties.lat != 39.97888 && location.properties.lon != -75.13339) {
+        var marker = L.marker([location.properties.lat, location.properties.lon], {icon: iconToUse}).addTo(stationmap);
+        marker.bindPopup(
+            location.properties.Station
+        );
+      } else {
+        var indego_marker = L.marker([39.97888, -75.13339], {icon: iconBikePrimary}).addTo(stationmap);
+      }
+    });
+  </script>
+
+    </body>
+</html>

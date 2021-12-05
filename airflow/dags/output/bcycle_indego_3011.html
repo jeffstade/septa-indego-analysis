@@ -1,0 +1,163 @@
+
+<html>
+    <head>
+        <title>Jawnt: SEPTA and Indego Connections</title>
+        <!-- Leaflet JavaScript library is below -->
+        <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"
+        integrity="sha512-XQoYMqMTK8LvdxXYG3nZ448hOEQiglfqkJs1NOQV44cWnUrBc8PkAOcXy20w0vlaXaVUearIOBhiXZ5V3ynxwA=="
+        crossorigin=""></script>
+        <!-- D3 JavaScript library is below -->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/5.16.0/d3.min.js"
+        integrity="sha512-FHsFVKQ/T1KWJDGSbrUhTJyS1ph3eRrxI228ND0EGaEp6v4a/vGwPWd3Dtd/+9cI7ccofZvl/wulICEurHN1pg=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+        <!-- C3 JavaScript library is below -->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/c3/0.7.20/c3.js"
+        integrity="sha512-11Z4MD9csmC3vH8Vd0eIPJBQu3uEHEqeznWEt3sLBCdQx3zm9mJbBcJH8WTcyGY9EXDE81BNpjE2vLosPK8cFQ=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+        <script src="https://kit.fontawesome.com/457a87d66e.js" crossorigin="anonymous"></script>
+        <script type='text/javascript'>
+            var mapdata = {"type": "FeatureCollection", "features": [{"id": "0", "type": "Feature", "properties": {"Modal": "Bus", "OBJECTID": 2419, "Route": "10", "Station": "40th St & Filbert St", "StationID": "279", "lat": 39.957929, "lon": -75.201901}, "geometry": {"type": "Point", "coordinates": [-75.201901, 39.957929]}}, {"id": "1", "type": "Feature", "properties": {"Modal": "Bus", "OBJECTID": 2446, "Route": "10", "Station": "40th St & Filbert St", "StationID": "279", "lat": 39.957929, "lon": -75.201901}, "geometry": {"type": "Point", "coordinates": [-75.201901, 39.957929]}}, {"id": "2", "type": "Feature", "properties": {"Modal": "Bus", "OBJECTID": 2439, "Route": "10", "Station": "36th St Trolley Portal Station", "StationID": "287", "lat": 39.955451, "lon": -75.194233}, "geometry": {"type": "Point", "coordinates": [-75.194233, 39.955451]}}, {"id": "3", "type": "Feature", "properties": {"Modal": "Bus", "OBJECTID": 18304, "Route": "MFO", "Station": "Market St & 40th St", "StationID": "299", "lat": 39.957117, "lon": -75.202175}, "geometry": {"type": "Point", "coordinates": [-75.202175, 39.957117]}}, {"id": "4", "type": "Feature", "properties": {"Modal": "Bus", "OBJECTID": 6137, "Route": "40", "Station": "Market St & 40th St", "StationID": "300", "lat": 39.957179, "lon": -75.20188}, "geometry": {"type": "Point", "coordinates": [-75.20188, 39.957179]}}, {"id": "5", "type": "Feature", "properties": {"Modal": "Bus", "OBJECTID": 18348, "Route": "MFO", "Station": "Market St & 40th St", "StationID": "300", "lat": 39.957179, "lon": -75.20188}, "geometry": {"type": "Point", "coordinates": [-75.20188, 39.957179]}}, {"id": "6", "type": "Feature", "properties": {"Modal": "Bus", "OBJECTID": 120, "Route": "21", "Station": "Chestnut St & 39th St", "StationID": "598", "lat": 39.955292, "lon": -75.200044}, "geometry": {"type": "Point", "coordinates": [-75.200044, 39.955292]}}, {"id": "7", "type": "Feature", "properties": {"Modal": "Bus", "OBJECTID": 4825, "Route": "30", "Station": "Chestnut St & 39th St", "StationID": "598", "lat": 39.955292, "lon": -75.200044}, "geometry": {"type": "Point", "coordinates": [-75.200044, 39.955292]}}, {"id": "8", "type": "Feature", "properties": {"Modal": "Bus", "OBJECTID": 121, "Route": "21", "Station": "Chestnut St & 38th St", "StationID": "622", "lat": 39.955111, "lon": -75.198603}, "geometry": {"type": "Point", "coordinates": [-75.198603, 39.955111]}}, {"id": "9", "type": "Feature", "properties": {"Modal": "Bus", "OBJECTID": 122, "Route": "21", "Station": "Chestnut St & 37th St", "StationID": "623", "lat": 39.954867, "lon": -75.196549}, "geometry": {"type": "Point", "coordinates": [-75.196549, 39.954867]}}, {"id": "10", "type": "Feature", "properties": {"Modal": "Bus", "OBJECTID": 18247, "Route": "MFL", "Station": "40th St Station - MFL", "StationID": "2452", "lat": 39.957117, "lon": -75.201963}, "geometry": {"type": "Point", "coordinates": [-75.201963, 39.957117]}}, {"id": "11", "type": "Feature", "properties": {"Modal": "Bus", "OBJECTID": 18218, "Route": "LUCYGO", "Station": "Market St & 34th St - MBNS", "StationID": "18995", "lat": 39.955866, "lon": -75.191999}, "geometry": {"type": "Point", "coordinates": [-75.191999, 39.955866]}}, {"id": "12", "type": "Feature", "properties": {"Modal": "Bus", "OBJECTID": 16940, "Route": "316", "Station": "Market St & 34th St - MBNS", "StationID": "18995", "lat": 39.955866, "lon": -75.191999}, "geometry": {"type": "Point", "coordinates": [-75.191999, 39.955866]}}, {"id": "13", "type": "Feature", "properties": {"Modal": "Bus", "OBJECTID": 18305, "Route": "MFO", "Station": "Market St & 34th St - MBNS", "StationID": "18995", "lat": 39.955866, "lon": -75.191999}, "geometry": {"type": "Point", "coordinates": [-75.191999, 39.955866]}}, {"id": "14", "type": "Feature", "properties": {"Modal": "Bus", "OBJECTID": 2420, "Route": "10", "Station": "Lancaster Av & Spring Garden St", "StationID": "20636", "lat": 39.962004, "lon": -75.200353}, "geometry": {"type": "Point", "coordinates": [-75.200353, 39.962004]}}, {"id": "15", "type": "Feature", "properties": {"Modal": "Bus", "OBJECTID": 2421, "Route": "10", "Station": "Lancaster Av & 38th St", "StationID": "20638", "lat": 39.960267, "lon": -75.197016}, "geometry": {"type": "Point", "coordinates": [-75.197016, 39.960267]}}, {"id": "16", "type": "Feature", "properties": {"Modal": "Bus", "OBJECTID": 2422, "Route": "10", "Station": "Lancaster Av & 36th St", "StationID": "20639", "lat": 39.958565, "lon": -75.193786}, "geometry": {"type": "Point", "coordinates": [-75.193786, 39.958565]}}, {"id": "17", "type": "Feature", "properties": {"Modal": "Bus", "OBJECTID": 2423, "Route": "10", "Station": "36th St & Market St", "StationID": "20640", "lat": 39.956281, "lon": -75.194218}, "geometry": {"type": "Point", "coordinates": [-75.194218, 39.956281]}}, {"id": "18", "type": "Feature", "properties": {"Modal": "Bus", "OBJECTID": 2424, "Route": "10", "Station": "36th St Trolley Portal Station", "StationID": "20641", "lat": 39.955335, "lon": -75.194162}, "geometry": {"type": "Point", "coordinates": [-75.194162, 39.955335]}}, {"id": "19", "type": "Feature", "properties": {"Modal": "Bus", "OBJECTID": 2443, "Route": "10", "Station": "Lancaster Av & 38th St", "StationID": "20663", "lat": 39.96024, "lon": -75.196721}, "geometry": {"type": "Point", "coordinates": [-75.196721, 39.96024]}}, {"id": "20", "type": "Feature", "properties": {"Modal": "Bus", "OBJECTID": 2440, "Route": "10", "Station": "36th St & Market St", "StationID": "20664", "lat": 39.956058, "lon": -75.194113}, "geometry": {"type": "Point", "coordinates": [-75.194113, 39.956058]}}, {"id": "21", "type": "Feature", "properties": {"Modal": "Bus", "OBJECTID": 2441, "Route": "10", "Station": "36th St & Lancaster Av", "StationID": "20665", "lat": 39.958404, "lon": -75.193585}, "geometry": {"type": "Point", "coordinates": [-75.193585, 39.958404]}}, {"id": "22", "type": "Feature", "properties": {"Modal": "Bus", "OBJECTID": 2444, "Route": "10", "Station": "Lancaster Av & Spring Garden St", "StationID": "20668", "lat": 39.961923, "lon": -75.199952}, "geometry": {"type": "Point", "coordinates": [-75.199952, 39.961923]}}, {"id": "23", "type": "Feature", "properties": {"Modal": "Bus", "OBJECTID": 2445, "Route": "10", "Station": "Lancaster Av & Haverford Av", "StationID": "20669", "lat": 39.9629, "lon": -75.201826}, "geometry": {"type": "Point", "coordinates": [-75.201826, 39.9629]}}, {"id": "24", "type": "Feature", "properties": {"Modal": "Bus", "OBJECTID": 2510, "Route": "11", "Station": "40th St & Market St", "StationID": "21248", "lat": 39.957259, "lon": -75.202021}, "geometry": {"type": "Point", "coordinates": [-75.202021, 39.957259]}}, {"id": "25", "type": "Feature", "properties": {"Modal": "Bus", "OBJECTID": 4774, "Route": "30", "Station": "40th St & Market St", "StationID": "21248", "lat": 39.957259, "lon": -75.202021}, "geometry": {"type": "Point", "coordinates": [-75.202021, 39.957259]}}, {"id": "26", "type": "Feature", "properties": {"Modal": "Bus", "OBJECTID": 2701, "Route": "13", "Station": "40th St & Market St", "StationID": "21248", "lat": 39.957259, "lon": -75.202021}, "geometry": {"type": "Point", "coordinates": [-75.202021, 39.957259]}}, {"id": "27", "type": "Feature", "properties": {"Modal": "Bus", "OBJECTID": 4828, "Route": "30", "Station": "40th St & Market St", "StationID": "21248", "lat": 39.957259, "lon": -75.202021}, "geometry": {"type": "Point", "coordinates": [-75.202021, 39.957259]}}, {"id": "28", "type": "Feature", "properties": {"Modal": "Bus", "OBJECTID": 17001, "Route": "36B", "Station": "40th St & Market St", "StationID": "21248", "lat": 39.957259, "lon": -75.202021}, "geometry": {"type": "Point", "coordinates": [-75.202021, 39.957259]}}, {"id": "29", "type": "Feature", "properties": {"Modal": "Bus", "OBJECTID": 5485, "Route": "36", "Station": "40th St & Market St", "StationID": "21248", "lat": 39.957259, "lon": -75.202021}, "geometry": {"type": "Point", "coordinates": [-75.202021, 39.957259]}}, {"id": "30", "type": "Feature", "properties": {"Modal": "Bus", "OBJECTID": 6049, "Route": "40", "Station": "40th St & Market St", "StationID": "21248", "lat": 39.957259, "lon": -75.202021}, "geometry": {"type": "Point", "coordinates": [-75.202021, 39.957259]}}, {"id": "31", "type": "Feature", "properties": {"Modal": "Bus", "OBJECTID": 5502, "Route": "36", "Station": "40th St & Market St", "StationID": "21248", "lat": 39.957259, "lon": -75.202021}, "geometry": {"type": "Point", "coordinates": [-75.202021, 39.957259]}}, {"id": "32", "type": "Feature", "properties": {"Modal": "Bus", "OBJECTID": 5364, "Route": "34", "Station": "40th St & Market St", "StationID": "21248", "lat": 39.957259, "lon": -75.202021}, "geometry": {"type": "Point", "coordinates": [-75.202021, 39.957259]}}, {"id": "33", "type": "Feature", "properties": {"Modal": "Bus", "OBJECTID": 2527, "Route": "11", "Station": "40th St & Market St", "StationID": "21248", "lat": 39.957259, "lon": -75.202021}, "geometry": {"type": "Point", "coordinates": [-75.202021, 39.957259]}}, {"id": "34", "type": "Feature", "properties": {"Modal": "Bus", "OBJECTID": 16984, "Route": "36B", "Station": "40th St & Market St", "StationID": "21248", "lat": 39.957259, "lon": -75.202021}, "geometry": {"type": "Point", "coordinates": [-75.202021, 39.957259]}}, {"id": "35", "type": "Feature", "properties": {"Modal": "Bus", "OBJECTID": 2719, "Route": "13", "Station": "40th St & Market St", "StationID": "21248", "lat": 39.957259, "lon": -75.202021}, "geometry": {"type": "Point", "coordinates": [-75.202021, 39.957259]}}, {"id": "36", "type": "Feature", "properties": {"Modal": "Bus", "OBJECTID": 5345, "Route": "34", "Station": "40th St & Market St", "StationID": "21248", "lat": 39.957259, "lon": -75.202021}, "geometry": {"type": "Point", "coordinates": [-75.202021, 39.957259]}}, {"id": "37", "type": "Feature", "properties": {"Modal": "Bus", "OBJECTID": 123, "Route": "21", "Station": "Chestnut St & 36th St", "StationID": "21353", "lat": 39.954622, "lon": -75.194566}, "geometry": {"type": "Point", "coordinates": [-75.194566, 39.954622]}}, {"id": "38", "type": "Feature", "properties": {"Modal": "Bus", "OBJECTID": 6046, "Route": "40", "Station": "40th St & Spring Garden St", "StationID": "21422", "lat": 39.961705, "lon": -75.202314}, "geometry": {"type": "Point", "coordinates": [-75.202314, 39.961705]}}, {"id": "39", "type": "Feature", "properties": {"Modal": "Bus", "OBJECTID": 4771, "Route": "30", "Station": "40th St & Spring Garden St", "StationID": "21422", "lat": 39.961705, "lon": -75.202314}, "geometry": {"type": "Point", "coordinates": [-75.202314, 39.961705]}}, {"id": "40", "type": "Feature", "properties": {"Modal": "Bus", "OBJECTID": 6047, "Route": "40", "Station": "40th St & Baring St", "StationID": "21423", "lat": 39.960464, "lon": -75.202177}, "geometry": {"type": "Point", "coordinates": [-75.202177, 39.960464]}}, {"id": "41", "type": "Feature", "properties": {"Modal": "Bus", "OBJECTID": 4772, "Route": "30", "Station": "40th St & Baring St", "StationID": "21423", "lat": 39.960464, "lon": -75.202177}, "geometry": {"type": "Point", "coordinates": [-75.202177, 39.960464]}}, {"id": "42", "type": "Feature", "properties": {"Modal": "Bus", "OBJECTID": 6048, "Route": "40", "Station": "40th St & Powelton Av", "StationID": "21424", "lat": 39.959232, "lon": -75.202039}, "geometry": {"type": "Point", "coordinates": [-75.202039, 39.959232]}}, {"id": "43", "type": "Feature", "properties": {"Modal": "Bus", "OBJECTID": 4773, "Route": "30", "Station": "40th St & Powelton Av", "StationID": "21424", "lat": 39.959232, "lon": -75.202039}, "geometry": {"type": "Point", "coordinates": [-75.202039, 39.959232]}}, {"id": "44", "type": "Feature", "properties": {"Modal": "Bus", "OBJECTID": 6135, "Route": "40", "Station": "Market St & 38th St - FS", "StationID": "21463", "lat": 39.956762, "lon": -75.19835}, "geometry": {"type": "Point", "coordinates": [-75.19835, 39.956762]}}, {"id": "45", "type": "Feature", "properties": {"Modal": "Bus", "OBJECTID": 4826, "Route": "30", "Station": "Market St & 38th St - FS", "StationID": "21463", "lat": 39.956762, "lon": -75.19835}, "geometry": {"type": "Point", "coordinates": [-75.19835, 39.956762]}}, {"id": "46", "type": "Feature", "properties": {"Modal": "Bus", "OBJECTID": 4827, "Route": "30", "Station": "Market St & 39th St", "StationID": "21464", "lat": 39.956898, "lon": -75.199507}, "geometry": {"type": "Point", "coordinates": [-75.199507, 39.956898]}}, {"id": "47", "type": "Feature", "properties": {"Modal": "Bus", "OBJECTID": 6136, "Route": "40", "Station": "Market St & 39th St", "StationID": "21464", "lat": 39.956898, "lon": -75.199507}, "geometry": {"type": "Point", "coordinates": [-75.199507, 39.956898]}}, {"id": "48", "type": "Feature", "properties": {"Modal": "Bus", "OBJECTID": 4914, "Route": "31", "Station": "37th St & Wallace St", "StationID": "21515", "lat": 39.964808, "lon": -75.196269}, "geometry": {"type": "Point", "coordinates": [-75.196269, 39.964808]}}, {"id": "49", "type": "Feature", "properties": {"Modal": "Bus", "OBJECTID": 4915, "Route": "31", "Station": "37th St & Haverford Av", "StationID": "21516", "lat": 39.96363, "lon": -75.19606}, "geometry": {"type": "Point", "coordinates": [-75.19606, 39.96363]}}, {"id": "50", "type": "Feature", "properties": {"Modal": "Bus", "OBJECTID": 4916, "Route": "31", "Station": "37th St & Spring Garden St", "StationID": "21517", "lat": 39.962496, "lon": -75.19584}, "geometry": {"type": "Point", "coordinates": [-75.19584, 39.962496]}}, {"id": "51", "type": "Feature", "properties": {"Modal": "Bus", "OBJECTID": 4917, "Route": "31", "Station": "37th St & Hamilton St", "StationID": "21518", "lat": 39.961755, "lon": -75.195712}, "geometry": {"type": "Point", "coordinates": [-75.195712, 39.961755]}}, {"id": "52", "type": "Feature", "properties": {"Modal": "Bus", "OBJECTID": 4918, "Route": "31", "Station": "Baring St & 37th St - FS", "StationID": "21519", "lat": 39.960906, "lon": -75.195219}, "geometry": {"type": "Point", "coordinates": [-75.195219, 39.960906]}}, {"id": "53", "type": "Feature", "properties": {"Modal": "Bus", "OBJECTID": 4919, "Route": "31", "Station": "Baring St & 36th St", "StationID": "21520", "lat": 39.961056, "lon": -75.194085}, "geometry": {"type": "Point", "coordinates": [-75.194085, 39.961056]}}, {"id": "54", "type": "Feature", "properties": {"Modal": "Bus", "OBJECTID": 4920, "Route": "31", "Station": "Baring St & 35th St", "StationID": "21521", "lat": 39.961205, "lon": -75.192749}, "geometry": {"type": "Point", "coordinates": [-75.192749, 39.961205]}}, {"id": "55", "type": "Feature", "properties": {"Modal": "Bus", "OBJECTID": 4921, "Route": "31", "Station": "Baring St & 34th St", "StationID": "21522", "lat": 39.961363, "lon": -75.191273}, "geometry": {"type": "Point", "coordinates": [-75.191273, 39.961363]}}, {"id": "56", "type": "Feature", "properties": {"Modal": "Bus", "OBJECTID": 4922, "Route": "31", "Station": "34th St & Powelton Av", "StationID": "21523", "lat": 39.960273, "lon": -75.190981}, "geometry": {"type": "Point", "coordinates": [-75.190981, 39.960273]}}, {"id": "57", "type": "Feature", "properties": {"Modal": "Bus", "OBJECTID": 4923, "Route": "31", "Station": "34th St & Race St", "StationID": "21524", "lat": 39.958836, "lon": -75.19095}, "geometry": {"type": "Point", "coordinates": [-75.19095, 39.958836]}}, {"id": "58", "type": "Feature", "properties": {"Modal": "Bus", "OBJECTID": 4924, "Route": "31", "Station": "34th St & Lancaster Av", "StationID": "21525", "lat": 39.957445, "lon": -75.191227}, "geometry": {"type": "Point", "coordinates": [-75.191227, 39.957445]}}, {"id": "59", "type": "Feature", "properties": {"Modal": "Bus", "OBJECTID": 4962, "Route": "31", "Station": "Baring St & 34th St", "StationID": "21541", "lat": 39.961505, "lon": -75.191012}, "geometry": {"type": "Point", "coordinates": [-75.191012, 39.961505]}}, {"id": "60", "type": "Feature", "properties": {"Modal": "Bus", "OBJECTID": 4963, "Route": "31", "Station": "Baring St & 35th St", "StationID": "21543", "lat": 39.961347, "lon": -75.192584}, "geometry": {"type": "Point", "coordinates": [-75.192584, 39.961347]}}, {"id": "61", "type": "Feature", "properties": {"Modal": "Bus", "OBJECTID": 4964, "Route": "31", "Station": "35th St & Hamilton St", "StationID": "21595", "lat": 39.961919, "lon": -75.192664}, "geometry": {"type": "Point", "coordinates": [-75.192664, 39.961919]}}, {"id": "62", "type": "Feature", "properties": {"Modal": "Bus", "OBJECTID": 4965, "Route": "31", "Station": "35th St & Spring Garden St", "StationID": "21596", "lat": 39.962686, "lon": -75.192745}, "geometry": {"type": "Point", "coordinates": [-75.192745, 39.962686]}}, {"id": "63", "type": "Feature", "properties": {"Modal": "Bus", "OBJECTID": 4966, "Route": "31", "Station": "35th St & Haverford St", "StationID": "21612", "lat": 39.96382, "lon": -75.192953}, "geometry": {"type": "Point", "coordinates": [-75.192953, 39.96382]}}, {"id": "64", "type": "Feature", "properties": {"Modal": "Bus", "OBJECTID": 6380, "Route": "43", "Station": "Spring Garden St & 39th St", "StationID": "22008", "lat": 39.961976, "lon": -75.199503}, "geometry": {"type": "Point", "coordinates": [-75.199503, 39.961976]}}, {"id": "65", "type": "Feature", "properties": {"Modal": "Bus", "OBJECTID": 6381, "Route": "43", "Station": "Spring Garden St & 38th St", "StationID": "22009", "lat": 39.962222, "lon": -75.19727}, "geometry": {"type": "Point", "coordinates": [-75.19727, 39.962222]}}, {"id": "66", "type": "Feature", "properties": {"Modal": "Bus", "OBJECTID": 6382, "Route": "43", "Station": "Spring Garden St & 37th St", "StationID": "22010", "lat": 39.962371, "lon": -75.195816}, "geometry": {"type": "Point", "coordinates": [-75.195816, 39.962371]}}, {"id": "67", "type": "Feature", "properties": {"Modal": "Bus", "OBJECTID": 6385, "Route": "43", "Station": "Spring Garden St & 34th St", "StationID": "22011", "lat": 39.962854, "lon": -75.191457}, "geometry": {"type": "Point", "coordinates": [-75.191457, 39.962854]}}, {"id": "68", "type": "Feature", "properties": {"Modal": "Bus", "OBJECTID": 6468, "Route": "43", "Station": "Haverford Av & 35th St", "StationID": "22088", "lat": 39.963981, "lon": -75.192953}, "geometry": {"type": "Point", "coordinates": [-75.192953, 39.963981]}}, {"id": "69", "type": "Feature", "properties": {"Modal": "Bus", "OBJECTID": 6469, "Route": "43", "Station": "Haverford Av & 36th St", "StationID": "22089", "lat": 39.963823, "lon": -75.194406}, "geometry": {"type": "Point", "coordinates": [-75.194406, 39.963823]}}, {"id": "70", "type": "Feature", "properties": {"Modal": "Bus", "OBJECTID": 6470, "Route": "43", "Station": "Haverford Av & 37th St", "StationID": "22090", "lat": 39.963656, "lon": -75.195859}, "geometry": {"type": "Point", "coordinates": [-75.195859, 39.963656]}}, {"id": "71", "type": "Feature", "properties": {"Modal": "Bus", "OBJECTID": 6471, "Route": "43", "Station": "Haverford Av & 38th St", "StationID": "22091", "lat": 39.963507, "lon": -75.197324}, "geometry": {"type": "Point", "coordinates": [-75.197324, 39.963507]}}, {"id": "72", "type": "Feature", "properties": {"Modal": "Bus", "OBJECTID": 6472, "Route": "43", "Station": "Haverford Av & 39th St", "StationID": "22093", "lat": 39.963252, "lon": -75.199546}, "geometry": {"type": "Point", "coordinates": [-75.199546, 39.963252]}}, {"id": "73", "type": "Feature", "properties": {"Modal": "Bus", "OBJECTID": 6473, "Route": "43", "Station": "Haverford Av & Lancaster Av", "StationID": "22095", "lat": 39.962998, "lon": -75.201708}, "geometry": {"type": "Point", "coordinates": [-75.201708, 39.962998]}}, {"id": "74", "type": "Feature", "properties": {"Modal": "Bus", "OBJECTID": 6134, "Route": "40", "Station": "38th St & Chestnut St", "StationID": "22285", "lat": 39.955084, "lon": -75.198261}, "geometry": {"type": "Point", "coordinates": [-75.198261, 39.955084]}}, {"id": "75", "type": "Feature", "properties": {"Modal": "Bus", "OBJECTID": 18222, "Route": "LUCYGR", "Station": "Market & 36th St", "StationID": "28327", "lat": 39.956227, "lon": -75.19397}, "geometry": {"type": "Point", "coordinates": [-75.19397, 39.956227]}}, {"id": "76", "type": "Feature", "properties": {"Modal": "Bus", "OBJECTID": 16942, "Route": "316", "Station": "Presbyterian Medical Center", "StationID": "28329", "lat": 39.957843, "lon": -75.199043}, "geometry": {"type": "Point", "coordinates": [-75.199043, 39.957843]}}, {"id": "77", "type": "Feature", "properties": {"Modal": "Bus", "OBJECTID": 18225, "Route": "LUCYGR", "Station": "Presbyterian Medical Center", "StationID": "28329", "lat": 39.957843, "lon": -75.199043}, "geometry": {"type": "Point", "coordinates": [-75.199043, 39.957843]}}, {"id": "78", "type": "Feature", "properties": {"Modal": "Bus", "OBJECTID": 16939, "Route": "316", "Station": "Presbyterian Medical Center", "StationID": "28345", "lat": 39.957807, "lon": -75.198902}, "geometry": {"type": "Point", "coordinates": [-75.198902, 39.957807]}}, {"id": "79", "type": "Feature", "properties": {"Modal": "Bus", "OBJECTID": 18215, "Route": "LUCYGO", "Station": "Presbyterian Medical Center", "StationID": "28345", "lat": 39.957807, "lon": -75.198902}, "geometry": {"type": "Point", "coordinates": [-75.198902, 39.957807]}}, {"id": "80", "type": "Feature", "properties": {"Modal": "Bus", "OBJECTID": 18217, "Route": "LUCYGO", "Station": "Market St & 36th St", "StationID": "28346", "lat": 39.956147, "lon": -75.194278}, "geometry": {"type": "Point", "coordinates": [-75.194278, 39.956147]}}, {"id": "81", "type": "Feature", "properties": {"Modal": "Bus", "OBJECTID": 18223, "Route": "LUCYGR", "Station": "Market St & 37th St", "StationID": "30829", "lat": 39.956472, "lon": -75.19593}, "geometry": {"type": "Point", "coordinates": [-75.19593, 39.956472]}}, {"id": "82", "type": "Feature", "properties": {"Modal": "Bus", "OBJECTID": 6383, "Route": "43", "Station": "Spring Garden St & 36th St", "StationID": "30849", "lat": 39.962529, "lon": -75.194363}, "geometry": {"type": "Point", "coordinates": [-75.194363, 39.962529]}}, {"id": "83", "type": "Feature", "properties": {"Modal": "Bus", "OBJECTID": 6384, "Route": "43", "Station": "Spring Garden St & 35th St", "StationID": "30850", "lat": 39.962705, "lon": -75.19291}, "geometry": {"type": "Point", "coordinates": [-75.19291, 39.962705]}}, {"id": "84", "type": "Feature", "properties": {"Modal": "Bus", "OBJECTID": 2442, "Route": "10", "Station": "Lancaster Av & Powelton Av", "StationID": "31488", "lat": 39.959631, "lon": -75.195542}, "geometry": {"type": "Point", "coordinates": [-75.195542, 39.959631]}}, {"id": "85", "type": "Feature", "properties": {"Modal": "Bus", "OBJECTID": 18287, "Route": "MFL", "Station": "34th St Station - MFL", "StationID": "32177", "lat": 39.955901, "lon": -75.19148}, "geometry": {"type": "Point", "coordinates": [-75.19148, 39.955901]}}, {"id": "86", "type": "Feature", "properties": {"Modal": "Bus", "OBJECTID": 18288, "Route": "MFL", "Station": "40th St Station - MFL", "StationID": "32178", "lat": 39.957188, "lon": -75.201963}, "geometry": {"type": "Point", "coordinates": [-75.201963, 39.957188]}}, {"id": "87", "type": "Feature", "properties": {"Modal": "Bus", "OBJECTID": 18216, "Route": "LUCYGO", "Station": "Market St & 37th St", "StationID": "32261", "lat": 39.956383, "lon": -75.196214}, "geometry": {"type": "Point", "coordinates": [-75.196214, 39.956383]}}, {"id": "88", "type": "Feature", "properties": {"Modal": "Bus", "OBJECTID": 18224, "Route": "LUCYGR", "Station": "Market St & 38th St", "StationID": "32262", "lat": 39.956716, "lon": -75.197878}, "geometry": {"type": "Point", "coordinates": [-75.197878, 39.956716]}}, {"id": "89", "type": "Feature", "properties": {"Modal": "Bike", "OBJECTID": 8, "Route": "", "Station": "38th & Powelton", "StationID": "bcycle_indego_3011", "lat": 39.95967, "lon": -75.19649}, "geometry": {"type": "Point", "coordinates": [-75.19649, 39.95967]}}, {"id": "90", "type": "Feature", "properties": {"Modal": "Bike", "OBJECTID": 30, "Route": "", "Station": "Dornsife Center", "StationID": "bcycle_indego_3035", "lat": 39.96271, "lon": -75.19419}, "geometry": {"type": "Point", "coordinates": [-75.19419, 39.96271]}}, {"id": "91", "type": "Feature", "properties": {"Modal": "Bike", "OBJECTID": 57, "Route": "", "Station": "39th & Mt. Vernon, Mantua Haverford Community Center", "StationID": "bcycle_indego_3067", "lat": 39.96411, "lon": -75.19973}, "geometry": {"type": "Point", "coordinates": [-75.19973, 39.96411]}}, {"id": "92", "type": "Feature", "properties": {"Modal": "Bike", "OBJECTID": 106, "Route": "", "Station": "38th & Market", "StationID": "bcycle_indego_3160", "lat": 39.95662, "lon": -75.19862}, "geometry": {"type": "Point", "coordinates": [-75.19862, 39.95662]}}, {"id": "93", "type": "Feature", "properties": {"Modal": "Bike", "OBJECTID": 156, "Route": "", "Station": "34th & Arch", "StationID": "bcycle_indego_3249", "lat": 39.95784, "lon": -75.19079}, "geometry": {"type": "Point", "coordinates": [-75.19079, 39.95784]}}, {"id": "94", "type": "Feature", "properties": {"Modal": "Bike", "OBJECTID": 166, "Route": "", "Station": "Saunders & Pearl", "StationID": "bcycle_indego_3259", "lat": 39.96016, "lon": -75.19884}, "geometry": {"type": "Point", "coordinates": [-75.19884, 39.96016]}}, {"id": "95", "type": "Feature", "properties": {"Modal": "Subway", "OBJECTID": 8, "Route": "Market-Frankford Line", "Station": "40th Street", "StationID": "20063", "lat": 39.957156, "lon": -75.201956}, "geometry": {"type": "Point", "coordinates": [-75.201956, 39.957156]}}]};
+
+            const iconSubway = L.divIcon({
+                html: '<i class="fas fa-subway fa-2x"></i>',
+                iconSize: [20, 20],
+                className: 'icon-subway'
+            });
+
+            const iconBikePrimary = L.divIcon({
+                html: '<i class="fas fa-bicycle fa-6x"></i>',
+                iconSize: [20, 20],
+                className: 'icon-bike-primary'
+            });
+
+            const iconBike = L.divIcon({
+                html: '<i class="fas fa-bicycle fa-4x"></i>',
+                iconSize: [20, 20],
+                className: 'icon-bike'
+            });
+
+            const iconBus = L.divIcon({
+                html: '<i class="fas fa-bus fa-2x"></i>',
+                iconSize: [20, 20],
+                className: 'icon-bus'
+            });
+
+        </script>
+          <!-- Leaflet stylesheet is below -->
+        <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css"
+        integrity="sha512-xodZBNTC5n17Xt2atTPuE1HxjVMSvLVW9ocqUKLsCC5CXdbqCmblAshOMAS6/keqq/sMZMZ19scR4PsZChSR7A=="
+        crossorigin=""/>
+        <!-- C3 stylesheet is below -->
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/c3/0.7.20/c3.css"
+        integrity="sha512-GQSxWe9Cj4o4EduO7zO9HjULmD4olIjiQqZ7VJuwBxZlkWaUFGCxRkn39jYnD2xZBtEilm0m4WBG7YEmQuMs5Q=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+  <!-- Stylesheet for the report's custom layout is below -->
+  <style>
+    body {
+      font-family: sans;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      grid-template-rows: auto auto 1fr 1fr;
+      grid-template-areas:
+        "header header"
+        "map list"
+        "map chart1"
+        "map chart2";
+      column-gap: 1rem;
+      row-gap: 1rem;
+    }
+    h1 {
+      grid-area: header;
+    }
+    #stationmap {
+      grid-area: map;
+      height: 100%;
+    }
+
+    .icon-subway{
+        color: #f14728;
+        -webkit-text-stroke: 1px #edb9b0;
+    }
+    .icon-subway:hover{
+        color: #f14728;
+        -webkit-text-stroke: 1px #edb9b0;
+    }
+
+    .icon-bus{
+        color: #1f4fa3;
+        -webkit-text-stroke: 1px #98b6eb;
+    }
+    .icon-bus:hover{
+        color: #1f4fa3;
+        -webkit-text-stroke: 1px #98b6eb;
+    }
+
+    .icon-bike{
+        color: #36b4e5;
+        -webkit-text-stroke: 1px #FFF;
+    }
+    .icon-bike:hover{
+        color: #0082cb;
+        -webkit-text-stroke: 1px #FFF;
+    }
+    .icon-bike-primary{
+        color: #36b4e5;
+        -webkit-text-stroke: 2px #000;
+    }
+
+  </style>
+    </head>
+    <body>
+        <h1><a href='index.html'>All stations</a> >> 38th & Powelton</h1>
+
+  <div id="stationmap"></div>
+  <div>
+    <p>Info about 38th & Powelton.</p>
+</div>
+
+
+          <script>
+    var initialCenter = [39.95967, -75.19649];  // <-- Latitude, Longitude
+    var initialZoom = 16;
+    var stationmap = L.map('stationmap', {
+      zoomSnap: 0,
+      zoomDelta: 0.25
+    }).setView(initialCenter, initialZoom);
+
+    var baseLayer = new L.tileLayer('https://stamen-tiles-{s}.a.ssl.fastly.net/toner-background/{z}/{x}/{y}{r}.{ext}', {
+    	attribution: 'Map tiles by <a href="http://stamen.com">Stamen Design</a>, <a href="http://creativecommons.org/licenses/by/3.0">CC BY 3.0</a> &mdash; Map data &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
+    	subdomains: 'abcd',
+    	minZoom: 0,
+    	maxZoom: 20,
+    	ext: 'png'
+    });
+    baseLayer.addTo(stationmap);
+
+    mapdata.features.forEach( function(location){
+      console.log(location.properties.Modal);
+      console.log(location);
+      switch (location.properties.Modal) {
+        case 'Subway':
+          iconToUse = iconSubway;
+          break;
+        case 'Bus':
+          iconToUse = iconBus;
+          break;
+        case 'Bike':
+          iconToUse = iconBike;
+          break;
+      }
+      if(location.properties.lat != 39.95967 && location.properties.lon != -75.19649) {
+        var marker = L.marker([location.properties.lat, location.properties.lon], {icon: iconToUse}).addTo(stationmap);
+        marker.bindPopup(
+            location.properties.Station
+        );
+      } else {
+        var indego_marker = L.marker([39.95967, -75.19649], {icon: iconBikePrimary}).addTo(stationmap);
+      }
+    });
+  </script>
+
+    </body>
+</html>

@@ -1,0 +1,163 @@
+
+<html>
+    <head>
+        <title>Jawnt: SEPTA and Indego Connections</title>
+        <!-- Leaflet JavaScript library is below -->
+        <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"
+        integrity="sha512-XQoYMqMTK8LvdxXYG3nZ448hOEQiglfqkJs1NOQV44cWnUrBc8PkAOcXy20w0vlaXaVUearIOBhiXZ5V3ynxwA=="
+        crossorigin=""></script>
+        <!-- D3 JavaScript library is below -->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/5.16.0/d3.min.js"
+        integrity="sha512-FHsFVKQ/T1KWJDGSbrUhTJyS1ph3eRrxI228ND0EGaEp6v4a/vGwPWd3Dtd/+9cI7ccofZvl/wulICEurHN1pg=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+        <!-- C3 JavaScript library is below -->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/c3/0.7.20/c3.js"
+        integrity="sha512-11Z4MD9csmC3vH8Vd0eIPJBQu3uEHEqeznWEt3sLBCdQx3zm9mJbBcJH8WTcyGY9EXDE81BNpjE2vLosPK8cFQ=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+        <script src="https://kit.fontawesome.com/457a87d66e.js" crossorigin="anonymous"></script>
+        <script type='text/javascript'>
+            var mapdata = {"type": "FeatureCollection", "features": [{"id": "0", "type": "Feature", "properties": {"Modal": "Bus", "OBJECTID": 5834, "Route": "38", "Station": "Art Museum Dr & Back Entrance - 2", "StationID": "640", "lat": 39.966397, "lon": -75.182102}, "geometry": {"type": "Point", "coordinates": [-75.182102, 39.966397]}}, {"id": "1", "type": "Feature", "properties": {"Modal": "Bus", "OBJECTID": 6391, "Route": "43", "Station": "Spring Garden St & 22nd St - FS", "StationID": "680", "lat": 39.963944, "lon": -75.174244}, "geometry": {"type": "Point", "coordinates": [-75.174244, 39.963944]}}, {"id": "2", "type": "Feature", "properties": {"Modal": "Bus", "OBJECTID": 6459, "Route": "43", "Station": "Spring Garden St & 22nd St", "StationID": "690", "lat": 39.964177, "lon": -75.174303}, "geometry": {"type": "Point", "coordinates": [-75.174303, 39.964177]}}, {"id": "3", "type": "Feature", "properties": {"Modal": "Bus", "OBJECTID": 6460, "Route": "43", "Station": "Spring Garden St & 22nd St", "StationID": "690", "lat": 39.964177, "lon": -75.174303}, "geometry": {"type": "Point", "coordinates": [-75.174303, 39.964177]}}, {"id": "4", "type": "Feature", "properties": {"Modal": "Bus", "OBJECTID": 7148, "Route": "48", "Station": "23rd St & Spring Garden St", "StationID": "748", "lat": 39.964421, "lon": -75.176121}, "geometry": {"type": "Point", "coordinates": [-75.176121, 39.964421]}}, {"id": "5", "type": "Feature", "properties": {"Modal": "Bus", "OBJECTID": 2162, "Route": "7", "Station": "23rd St & Spring Garden St", "StationID": "748", "lat": 39.964421, "lon": -75.176121}, "geometry": {"type": "Point", "coordinates": [-75.176121, 39.964421]}}, {"id": "6", "type": "Feature", "properties": {"Modal": "Bus", "OBJECTID": 7149, "Route": "48", "Station": "23rd St & Spring Garden St", "StationID": "748", "lat": 39.964421, "lon": -75.176121}, "geometry": {"type": "Point", "coordinates": [-75.176121, 39.964421]}}, {"id": "7", "type": "Feature", "properties": {"Modal": "Bus", "OBJECTID": 2159, "Route": "7", "Station": "23rd St & Aspen St", "StationID": "2854", "lat": 39.968605, "lon": -75.175196}, "geometry": {"type": "Point", "coordinates": [-75.175196, 39.968605]}}, {"id": "8", "type": "Feature", "properties": {"Modal": "Bus", "OBJECTID": 7145, "Route": "48", "Station": "23rd St & Aspen St", "StationID": "2854", "lat": 39.968605, "lon": -75.175196}, "geometry": {"type": "Point", "coordinates": [-75.175196, 39.968605]}}, {"id": "9", "type": "Feature", "properties": {"Modal": "Bus", "OBJECTID": 7147, "Route": "48", "Station": "23rd St & Green St", "StationID": "2863", "lat": 39.965715, "lon": -75.175821}, "geometry": {"type": "Point", "coordinates": [-75.175821, 39.965715]}}, {"id": "10", "type": "Feature", "properties": {"Modal": "Bus", "OBJECTID": 2161, "Route": "7", "Station": "23rd St & Green St", "StationID": "2863", "lat": 39.965715, "lon": -75.175821}, "geometry": {"type": "Point", "coordinates": [-75.175821, 39.965715]}}, {"id": "11", "type": "Feature", "properties": {"Modal": "Bus", "OBJECTID": 7068, "Route": "48", "Station": "22nd St & Ben Franklin Pkwy", "StationID": "3107", "lat": 39.960814, "lon": -75.175141}, "geometry": {"type": "Point", "coordinates": [-75.175141, 39.960814]}}, {"id": "12", "type": "Feature", "properties": {"Modal": "Bus", "OBJECTID": 2090, "Route": "7", "Station": "22nd St & Ben Franklin Pkwy", "StationID": "3107", "lat": 39.960814, "lon": -75.175141}, "geometry": {"type": "Point", "coordinates": [-75.175141, 39.960814]}}, {"id": "13", "type": "Feature", "properties": {"Modal": "Bus", "OBJECTID": 7073, "Route": "48", "Station": "22nd St & Fairmount Av", "StationID": "3124", "lat": 39.967201, "lon": -75.173678}, "geometry": {"type": "Point", "coordinates": [-75.173678, 39.967201]}}, {"id": "14", "type": "Feature", "properties": {"Modal": "Bus", "OBJECTID": 2095, "Route": "7", "Station": "22nd St & Fairmount Av", "StationID": "3124", "lat": 39.967201, "lon": -75.173678}, "geometry": {"type": "Point", "coordinates": [-75.173678, 39.967201]}}, {"id": "15", "type": "Feature", "properties": {"Modal": "Bus", "OBJECTID": 2093, "Route": "7", "Station": "22nd St & Green St", "StationID": "3129", "lat": 39.96531, "lon": -75.174098}, "geometry": {"type": "Point", "coordinates": [-75.174098, 39.96531]}}, {"id": "16", "type": "Feature", "properties": {"Modal": "Bus", "OBJECTID": 7071, "Route": "48", "Station": "22nd St & Green St", "StationID": "3129", "lat": 39.96531, "lon": -75.174098}, "geometry": {"type": "Point", "coordinates": [-75.174098, 39.96531]}}, {"id": "17", "type": "Feature", "properties": {"Modal": "Bus", "OBJECTID": 2094, "Route": "7", "Station": "22nd St & Mt Vernon St", "StationID": "3145", "lat": 39.966121, "lon": -75.173918}, "geometry": {"type": "Point", "coordinates": [-75.173918, 39.966121]}}, {"id": "18", "type": "Feature", "properties": {"Modal": "Bus", "OBJECTID": 7072, "Route": "48", "Station": "22nd St & Mt Vernon St", "StationID": "3145", "lat": 39.966121, "lon": -75.173918}, "geometry": {"type": "Point", "coordinates": [-75.173918, 39.966121]}}, {"id": "19", "type": "Feature", "properties": {"Modal": "Bus", "OBJECTID": 2092, "Route": "7", "Station": "22nd St & Spring Garden St", "StationID": "3167", "lat": 39.963918, "lon": -75.17441}, "geometry": {"type": "Point", "coordinates": [-75.17441, 39.963918]}}, {"id": "20", "type": "Feature", "properties": {"Modal": "Bus", "OBJECTID": 7070, "Route": "48", "Station": "22nd St & Spring Garden St", "StationID": "3167", "lat": 39.963918, "lon": -75.17441}, "geometry": {"type": "Point", "coordinates": [-75.17441, 39.963918]}}, {"id": "21", "type": "Feature", "properties": {"Modal": "Bus", "OBJECTID": 7075, "Route": "48", "Station": "Aspen st & 24th St", "StationID": "4549", "lat": 39.968715, "lon": -75.176543}, "geometry": {"type": "Point", "coordinates": [-75.176543, 39.968715]}}, {"id": "22", "type": "Feature", "properties": {"Modal": "Bus", "OBJECTID": 7076, "Route": "48", "Station": "Apsen St & 25th St", "StationID": "4550", "lat": 39.96895, "lon": -75.17816}, "geometry": {"type": "Point", "coordinates": [-75.17816, 39.96895]}}, {"id": "23", "type": "Feature", "properties": {"Modal": "Bus", "OBJECTID": 7078, "Route": "48", "Station": "Aspen St & Taney St", "StationID": "4557", "lat": 39.969223, "lon": -75.180616}, "geometry": {"type": "Point", "coordinates": [-75.180616, 39.969223]}}, {"id": "24", "type": "Feature", "properties": {"Modal": "Bus", "OBJECTID": 2158, "Route": "7", "Station": "Brown St & 23rd St", "StationID": "5369", "lat": 39.969685, "lon": -75.17498}, "geometry": {"type": "Point", "coordinates": [-75.17498, 39.969685]}}, {"id": "25", "type": "Feature", "properties": {"Modal": "Bus", "OBJECTID": 7144, "Route": "48", "Station": "Brown St & 23rd St", "StationID": "5369", "lat": 39.969685, "lon": -75.17498}, "geometry": {"type": "Point", "coordinates": [-75.17498, 39.969685]}}, {"id": "26", "type": "Feature", "properties": {"Modal": "Bus", "OBJECTID": 2157, "Route": "7", "Station": "Brown St & 24th St", "StationID": "5370", "lat": 39.969866, "lon": -75.17655}, "geometry": {"type": "Point", "coordinates": [-75.17655, 39.969866]}}, {"id": "27", "type": "Feature", "properties": {"Modal": "Bus", "OBJECTID": 7143, "Route": "48", "Station": "Brown St & 24th St", "StationID": "5370", "lat": 39.969866, "lon": -75.17655}, "geometry": {"type": "Point", "coordinates": [-75.17655, 39.969866]}}, {"id": "28", "type": "Feature", "properties": {"Modal": "Bus", "OBJECTID": 2156, "Route": "7", "Station": "Brown St & 25th St", "StationID": "5371", "lat": 39.970066, "lon": -75.178168}, "geometry": {"type": "Point", "coordinates": [-75.178168, 39.970066]}}, {"id": "29", "type": "Feature", "properties": {"Modal": "Bus", "OBJECTID": 7142, "Route": "48", "Station": "Brown St & 25th St", "StationID": "5371", "lat": 39.970066, "lon": -75.178168}, "geometry": {"type": "Point", "coordinates": [-75.178168, 39.970066]}}, {"id": "30", "type": "Feature", "properties": {"Modal": "Bus", "OBJECTID": 7141, "Route": "48", "Station": "Brown St & 26th St", "StationID": "5372", "lat": 39.970283, "lon": -75.179773}, "geometry": {"type": "Point", "coordinates": [-75.179773, 39.970283]}}, {"id": "31", "type": "Feature", "properties": {"Modal": "Bus", "OBJECTID": 2155, "Route": "7", "Station": "Brown St & 26th St", "StationID": "5372", "lat": 39.970283, "lon": -75.179773}, "geometry": {"type": "Point", "coordinates": [-75.179773, 39.970283]}}, {"id": "32", "type": "Feature", "properties": {"Modal": "Bus", "OBJECTID": 7146, "Route": "48", "Station": "23rd St & Fairmount Av", "StationID": "14927", "lat": 39.967454, "lon": -75.175437}, "geometry": {"type": "Point", "coordinates": [-75.175437, 39.967454]}}, {"id": "33", "type": "Feature", "properties": {"Modal": "Bus", "OBJECTID": 2160, "Route": "7", "Station": "23rd St & Fairmount Av", "StationID": "14927", "lat": 39.967454, "lon": -75.175437}, "geometry": {"type": "Point", "coordinates": [-75.175437, 39.967454]}}, {"id": "34", "type": "Feature", "properties": {"Modal": "Bus", "OBJECTID": 7074, "Route": "48", "Station": "Aspen St & 23rd St - FS", "StationID": "14937", "lat": 39.968588, "lon": -75.175338}, "geometry": {"type": "Point", "coordinates": [-75.175338, 39.968588]}}, {"id": "35", "type": "Feature", "properties": {"Modal": "Bus", "OBJECTID": 7077, "Route": "48", "Station": "Aspen St & 26th St", "StationID": "14938", "lat": 39.969141, "lon": -75.179789}, "geometry": {"type": "Point", "coordinates": [-75.179789, 39.969141]}}, {"id": "36", "type": "Feature", "properties": {"Modal": "Bus", "OBJECTID": 5831, "Route": "38", "Station": "Ben Franklin Pkwy & 22nd St", "StationID": "15952", "lat": 39.961545, "lon": -75.174938}, "geometry": {"type": "Point", "coordinates": [-75.174938, 39.961545]}}, {"id": "37", "type": "Feature", "properties": {"Modal": "Bus", "OBJECTID": 5049, "Route": "32", "Station": "Ben Franklin Pkwy & 22nd St", "StationID": "15952", "lat": 39.961545, "lon": -75.174938}, "geometry": {"type": "Point", "coordinates": [-75.174938, 39.961545]}}, {"id": "38", "type": "Feature", "properties": {"Modal": "Bus", "OBJECTID": 5050, "Route": "32", "Station": "Pennsylvania Av & Spring Garden St", "StationID": "15954", "lat": 39.964126, "lon": -75.175815}, "geometry": {"type": "Point", "coordinates": [-75.175815, 39.964126]}}, {"id": "39", "type": "Feature", "properties": {"Modal": "Bus", "OBJECTID": 2100, "Route": "7", "Station": "Pennsylvania Av & 27th St - MBNS", "StationID": "15955", "lat": 39.968724, "lon": -75.18109}, "geometry": {"type": "Point", "coordinates": [-75.18109, 39.968724]}}, {"id": "40", "type": "Feature", "properties": {"Modal": "Bus", "OBJECTID": 7218, "Route": "49", "Station": "Pennsylvania Av & 27th St - MBNS", "StationID": "15955", "lat": 39.968724, "lon": -75.18109}, "geometry": {"type": "Point", "coordinates": [-75.18109, 39.968724]}}, {"id": "41", "type": "Feature", "properties": {"Modal": "Bus", "OBJECTID": 5055, "Route": "32", "Station": "Pennsylvania Av & 27th St - MBNS", "StationID": "15955", "lat": 39.968724, "lon": -75.18109}, "geometry": {"type": "Point", "coordinates": [-75.18109, 39.968724]}}, {"id": "42", "type": "Feature", "properties": {"Modal": "Bus", "OBJECTID": 5166, "Route": "32", "Station": "26th St & Brown St", "StationID": "16561", "lat": 39.970372, "lon": -75.179702}, "geometry": {"type": "Point", "coordinates": [-75.179702, 39.970372]}}, {"id": "43", "type": "Feature", "properties": {"Modal": "Bus", "OBJECTID": 5167, "Route": "32", "Station": "26th St & Aspen St", "StationID": "16562", "lat": 39.969159, "lon": -75.179978}, "geometry": {"type": "Point", "coordinates": [-75.179978, 39.969159]}}, {"id": "44", "type": "Feature", "properties": {"Modal": "Bus", "OBJECTID": 5168, "Route": "32", "Station": "26th St & Pennsylvania Av", "StationID": "16563", "lat": 39.968062, "lon": -75.180195}, "geometry": {"type": "Point", "coordinates": [-75.180195, 39.968062]}}, {"id": "45", "type": "Feature", "properties": {"Modal": "Bus", "OBJECTID": 5169, "Route": "32", "Station": "Pennsylvania Av & 25th St", "StationID": "16564", "lat": 39.966658, "lon": -75.179125}, "geometry": {"type": "Point", "coordinates": [-75.179125, 39.966658]}}, {"id": "46", "type": "Feature", "properties": {"Modal": "Bus", "OBJECTID": 5170, "Route": "32", "Station": "Pennsylvania Av & 24th St", "StationID": "16565", "lat": 39.965379, "lon": -75.177712}, "geometry": {"type": "Point", "coordinates": [-75.177712, 39.965379]}}, {"id": "47", "type": "Feature", "properties": {"Modal": "Bus", "OBJECTID": 2163, "Route": "7", "Station": "Pennsylvania Av & Spring Garden St - MBFS", "StationID": "16566", "lat": 39.963689, "lon": -75.175745}, "geometry": {"type": "Point", "coordinates": [-75.175745, 39.963689]}}, {"id": "48", "type": "Feature", "properties": {"Modal": "Bus", "OBJECTID": 5171, "Route": "32", "Station": "Pennsylvania Av & Spring Garden St - MBFS", "StationID": "16566", "lat": 39.963689, "lon": -75.175745}, "geometry": {"type": "Point", "coordinates": [-75.175745, 39.963689]}}, {"id": "49", "type": "Feature", "properties": {"Modal": "Bus", "OBJECTID": 7150, "Route": "48", "Station": "Pennsylvania Av & Spring Garden St - MBFS", "StationID": "16566", "lat": 39.963689, "lon": -75.175745}, "geometry": {"type": "Point", "coordinates": [-75.175745, 39.963689]}}, {"id": "50", "type": "Feature", "properties": {"Modal": "Bus", "OBJECTID": 5051, "Route": "32", "Station": "Pennsylvania Av & 24th St", "StationID": "19697", "lat": 39.965477, "lon": -75.177428}, "geometry": {"type": "Point", "coordinates": [-75.177428, 39.965477]}}, {"id": "51", "type": "Feature", "properties": {"Modal": "Bus", "OBJECTID": 5052, "Route": "32", "Station": "Pennsylvania Av & 25th St", "StationID": "19698", "lat": 39.966747, "lon": -75.178723}, "geometry": {"type": "Point", "coordinates": [-75.178723, 39.966747]}}, {"id": "52", "type": "Feature", "properties": {"Modal": "Bus", "OBJECTID": 2099, "Route": "7", "Station": "Pennsylvania Av & 26th St", "StationID": "19699", "lat": 39.967874, "lon": -75.180065}, "geometry": {"type": "Point", "coordinates": [-75.180065, 39.967874]}}, {"id": "53", "type": "Feature", "properties": {"Modal": "Bus", "OBJECTID": 5054, "Route": "32", "Station": "Pennsylvania Av & 26th St", "StationID": "19699", "lat": 39.967874, "lon": -75.180065}, "geometry": {"type": "Point", "coordinates": [-75.180065, 39.967874]}}, {"id": "54", "type": "Feature", "properties": {"Modal": "Bus", "OBJECTID": 7217, "Route": "49", "Station": "Pennsylvania Av & 26th St", "StationID": "19699", "lat": 39.967874, "lon": -75.180065}, "geometry": {"type": "Point", "coordinates": [-75.180065, 39.967874]}}, {"id": "55", "type": "Feature", "properties": {"Modal": "Bus", "OBJECTID": 6462, "Route": "43", "Station": "Spring Garden St & Kelly Dr", "StationID": "20440", "lat": 39.964944, "lon": -75.178646}, "geometry": {"type": "Point", "coordinates": [-75.178646, 39.964944]}}, {"id": "56", "type": "Feature", "properties": {"Modal": "Bus", "OBJECTID": 6463, "Route": "43", "Station": "Spring Garden St & Kelly Dr", "StationID": "20440", "lat": 39.964944, "lon": -75.178646}, "geometry": {"type": "Point", "coordinates": [-75.178646, 39.964944]}}, {"id": "57", "type": "Feature", "properties": {"Modal": "Bus", "OBJECTID": 5793, "Route": "38", "Station": "Art Museum Dr & Back Entrance - 2", "StationID": "21214", "lat": 39.966352, "lon": -75.181972}, "geometry": {"type": "Point", "coordinates": [-75.181972, 39.966352]}}, {"id": "58", "type": "Feature", "properties": {"Modal": "Bus", "OBJECTID": 5833, "Route": "38", "Station": "Art Museum Dr  & Kelly Dr - MBFS", "StationID": "21215", "lat": 39.966526, "lon": -75.180035}, "geometry": {"type": "Point", "coordinates": [-75.180035, 39.966526]}}, {"id": "59", "type": "Feature", "properties": {"Modal": "Bus", "OBJECTID": 5794, "Route": "38", "Station": "Art Museum Dr  & Kelly Dr 3 - 1 MBNS", "StationID": "21216", "lat": 39.966348, "lon": -75.179964}, "geometry": {"type": "Point", "coordinates": [-75.179964, 39.966348]}}, {"id": "60", "type": "Feature", "properties": {"Modal": "Bus", "OBJECTID": 6389, "Route": "43", "Station": "Spring Garden St & Art Museum", "StationID": "22014", "lat": 39.964128, "lon": -75.181508}, "geometry": {"type": "Point", "coordinates": [-75.181508, 39.964128]}}, {"id": "61", "type": "Feature", "properties": {"Modal": "Bus", "OBJECTID": 6390, "Route": "43", "Station": "Spring Garden St & Pennsylvania - FS", "StationID": "22015", "lat": 39.964108, "lon": -75.175661}, "geometry": {"type": "Point", "coordinates": [-75.175661, 39.964108]}}, {"id": "62", "type": "Feature", "properties": {"Modal": "Bus", "OBJECTID": 6392, "Route": "43", "Station": "Spring Garden St & 21st St", "StationID": "22016", "lat": 39.963781, "lon": -75.172958}, "geometry": {"type": "Point", "coordinates": [-75.172958, 39.963781]}}, {"id": "63", "type": "Feature", "properties": {"Modal": "Bus", "OBJECTID": 6458, "Route": "43", "Station": "Spring Garden St & 21st St", "StationID": "22054", "lat": 39.963977, "lon": -75.172709}, "geometry": {"type": "Point", "coordinates": [-75.172709, 39.963977]}}, {"id": "64", "type": "Feature", "properties": {"Modal": "Bus", "OBJECTID": 6461, "Route": "43", "Station": "Spring Garden St & 23rd St", "StationID": "22055", "lat": 39.964367, "lon": -75.175956}, "geometry": {"type": "Point", "coordinates": [-75.175956, 39.964367]}}, {"id": "65", "type": "Feature", "properties": {"Modal": "Bus", "OBJECTID": 5795, "Route": "38", "Station": "Ben Franklin Pkwy & 22nd St", "StationID": "22325", "lat": 39.96101, "lon": -75.17533}, "geometry": {"type": "Point", "coordinates": [-75.17533, 39.96101]}}, {"id": "66", "type": "Feature", "properties": {"Modal": "Bus", "OBJECTID": 2091, "Route": "7", "Station": "22nd St & Pennsylvania Av", "StationID": "25157", "lat": 39.962651, "lon": -75.174745}, "geometry": {"type": "Point", "coordinates": [-75.174745, 39.962651]}}, {"id": "67", "type": "Feature", "properties": {"Modal": "Bus", "OBJECTID": 7069, "Route": "48", "Station": "22nd St & Pennsylvania Av", "StationID": "25157", "lat": 39.962651, "lon": -75.174745}, "geometry": {"type": "Point", "coordinates": [-75.174745, 39.962651]}}, {"id": "68", "type": "Feature", "properties": {"Modal": "Bus", "OBJECTID": 2096, "Route": "7", "Station": "Fairmount Av & 23rd St", "StationID": "25158", "lat": 39.967391, "lon": -75.175248}, "geometry": {"type": "Point", "coordinates": [-75.175248, 39.967391]}}, {"id": "69", "type": "Feature", "properties": {"Modal": "Bus", "OBJECTID": 7214, "Route": "49", "Station": "Fairmount Av & 23rd St", "StationID": "25158", "lat": 39.967391, "lon": -75.175248}, "geometry": {"type": "Point", "coordinates": [-75.175248, 39.967391]}}, {"id": "70", "type": "Feature", "properties": {"Modal": "Bus", "OBJECTID": 7215, "Route": "49", "Station": "Fairmount Av & 24th St", "StationID": "25160", "lat": 39.96743, "lon": -75.176854}, "geometry": {"type": "Point", "coordinates": [-75.176854, 39.96743]}}, {"id": "71", "type": "Feature", "properties": {"Modal": "Bus", "OBJECTID": 2097, "Route": "7", "Station": "Fairmount Av & 24th St", "StationID": "25160", "lat": 39.96743, "lon": -75.176854}, "geometry": {"type": "Point", "coordinates": [-75.176854, 39.96743]}}, {"id": "72", "type": "Feature", "properties": {"Modal": "Bus", "OBJECTID": 7151, "Route": "48", "Station": "Hamilton St & 21st St", "StationID": "25203", "lat": 39.962452, "lon": -75.173329}, "geometry": {"type": "Point", "coordinates": [-75.173329, 39.962452]}}, {"id": "73", "type": "Feature", "properties": {"Modal": "Bus", "OBJECTID": 2164, "Route": "7", "Station": "Hamilton St & 21st St", "StationID": "25203", "lat": 39.962452, "lon": -75.173329}, "geometry": {"type": "Point", "coordinates": [-75.173329, 39.962452]}}, {"id": "74", "type": "Feature", "properties": {"Modal": "Bus", "OBJECTID": 5172, "Route": "32", "Station": "Hamilton St & 21st St", "StationID": "25203", "lat": 39.962452, "lon": -75.173329}, "geometry": {"type": "Point", "coordinates": [-75.173329, 39.962452]}}, {"id": "75", "type": "Feature", "properties": {"Modal": "Bus", "OBJECTID": 7216, "Route": "49", "Station": "Fairmount Av & 25th St", "StationID": "30102", "lat": 39.967452, "lon": -75.178508}, "geometry": {"type": "Point", "coordinates": [-75.178508, 39.967452]}}, {"id": "76", "type": "Feature", "properties": {"Modal": "Bus", "OBJECTID": 2098, "Route": "7", "Station": "Fairmount Av & 25th St", "StationID": "30102", "lat": 39.967452, "lon": -75.178508}, "geometry": {"type": "Point", "coordinates": [-75.178508, 39.967452]}}, {"id": "77", "type": "Feature", "properties": {"Modal": "Bus", "OBJECTID": 5832, "Route": "38", "Station": "Ben Franklin Pkwy & Spring Garden - MBNS", "StationID": "30303", "lat": 39.962869, "lon": -75.176717}, "geometry": {"type": "Point", "coordinates": [-75.176717, 39.962869]}}, {"id": "78", "type": "Feature", "properties": {"Modal": "Bus", "OBJECTID": 5835, "Route": "38", "Station": "Art Museum Dr & Spring Garden St - 3", "StationID": "30834", "lat": 39.964791, "lon": -75.18232}, "geometry": {"type": "Point", "coordinates": [-75.18232, 39.964791]}}, {"id": "79", "type": "Feature", "properties": {"Modal": "Bus", "OBJECTID": 5053, "Route": "32", "Station": "Pennsylvania Av & Fairmount Av", "StationID": "31115", "lat": 39.967382, "lon": -75.179441}, "geometry": {"type": "Point", "coordinates": [-75.179441, 39.967382]}}, {"id": "80", "type": "Feature", "properties": {"Modal": "Bus", "OBJECTID": 5792, "Route": "38", "Station": "Art Museum Dr & Spring Garden St - 3 FS", "StationID": "31625", "lat": 39.965076, "lon": -75.182414}, "geometry": {"type": "Point", "coordinates": [-75.182414, 39.965076]}}, {"id": "81", "type": "Feature", "properties": {"Modal": "Bus", "OBJECTID": 7257, "Route": "49", "Station": "Pennsylvania Av & 27th St", "StationID": "32489", "lat": 39.969198, "lon": -75.181714}, "geometry": {"type": "Point", "coordinates": [-75.181714, 39.969198]}}, {"id": "82", "type": "Feature", "properties": {"Modal": "Bus", "OBJECTID": 7258, "Route": "49", "Station": "Fairmount Av & 25th St", "StationID": "32490", "lat": 39.967354, "lon": -75.178792}, "geometry": {"type": "Point", "coordinates": [-75.178792, 39.967354]}}, {"id": "83", "type": "Feature", "properties": {"Modal": "Bus", "OBJECTID": 7259, "Route": "49", "Station": "Fairmount Av & 24th St", "StationID": "32491", "lat": 39.967333, "lon": -75.177138}, "geometry": {"type": "Point", "coordinates": [-75.177138, 39.967333]}}, {"id": "84", "type": "Feature", "properties": {"Modal": "Bus", "OBJECTID": 7260, "Route": "49", "Station": "Fairmount Av & 23rd St", "StationID": "32492", "lat": 39.967294, "lon": -75.17552}, "geometry": {"type": "Point", "coordinates": [-75.17552, 39.967294]}}, {"id": "85", "type": "Feature", "properties": {"Modal": "Bus", "OBJECTID": 7261, "Route": "49", "Station": "Fairmount Av & 22nd St", "StationID": "32493", "lat": 39.967264, "lon": -75.174126}, "geometry": {"type": "Point", "coordinates": [-75.174126, 39.967264]}}, {"id": "86", "type": "Feature", "properties": {"Modal": "Bus", "OBJECTID": 7262, "Route": "49", "Station": "21st St & Wallace St", "StationID": "32494", "lat": 39.966707, "lon": -75.172286}, "geometry": {"type": "Point", "coordinates": [-75.172286, 39.966707]}}, {"id": "87", "type": "Feature", "properties": {"Modal": "Bus", "OBJECTID": 7263, "Route": "49", "Station": "21st St & Green St", "StationID": "32495", "lat": 39.965333, "lon": -75.172621}, "geometry": {"type": "Point", "coordinates": [-75.172621, 39.965333]}}, {"id": "88", "type": "Feature", "properties": {"Modal": "Bus", "OBJECTID": 7264, "Route": "49", "Station": "21st St & Spring Garden St", "StationID": "32496", "lat": 39.96404, "lon": -75.172898}, "geometry": {"type": "Point", "coordinates": [-75.172898, 39.96404]}}, {"id": "89", "type": "Feature", "properties": {"Modal": "Bus", "OBJECTID": 7265, "Route": "49", "Station": "21st St & Hamilton Av", "StationID": "32497", "lat": 39.962621, "lon": -75.173222}, "geometry": {"type": "Point", "coordinates": [-75.173222, 39.962621]}}, {"id": "90", "type": "Feature", "properties": {"Modal": "Bus", "OBJECTID": 7212, "Route": "49", "Station": "Fairmount Av & Corinthian Av", "StationID": "32502", "lat": 39.967312, "lon": -75.171575}, "geometry": {"type": "Point", "coordinates": [-75.171575, 39.967312]}}, {"id": "91", "type": "Feature", "properties": {"Modal": "Bus", "OBJECTID": 7213, "Route": "49", "Station": "Fairmount Av & 22nd St", "StationID": "32503", "lat": 39.967371, "lon": -75.173831}, "geometry": {"type": "Point", "coordinates": [-75.173831, 39.967371]}}, {"id": "92", "type": "Feature", "properties": {"Modal": "Bike", "OBJECTID": 41, "Route": "", "Station": "23rd & Fairmount", "StationID": "bcycle_indego_3051", "lat": 39.96744, "lon": -75.17507}, "geometry": {"type": "Point", "coordinates": [-75.17507, 39.96744]}}, {"id": "93", "type": "Feature", "properties": {"Modal": "Bike", "OBJECTID": 44, "Route": "", "Station": "Rodin Museum", "StationID": "bcycle_indego_3054", "lat": 39.9625, "lon": -75.1742}, "geometry": {"type": "Point", "coordinates": [-75.1742, 39.9625]}}, {"id": "94", "type": "Feature", "properties": {"Modal": "Bike", "OBJECTID": 47, "Route": "", "Station": "Philadelphia Museum of Art", "StationID": "bcycle_indego_3057", "lat": 39.96439, "lon": -75.17987}, "geometry": {"type": "Point", "coordinates": [-75.17987, 39.96439]}}, {"id": "95", "type": "Feature", "properties": {"Modal": "Bike", "OBJECTID": 77, "Route": "", "Station": "Pennsylvania & Fairmount Perelman Building", "StationID": "bcycle_indego_3102", "lat": 39.96759, "lon": -75.17952}, "geometry": {"type": "Point", "coordinates": [-75.17952, 39.96759]}}, {"id": "96", "type": "Feature", "properties": {"Modal": "Bike", "OBJECTID": 140, "Route": "", "Station": "Schuylkill Banks Pergola", "StationID": "bcycle_indego_3212", "lat": 39.96383, "lon": -75.18177}, "geometry": {"type": "Point", "coordinates": [-75.18177, 39.96383]}}, {"id": "97", "type": "Feature", "properties": {"Modal": "Bike", "OBJECTID": 145, "Route": "", "Station": "24th & Pennsylvania ", "StationID": "bcycle_indego_3236", "lat": 39.96566, "lon": -75.17765}, "geometry": {"type": "Point", "coordinates": [-75.17765, 39.96566]}}]};
+
+            const iconSubway = L.divIcon({
+                html: '<i class="fas fa-subway fa-2x"></i>',
+                iconSize: [20, 20],
+                className: 'icon-subway'
+            });
+
+            const iconBikePrimary = L.divIcon({
+                html: '<i class="fas fa-bicycle fa-6x"></i>',
+                iconSize: [20, 20],
+                className: 'icon-bike-primary'
+            });
+
+            const iconBike = L.divIcon({
+                html: '<i class="fas fa-bicycle fa-4x"></i>',
+                iconSize: [20, 20],
+                className: 'icon-bike'
+            });
+
+            const iconBus = L.divIcon({
+                html: '<i class="fas fa-bus fa-2x"></i>',
+                iconSize: [20, 20],
+                className: 'icon-bus'
+            });
+
+        </script>
+          <!-- Leaflet stylesheet is below -->
+        <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css"
+        integrity="sha512-xodZBNTC5n17Xt2atTPuE1HxjVMSvLVW9ocqUKLsCC5CXdbqCmblAshOMAS6/keqq/sMZMZ19scR4PsZChSR7A=="
+        crossorigin=""/>
+        <!-- C3 stylesheet is below -->
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/c3/0.7.20/c3.css"
+        integrity="sha512-GQSxWe9Cj4o4EduO7zO9HjULmD4olIjiQqZ7VJuwBxZlkWaUFGCxRkn39jYnD2xZBtEilm0m4WBG7YEmQuMs5Q=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+  <!-- Stylesheet for the report's custom layout is below -->
+  <style>
+    body {
+      font-family: sans;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      grid-template-rows: auto auto 1fr 1fr;
+      grid-template-areas:
+        "header header"
+        "map list"
+        "map chart1"
+        "map chart2";
+      column-gap: 1rem;
+      row-gap: 1rem;
+    }
+    h1 {
+      grid-area: header;
+    }
+    #stationmap {
+      grid-area: map;
+      height: 100%;
+    }
+
+    .icon-subway{
+        color: #f14728;
+        -webkit-text-stroke: 1px #edb9b0;
+    }
+    .icon-subway:hover{
+        color: #f14728;
+        -webkit-text-stroke: 1px #edb9b0;
+    }
+
+    .icon-bus{
+        color: #1f4fa3;
+        -webkit-text-stroke: 1px #98b6eb;
+    }
+    .icon-bus:hover{
+        color: #1f4fa3;
+        -webkit-text-stroke: 1px #98b6eb;
+    }
+
+    .icon-bike{
+        color: #36b4e5;
+        -webkit-text-stroke: 1px #FFF;
+    }
+    .icon-bike:hover{
+        color: #0082cb;
+        -webkit-text-stroke: 1px #FFF;
+    }
+    .icon-bike-primary{
+        color: #36b4e5;
+        -webkit-text-stroke: 2px #000;
+    }
+
+  </style>
+    </head>
+    <body>
+        <h1><a href='index.html'>All stations</a> >> 24th & Pennsylvania </h1>
+
+  <div id="stationmap"></div>
+  <div>
+    <p>Info about 24th & Pennsylvania .</p>
+</div>
+
+
+          <script>
+    var initialCenter = [39.96566, -75.17765];  // <-- Latitude, Longitude
+    var initialZoom = 16;
+    var stationmap = L.map('stationmap', {
+      zoomSnap: 0,
+      zoomDelta: 0.25
+    }).setView(initialCenter, initialZoom);
+
+    var baseLayer = new L.tileLayer('https://stamen-tiles-{s}.a.ssl.fastly.net/toner-background/{z}/{x}/{y}{r}.{ext}', {
+    	attribution: 'Map tiles by <a href="http://stamen.com">Stamen Design</a>, <a href="http://creativecommons.org/licenses/by/3.0">CC BY 3.0</a> &mdash; Map data &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
+    	subdomains: 'abcd',
+    	minZoom: 0,
+    	maxZoom: 20,
+    	ext: 'png'
+    });
+    baseLayer.addTo(stationmap);
+
+    mapdata.features.forEach( function(location){
+      console.log(location.properties.Modal);
+      console.log(location);
+      switch (location.properties.Modal) {
+        case 'Subway':
+          iconToUse = iconSubway;
+          break;
+        case 'Bus':
+          iconToUse = iconBus;
+          break;
+        case 'Bike':
+          iconToUse = iconBike;
+          break;
+      }
+      if(location.properties.lat != 39.96566 && location.properties.lon != -75.17765) {
+        var marker = L.marker([location.properties.lat, location.properties.lon], {icon: iconToUse}).addTo(stationmap);
+        marker.bindPopup(
+            location.properties.Station
+        );
+      } else {
+        var indego_marker = L.marker([39.96566, -75.17765], {icon: iconBikePrimary}).addTo(stationmap);
+      }
+    });
+  </script>
+
+    </body>
+</html>

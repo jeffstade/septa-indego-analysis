@@ -1,0 +1,163 @@
+
+<html>
+    <head>
+        <title>Jawnt: SEPTA and Indego Connections</title>
+        <!-- Leaflet JavaScript library is below -->
+        <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"
+        integrity="sha512-XQoYMqMTK8LvdxXYG3nZ448hOEQiglfqkJs1NOQV44cWnUrBc8PkAOcXy20w0vlaXaVUearIOBhiXZ5V3ynxwA=="
+        crossorigin=""></script>
+        <!-- D3 JavaScript library is below -->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/5.16.0/d3.min.js"
+        integrity="sha512-FHsFVKQ/T1KWJDGSbrUhTJyS1ph3eRrxI228ND0EGaEp6v4a/vGwPWd3Dtd/+9cI7ccofZvl/wulICEurHN1pg=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+        <!-- C3 JavaScript library is below -->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/c3/0.7.20/c3.js"
+        integrity="sha512-11Z4MD9csmC3vH8Vd0eIPJBQu3uEHEqeznWEt3sLBCdQx3zm9mJbBcJH8WTcyGY9EXDE81BNpjE2vLosPK8cFQ=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+        <script src="https://kit.fontawesome.com/457a87d66e.js" crossorigin="anonymous"></script>
+        <script type='text/javascript'>
+            var mapdata = {"type": "FeatureCollection", "features": [{"id": "0", "type": "Feature", "properties": {"Modal": "Bus", "OBJECTID": 1074, "Route": "15", "Station": "Frankford Av & Girard Av", "StationID": "481", "lat": 39.968774, "lon": -75.134351}, "geometry": {"type": "Point", "coordinates": [-75.134351, 39.968774]}}, {"id": "1", "type": "Feature", "properties": {"Modal": "Bus", "OBJECTID": 898, "Route": "25", "Station": "Frankford Av & Girard Av", "StationID": "481", "lat": 39.968774, "lon": -75.134351}, "geometry": {"type": "Point", "coordinates": [-75.134351, 39.968774]}}, {"id": "2", "type": "Feature", "properties": {"Modal": "Bus", "OBJECTID": 4031, "Route": "25", "Station": "Frankford Av & Girard Av", "StationID": "493", "lat": 39.9689, "lon": -75.134504}, "geometry": {"type": "Point", "coordinates": [-75.134504, 39.9689]}}, {"id": "3", "type": "Feature", "properties": {"Modal": "Bus", "OBJECTID": 3935, "Route": "5", "Station": "Frankford Av & Girard Av", "StationID": "493", "lat": 39.9689, "lon": -75.134504}, "geometry": {"type": "Point", "coordinates": [-75.134504, 39.9689]}}, {"id": "4", "type": "Feature", "properties": {"Modal": "Bus", "OBJECTID": 6418, "Route": "43", "Station": "Beach St & Columbia Av", "StationID": "684", "lat": 39.966923, "lon": -75.128736}, "geometry": {"type": "Point", "coordinates": [-75.128736, 39.966923]}}, {"id": "5", "type": "Feature", "properties": {"Modal": "Bus", "OBJECTID": 6419, "Route": "43", "Station": "Columbia Av & Delaware Av", "StationID": "686", "lat": 39.967289, "lon": -75.12877}, "geometry": {"type": "Point", "coordinates": [-75.12877, 39.967289]}}, {"id": "6", "type": "Feature", "properties": {"Modal": "Bus", "OBJECTID": 14550, "Route": "89", "Station": "Norris St & Almond St", "StationID": "17789", "lat": 39.975016, "lon": -75.124213}, "geometry": {"type": "Point", "coordinates": [-75.124213, 39.975016]}}, {"id": "7", "type": "Feature", "properties": {"Modal": "Bus", "OBJECTID": 14551, "Route": "89", "Station": "Norris St & Belgrade St", "StationID": "17790", "lat": 39.97558, "lon": -75.125132}, "geometry": {"type": "Point", "coordinates": [-75.125132, 39.97558]}}, {"id": "8", "type": "Feature", "properties": {"Modal": "Bus", "OBJECTID": 14552, "Route": "89", "Station": "Norris St & Gaul St", "StationID": "17791", "lat": 39.976091, "lon": -75.126004}, "geometry": {"type": "Point", "coordinates": [-75.126004, 39.976091]}}, {"id": "9", "type": "Feature", "properties": {"Modal": "Bus", "OBJECTID": 14553, "Route": "89", "Station": "Norris St & Cedar St", "StationID": "17792", "lat": 39.976799, "lon": -75.127206}, "geometry": {"type": "Point", "coordinates": [-75.127206, 39.976799]}}, {"id": "10", "type": "Feature", "properties": {"Modal": "Bus", "OBJECTID": 14407, "Route": "89", "Station": "Norris St & Cedar St", "StationID": "17805", "lat": 39.976853, "lon": -75.12756}, "geometry": {"type": "Point", "coordinates": [-75.12756, 39.976853]}}, {"id": "11", "type": "Feature", "properties": {"Modal": "Bus", "OBJECTID": 910, "Route": "25", "Station": "Norris St & Cedar St", "StationID": "17805", "lat": 39.976853, "lon": -75.12756}, "geometry": {"type": "Point", "coordinates": [-75.12756, 39.976853]}}, {"id": "12", "type": "Feature", "properties": {"Modal": "Bus", "OBJECTID": 1065, "Route": "15", "Station": "Girard Av & Berks St", "StationID": "20986", "lat": 39.971869, "lon": -75.125833}, "geometry": {"type": "Point", "coordinates": [-75.125833, 39.971869]}}, {"id": "13", "type": "Feature", "properties": {"Modal": "Bus", "OBJECTID": 1066, "Route": "15", "Station": "Girard Av & Palmer St", "StationID": "20988", "lat": 39.970983, "lon": -75.1284}, "geometry": {"type": "Point", "coordinates": [-75.1284, 39.970983]}}, {"id": "14", "type": "Feature", "properties": {"Modal": "Bus", "OBJECTID": 1067, "Route": "15", "Station": "Girard Av & Columbia Av", "StationID": "20989", "lat": 39.970265, "lon": -75.130423}, "geometry": {"type": "Point", "coordinates": [-75.130423, 39.970265]}}, {"id": "15", "type": "Feature", "properties": {"Modal": "Bus", "OBJECTID": 1035, "Route": "15", "Station": "Girard Av & Frankford Av- FS", "StationID": "21098", "lat": 39.968855, "lon": -75.134244}, "geometry": {"type": "Point", "coordinates": [-75.134244, 39.968855]}}, {"id": "16", "type": "Feature", "properties": {"Modal": "Bus", "OBJECTID": 1036, "Route": "15", "Station": "Girard Av & Columbia Av", "StationID": "21100", "lat": 39.970122, "lon": -75.130542}, "geometry": {"type": "Point", "coordinates": [-75.130542, 39.970122]}}, {"id": "17", "type": "Feature", "properties": {"Modal": "Bus", "OBJECTID": 1037, "Route": "15", "Station": "Girard Av & Palmer St", "StationID": "21101", "lat": 39.97084, "lon": -75.128519}, "geometry": {"type": "Point", "coordinates": [-75.128519, 39.97084]}}, {"id": "18", "type": "Feature", "properties": {"Modal": "Bus", "OBJECTID": 1038, "Route": "15", "Station": "Girard Av & Berks St", "StationID": "21103", "lat": 39.971709, "lon": -75.125999}, "geometry": {"type": "Point", "coordinates": [-75.125999, 39.971709]}}, {"id": "19", "type": "Feature", "properties": {"Modal": "Bus", "OBJECTID": 3842, "Route": "5", "Station": "Frankford Av & Girard Av - FS", "StationID": "23928", "lat": 39.969221, "lon": -75.134361}, "geometry": {"type": "Point", "coordinates": [-75.134361, 39.969221]}}, {"id": "20", "type": "Feature", "properties": {"Modal": "Bus", "OBJECTID": 899, "Route": "25", "Station": "Frankford Av & Thompson St", "StationID": "23929", "lat": 39.969979, "lon": -75.134346}, "geometry": {"type": "Point", "coordinates": [-75.134346, 39.969979]}}, {"id": "21", "type": "Feature", "properties": {"Modal": "Bus", "OBJECTID": 3843, "Route": "5", "Station": "Frankford Av & Thompson St", "StationID": "23929", "lat": 39.969979, "lon": -75.134346}, "geometry": {"type": "Point", "coordinates": [-75.134346, 39.969979]}}, {"id": "22", "type": "Feature", "properties": {"Modal": "Bus", "OBJECTID": 3844, "Route": "5", "Station": "Frankford Av & Master St - FS", "StationID": "23930", "lat": 39.971702, "lon": -75.134327}, "geometry": {"type": "Point", "coordinates": [-75.134327, 39.971702]}}, {"id": "23", "type": "Feature", "properties": {"Modal": "Bus", "OBJECTID": 900, "Route": "25", "Station": "Frankford Av & Master St - FS", "StationID": "23930", "lat": 39.971702, "lon": -75.134327}, "geometry": {"type": "Point", "coordinates": [-75.134327, 39.971702]}}, {"id": "24", "type": "Feature", "properties": {"Modal": "Bus", "OBJECTID": 901, "Route": "25", "Station": "Frankford Av & Jefferson St", "StationID": "23931", "lat": 39.972843, "lon": -75.134003}, "geometry": {"type": "Point", "coordinates": [-75.134003, 39.972843]}}, {"id": "25", "type": "Feature", "properties": {"Modal": "Bus", "OBJECTID": 3845, "Route": "5", "Station": "Frankford Av & Jefferson St", "StationID": "23931", "lat": 39.972843, "lon": -75.134003}, "geometry": {"type": "Point", "coordinates": [-75.134003, 39.972843]}}, {"id": "26", "type": "Feature", "properties": {"Modal": "Bus", "OBJECTID": 3846, "Route": "5", "Station": "Frankford Av & Oxford St", "StationID": "23932", "lat": 39.973922, "lon": -75.133373}, "geometry": {"type": "Point", "coordinates": [-75.133373, 39.973922]}}, {"id": "27", "type": "Feature", "properties": {"Modal": "Bus", "OBJECTID": 902, "Route": "25", "Station": "Frankford Av & Oxford St", "StationID": "23932", "lat": 39.973922, "lon": -75.133373}, "geometry": {"type": "Point", "coordinates": [-75.133373, 39.973922]}}, {"id": "28", "type": "Feature", "properties": {"Modal": "Bus", "OBJECTID": 3847, "Route": "5", "Station": "Frankford Av & Palmer St", "StationID": "23933", "lat": 39.975179, "lon": -75.132659}, "geometry": {"type": "Point", "coordinates": [-75.132659, 39.975179]}}, {"id": "29", "type": "Feature", "properties": {"Modal": "Bus", "OBJECTID": 903, "Route": "25", "Station": "Frankford Av & Palmer St", "StationID": "23933", "lat": 39.975179, "lon": -75.132659}, "geometry": {"type": "Point", "coordinates": [-75.132659, 39.975179]}}, {"id": "30", "type": "Feature", "properties": {"Modal": "Bus", "OBJECTID": 904, "Route": "25", "Station": "Frankford Av & Montgomery Av", "StationID": "23934", "lat": 39.976738, "lon": -75.131778}, "geometry": {"type": "Point", "coordinates": [-75.131778, 39.976738]}}, {"id": "31", "type": "Feature", "properties": {"Modal": "Bus", "OBJECTID": 3848, "Route": "5", "Station": "Frankford Av & Montgomery Av", "StationID": "23934", "lat": 39.976738, "lon": -75.131778}, "geometry": {"type": "Point", "coordinates": [-75.131778, 39.976738]}}, {"id": "32", "type": "Feature", "properties": {"Modal": "Bus", "OBJECTID": 4022, "Route": "25", "Station": "Memphis St & Berks St", "StationID": "24030", "lat": 39.976803, "lon": -75.129132}, "geometry": {"type": "Point", "coordinates": [-75.129132, 39.976803]}}, {"id": "33", "type": "Feature", "properties": {"Modal": "Bus", "OBJECTID": 4023, "Route": "25", "Station": "Memphis St & Montgomery St - FS", "StationID": "24031", "lat": 39.975796, "lon": -75.129715}, "geometry": {"type": "Point", "coordinates": [-75.129715, 39.975796]}}, {"id": "34", "type": "Feature", "properties": {"Modal": "Bus", "OBJECTID": 4024, "Route": "25", "Station": "Memphis St & Palmer St", "StationID": "24032", "lat": 39.974575, "lon": -75.130417}, "geometry": {"type": "Point", "coordinates": [-75.130417, 39.974575]}}, {"id": "35", "type": "Feature", "properties": {"Modal": "Bus", "OBJECTID": 4025, "Route": "25", "Station": "Palmer St & Tulip St", "StationID": "24033", "lat": 39.974872, "lon": -75.131278}, "geometry": {"type": "Point", "coordinates": [-75.131278, 39.974872]}}, {"id": "36", "type": "Feature", "properties": {"Modal": "Bus", "OBJECTID": 4026, "Route": "25", "Station": "Palmer St & Frankford Av", "StationID": "24034", "lat": 39.975321, "lon": -75.132575}, "geometry": {"type": "Point", "coordinates": [-75.132575, 39.975321]}}, {"id": "37", "type": "Feature", "properties": {"Modal": "Bus", "OBJECTID": 3932, "Route": "5", "Station": "Frankford Av & Jefferson St", "StationID": "24035", "lat": 39.972933, "lon": -75.134109}, "geometry": {"type": "Point", "coordinates": [-75.134109, 39.972933]}}, {"id": "38", "type": "Feature", "properties": {"Modal": "Bus", "OBJECTID": 4028, "Route": "25", "Station": "Frankford Av & Jefferson St", "StationID": "24035", "lat": 39.972933, "lon": -75.134109}, "geometry": {"type": "Point", "coordinates": [-75.134109, 39.972933]}}, {"id": "39", "type": "Feature", "properties": {"Modal": "Bus", "OBJECTID": 3933, "Route": "5", "Station": "Frankford Av & Master St - FS", "StationID": "24036", "lat": 39.971479, "lon": -75.134481}, "geometry": {"type": "Point", "coordinates": [-75.134481, 39.971479]}}, {"id": "40", "type": "Feature", "properties": {"Modal": "Bus", "OBJECTID": 4029, "Route": "25", "Station": "Frankford Av & Master St - FS", "StationID": "24036", "lat": 39.971479, "lon": -75.134481}, "geometry": {"type": "Point", "coordinates": [-75.134481, 39.971479]}}, {"id": "41", "type": "Feature", "properties": {"Modal": "Bus", "OBJECTID": 4030, "Route": "25", "Station": "Frankford Av & Thompson St", "StationID": "24037", "lat": 39.970256, "lon": -75.134498}, "geometry": {"type": "Point", "coordinates": [-75.134498, 39.970256]}}, {"id": "42", "type": "Feature", "properties": {"Modal": "Bus", "OBJECTID": 3934, "Route": "5", "Station": "Frankford Av & Thompson St", "StationID": "24037", "lat": 39.970256, "lon": -75.134498}, "geometry": {"type": "Point", "coordinates": [-75.134498, 39.970256]}}, {"id": "43", "type": "Feature", "properties": {"Modal": "Bus", "OBJECTID": 4027, "Route": "25", "Station": "Frankford Av & Oxford St", "StationID": "24092", "lat": 39.974145, "lon": -75.133407}, "geometry": {"type": "Point", "coordinates": [-75.133407, 39.974145]}}, {"id": "44", "type": "Feature", "properties": {"Modal": "Bus", "OBJECTID": 3931, "Route": "5", "Station": "Frankford Av & Oxford St", "StationID": "24092", "lat": 39.974145, "lon": -75.133407}, "geometry": {"type": "Point", "coordinates": [-75.133407, 39.974145]}}, {"id": "45", "type": "Feature", "properties": {"Modal": "Bus", "OBJECTID": 3929, "Route": "5", "Station": "Frankford Av & Montgomery Av", "StationID": "24158", "lat": 39.976872, "lon": -75.131837}, "geometry": {"type": "Point", "coordinates": [-75.131837, 39.976872]}}, {"id": "46", "type": "Feature", "properties": {"Modal": "Bus", "OBJECTID": 3930, "Route": "5", "Station": "Frankford Av & Palmer St", "StationID": "24159", "lat": 39.975464, "lon": -75.132658}, "geometry": {"type": "Point", "coordinates": [-75.132658, 39.975464]}}, {"id": "47", "type": "Feature", "properties": {"Modal": "Bus", "OBJECTID": 6431, "Route": "43", "Station": "Delaware Av & Columbia Av", "StationID": "31458", "lat": 39.967619, "lon": -75.128946}, "geometry": {"type": "Point", "coordinates": [-75.128946, 39.967619]}}, {"id": "48", "type": "Feature", "properties": {"Modal": "Bus", "OBJECTID": 6430, "Route": "43", "Station": "Delaware Av & Montgomery Av", "StationID": "31463", "lat": 39.969558, "lon": -75.126056}, "geometry": {"type": "Point", "coordinates": [-75.126056, 39.969558]}}, {"id": "49", "type": "Feature", "properties": {"Modal": "Bus", "OBJECTID": 1068, "Route": "15", "Station": "Frankford Av & Girard Av - FS", "StationID": "31540", "lat": 39.96865, "lon": -75.134493}, "geometry": {"type": "Point", "coordinates": [-75.134493, 39.96865]}}, {"id": "50", "type": "Feature", "properties": {"Modal": "Bus", "OBJECTID": 1030, "Route": "15", "Station": "Frankford Av & Girard Av - FS", "StationID": "31540", "lat": 39.96865, "lon": -75.134493}, "geometry": {"type": "Point", "coordinates": [-75.134493, 39.96865]}}, {"id": "51", "type": "Feature", "properties": {"Modal": "Bike", "OBJECTID": 99, "Route": "", "Station": "Thompson & Palmer, Adaire School", "StationID": "bcycle_indego_3153", "lat": 39.97216, "lon": -75.12994}, "geometry": {"type": "Point", "coordinates": [-75.12994, 39.97216]}}, {"id": "52", "type": "Feature", "properties": {"Modal": "Bike", "OBJECTID": 112, "Route": "", "Station": "Frankford & Belgrade", "StationID": "bcycle_indego_3166", "lat": 39.97195, "lon": -75.13445}, "geometry": {"type": "Point", "coordinates": [-75.13445, 39.97195]}}]};
+
+            const iconSubway = L.divIcon({
+                html: '<i class="fas fa-subway fa-2x"></i>',
+                iconSize: [20, 20],
+                className: 'icon-subway'
+            });
+
+            const iconBikePrimary = L.divIcon({
+                html: '<i class="fas fa-bicycle fa-6x"></i>',
+                iconSize: [20, 20],
+                className: 'icon-bike-primary'
+            });
+
+            const iconBike = L.divIcon({
+                html: '<i class="fas fa-bicycle fa-4x"></i>',
+                iconSize: [20, 20],
+                className: 'icon-bike'
+            });
+
+            const iconBus = L.divIcon({
+                html: '<i class="fas fa-bus fa-2x"></i>',
+                iconSize: [20, 20],
+                className: 'icon-bus'
+            });
+
+        </script>
+          <!-- Leaflet stylesheet is below -->
+        <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css"
+        integrity="sha512-xodZBNTC5n17Xt2atTPuE1HxjVMSvLVW9ocqUKLsCC5CXdbqCmblAshOMAS6/keqq/sMZMZ19scR4PsZChSR7A=="
+        crossorigin=""/>
+        <!-- C3 stylesheet is below -->
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/c3/0.7.20/c3.css"
+        integrity="sha512-GQSxWe9Cj4o4EduO7zO9HjULmD4olIjiQqZ7VJuwBxZlkWaUFGCxRkn39jYnD2xZBtEilm0m4WBG7YEmQuMs5Q=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+  <!-- Stylesheet for the report's custom layout is below -->
+  <style>
+    body {
+      font-family: sans;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      grid-template-rows: auto auto 1fr 1fr;
+      grid-template-areas:
+        "header header"
+        "map list"
+        "map chart1"
+        "map chart2";
+      column-gap: 1rem;
+      row-gap: 1rem;
+    }
+    h1 {
+      grid-area: header;
+    }
+    #stationmap {
+      grid-area: map;
+      height: 100%;
+    }
+
+    .icon-subway{
+        color: #f14728;
+        -webkit-text-stroke: 1px #edb9b0;
+    }
+    .icon-subway:hover{
+        color: #f14728;
+        -webkit-text-stroke: 1px #edb9b0;
+    }
+
+    .icon-bus{
+        color: #1f4fa3;
+        -webkit-text-stroke: 1px #98b6eb;
+    }
+    .icon-bus:hover{
+        color: #1f4fa3;
+        -webkit-text-stroke: 1px #98b6eb;
+    }
+
+    .icon-bike{
+        color: #36b4e5;
+        -webkit-text-stroke: 1px #FFF;
+    }
+    .icon-bike:hover{
+        color: #0082cb;
+        -webkit-text-stroke: 1px #FFF;
+    }
+    .icon-bike-primary{
+        color: #36b4e5;
+        -webkit-text-stroke: 2px #000;
+    }
+
+  </style>
+    </head>
+    <body>
+        <h1><a href='index.html'>All stations</a> >> Thompson & Palmer, Adaire School</h1>
+
+  <div id="stationmap"></div>
+  <div>
+    <p>Info about Thompson & Palmer, Adaire School.</p>
+</div>
+
+
+          <script>
+    var initialCenter = [39.97216, -75.12994];  // <-- Latitude, Longitude
+    var initialZoom = 16;
+    var stationmap = L.map('stationmap', {
+      zoomSnap: 0,
+      zoomDelta: 0.25
+    }).setView(initialCenter, initialZoom);
+
+    var baseLayer = new L.tileLayer('https://stamen-tiles-{s}.a.ssl.fastly.net/toner-background/{z}/{x}/{y}{r}.{ext}', {
+    	attribution: 'Map tiles by <a href="http://stamen.com">Stamen Design</a>, <a href="http://creativecommons.org/licenses/by/3.0">CC BY 3.0</a> &mdash; Map data &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
+    	subdomains: 'abcd',
+    	minZoom: 0,
+    	maxZoom: 20,
+    	ext: 'png'
+    });
+    baseLayer.addTo(stationmap);
+
+    mapdata.features.forEach( function(location){
+      console.log(location.properties.Modal);
+      console.log(location);
+      switch (location.properties.Modal) {
+        case 'Subway':
+          iconToUse = iconSubway;
+          break;
+        case 'Bus':
+          iconToUse = iconBus;
+          break;
+        case 'Bike':
+          iconToUse = iconBike;
+          break;
+      }
+      if(location.properties.lat != 39.97216 && location.properties.lon != -75.12994) {
+        var marker = L.marker([location.properties.lat, location.properties.lon], {icon: iconToUse}).addTo(stationmap);
+        marker.bindPopup(
+            location.properties.Station
+        );
+      } else {
+        var indego_marker = L.marker([39.97216, -75.12994], {icon: iconBikePrimary}).addTo(stationmap);
+      }
+    });
+  </script>
+
+    </body>
+</html>

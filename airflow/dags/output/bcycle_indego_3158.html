@@ -1,0 +1,163 @@
+
+<html>
+    <head>
+        <title>Jawnt: SEPTA and Indego Connections</title>
+        <!-- Leaflet JavaScript library is below -->
+        <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"
+        integrity="sha512-XQoYMqMTK8LvdxXYG3nZ448hOEQiglfqkJs1NOQV44cWnUrBc8PkAOcXy20w0vlaXaVUearIOBhiXZ5V3ynxwA=="
+        crossorigin=""></script>
+        <!-- D3 JavaScript library is below -->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/5.16.0/d3.min.js"
+        integrity="sha512-FHsFVKQ/T1KWJDGSbrUhTJyS1ph3eRrxI228ND0EGaEp6v4a/vGwPWd3Dtd/+9cI7ccofZvl/wulICEurHN1pg=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+        <!-- C3 JavaScript library is below -->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/c3/0.7.20/c3.js"
+        integrity="sha512-11Z4MD9csmC3vH8Vd0eIPJBQu3uEHEqeznWEt3sLBCdQx3zm9mJbBcJH8WTcyGY9EXDE81BNpjE2vLosPK8cFQ=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+        <script src="https://kit.fontawesome.com/457a87d66e.js" crossorigin="anonymous"></script>
+        <script type='text/javascript'>
+            var mapdata = {"type": "FeatureCollection", "features": [{"id": "0", "type": "Feature", "properties": {"Modal": "Bus", "OBJECTID": 3460, "Route": "2", "Station": "17th St & Snyder Av", "StationID": "37", "lat": 39.925122, "lon": -75.174548}, "geometry": {"type": "Point", "coordinates": [-75.174548, 39.925122]}}, {"id": "1", "type": "Feature", "properties": {"Modal": "Bus", "OBJECTID": 3301, "Route": "2", "Station": "16th St & Snyder Av", "StationID": "41", "lat": 39.924771, "lon": -75.17292}, "geometry": {"type": "Point", "coordinates": [-75.17292, 39.924771]}}, {"id": "2", "type": "Feature", "properties": {"Modal": "Bus", "OBJECTID": 4683, "Route": "29", "Station": "Morris St & Broad St", "StationID": "541", "lat": 39.929225, "lon": -75.168843}, "geometry": {"type": "Point", "coordinates": [-75.168843, 39.929225]}}, {"id": "3", "type": "Feature", "properties": {"Modal": "Bus", "OBJECTID": 4716, "Route": "29", "Station": "Tasker St & Broad St", "StationID": "546", "lat": 39.930517, "lon": -75.168189}, "geometry": {"type": "Point", "coordinates": [-75.168189, 39.930517]}}, {"id": "4", "type": "Feature", "properties": {"Modal": "Bus", "OBJECTID": 10860, "Route": "79", "Station": "Snyder Av & Broad St", "StationID": "613", "lat": 39.924406, "lon": -75.169463}, "geometry": {"type": "Point", "coordinates": [-75.169463, 39.924406]}}, {"id": "5", "type": "Feature", "properties": {"Modal": "Bus", "OBJECTID": 10820, "Route": "79", "Station": "Snyder Av & Broad St", "StationID": "632", "lat": 39.924336, "lon": -75.169876}, "geometry": {"type": "Point", "coordinates": [-75.169876, 39.924336]}}, {"id": "6", "type": "Feature", "properties": {"Modal": "Bus", "OBJECTID": 10864, "Route": "79", "Station": "Snyder Av & 18th St", "StationID": "1072", "lat": 39.92525, "lon": -75.17594}, "geometry": {"type": "Point", "coordinates": [-75.17594, 39.92525]}}, {"id": "7", "type": "Feature", "properties": {"Modal": "Bus", "OBJECTID": 10865, "Route": "79", "Station": "Snyder Av & 18th St", "StationID": "1072", "lat": 39.92525, "lon": -75.17594}, "geometry": {"type": "Point", "coordinates": [-75.17594, 39.92525]}}, {"id": "8", "type": "Feature", "properties": {"Modal": "Bus", "OBJECTID": 18868, "Route": "BSL", "Station": "Tasker Morris Station - BSL", "StationID": "1285", "lat": 39.929813, "lon": -75.16857}, "geometry": {"type": "Point", "coordinates": [-75.16857, 39.929813]}}, {"id": "9", "type": "Feature", "properties": {"Modal": "Bus", "OBJECTID": 18869, "Route": "BSL", "Station": "Snyder Station - BSL", "StationID": "1286", "lat": 39.92438, "lon": -75.169758}, "geometry": {"type": "Point", "coordinates": [-75.169758, 39.92438]}}, {"id": "10", "type": "Feature", "properties": {"Modal": "Bus", "OBJECTID": 3461, "Route": "2", "Station": "17th St & Jackson St", "StationID": "2685", "lat": 39.923891, "lon": -75.174824}, "geometry": {"type": "Point", "coordinates": [-75.174824, 39.923891]}}, {"id": "11", "type": "Feature", "properties": {"Modal": "Bus", "OBJECTID": 3459, "Route": "2", "Station": "17th St & McKean St", "StationID": "2695", "lat": 39.926344, "lon": -75.174284}, "geometry": {"type": "Point", "coordinates": [-75.174284, 39.926344]}}, {"id": "12", "type": "Feature", "properties": {"Modal": "Bus", "OBJECTID": 3458, "Route": "2", "Station": "17th St & Mifflin St", "StationID": "2696", "lat": 39.927566, "lon": -75.17402}, "geometry": {"type": "Point", "coordinates": [-75.17402, 39.927566]}}, {"id": "13", "type": "Feature", "properties": {"Modal": "Bus", "OBJECTID": 3457, "Route": "2", "Station": "17th St & Moore St", "StationID": "2698", "lat": 39.928788, "lon": -75.173744}, "geometry": {"type": "Point", "coordinates": [-75.173744, 39.928788]}}, {"id": "14", "type": "Feature", "properties": {"Modal": "Bus", "OBJECTID": 3300, "Route": "2", "Station": "16th St & Jackson St", "StationID": "3037", "lat": 39.923522, "lon": -75.173161}, "geometry": {"type": "Point", "coordinates": [-75.173161, 39.923522]}}, {"id": "15", "type": "Feature", "properties": {"Modal": "Bus", "OBJECTID": 3302, "Route": "2", "Station": "16th St & McKean St", "StationID": "3045", "lat": 39.925948, "lon": -75.172609}, "geometry": {"type": "Point", "coordinates": [-75.172609, 39.925948]}}, {"id": "16", "type": "Feature", "properties": {"Modal": "Bus", "OBJECTID": 3303, "Route": "2", "Station": "16th St & Mifflin St", "StationID": "3046", "lat": 39.927134, "lon": -75.172321}, "geometry": {"type": "Point", "coordinates": [-75.172321, 39.927134]}}, {"id": "17", "type": "Feature", "properties": {"Modal": "Bus", "OBJECTID": 3304, "Route": "2", "Station": "16th St & Moore St", "StationID": "3048", "lat": 39.928392, "lon": -75.172045}, "geometry": {"type": "Point", "coordinates": [-75.172045, 39.928392]}}, {"id": "18", "type": "Feature", "properties": {"Modal": "Bus", "OBJECTID": 3305, "Route": "2", "Station": "16th St & Morris St", "StationID": "3049", "lat": 39.929614, "lon": -75.171781}, "geometry": {"type": "Point", "coordinates": [-75.171781, 39.929614]}}, {"id": "19", "type": "Feature", "properties": {"Modal": "Bus", "OBJECTID": 3299, "Route": "2", "Station": "16th St & Wolf St", "StationID": "3073", "lat": 39.922255, "lon": -75.173437}, "geometry": {"type": "Point", "coordinates": [-75.173437, 39.922255]}}, {"id": "20", "type": "Feature", "properties": {"Modal": "Bus", "OBJECTID": 3812, "Route": "4", "Station": "Broad St & Jackson St", "StationID": "5221", "lat": 39.923256, "lon": -75.170057}, "geometry": {"type": "Point", "coordinates": [-75.170057, 39.923256]}}, {"id": "21", "type": "Feature", "properties": {"Modal": "Bus", "OBJECTID": 3814, "Route": "4", "Station": "Broad St & Ritner St", "StationID": "5296", "lat": 39.920794, "lon": -75.170597}, "geometry": {"type": "Point", "coordinates": [-75.170597, 39.920794]}}, {"id": "22", "type": "Feature", "properties": {"Modal": "Bus", "OBJECTID": 3811, "Route": "4", "Station": "Broad St & Snyder Av", "StationID": "5308", "lat": 39.924541, "lon": -75.169769}, "geometry": {"type": "Point", "coordinates": [-75.169769, 39.924541]}}, {"id": "23", "type": "Feature", "properties": {"Modal": "Bus", "OBJECTID": 18930, "Route": "BSO", "Station": "Broad St & Snyder Av", "StationID": "5308", "lat": 39.924541, "lon": -75.169769}, "geometry": {"type": "Point", "coordinates": [-75.169769, 39.924541]}}, {"id": "24", "type": "Feature", "properties": {"Modal": "Bus", "OBJECTID": 6748, "Route": "45", "Station": "12th St & Morris St", "StationID": "16522", "lat": 39.928886, "lon": -75.165008}, "geometry": {"type": "Point", "coordinates": [-75.165008, 39.928886]}}, {"id": "25", "type": "Feature", "properties": {"Modal": "Bus", "OBJECTID": 6749, "Route": "45", "Station": "12th St & Moore St", "StationID": "16524", "lat": 39.927691, "lon": -75.165295}, "geometry": {"type": "Point", "coordinates": [-75.165295, 39.927691]}}, {"id": "26", "type": "Feature", "properties": {"Modal": "Bus", "OBJECTID": 6750, "Route": "45", "Station": "12th St & Mifflin St", "StationID": "16575", "lat": 39.926442, "lon": -75.165536}, "geometry": {"type": "Point", "coordinates": [-75.165536, 39.926442]}}, {"id": "27", "type": "Feature", "properties": {"Modal": "Bus", "OBJECTID": 6751, "Route": "45", "Station": "12th St & McKean St", "StationID": "16576", "lat": 39.925229, "lon": -75.165836}, "geometry": {"type": "Point", "coordinates": [-75.165836, 39.925229]}}, {"id": "28", "type": "Feature", "properties": {"Modal": "Bus", "OBJECTID": 6752, "Route": "45", "Station": "12th St & Snyder Av", "StationID": "16577", "lat": 39.924025, "lon": -75.166112}, "geometry": {"type": "Point", "coordinates": [-75.166112, 39.924025]}}, {"id": "29", "type": "Feature", "properties": {"Modal": "Bus", "OBJECTID": 6753, "Route": "45", "Station": "12th St & Jackson St", "StationID": "16585", "lat": 39.922785, "lon": -75.166364}, "geometry": {"type": "Point", "coordinates": [-75.166364, 39.922785]}}, {"id": "30", "type": "Feature", "properties": {"Modal": "Bus", "OBJECTID": 6754, "Route": "45", "Station": "12th St & Wolf St", "StationID": "16586", "lat": 39.921536, "lon": -75.16664}, "geometry": {"type": "Point", "coordinates": [-75.16664, 39.921536]}}, {"id": "31", "type": "Feature", "properties": {"Modal": "Bus", "OBJECTID": 6696, "Route": "45", "Station": "11th St & Snyder Av", "StationID": "16594", "lat": 39.923593, "lon": -75.164402}, "geometry": {"type": "Point", "coordinates": [-75.164402, 39.923593]}}, {"id": "32", "type": "Feature", "properties": {"Modal": "Bus", "OBJECTID": 6698, "Route": "45", "Station": "11th St & Mifflin St", "StationID": "16600", "lat": 39.926073, "lon": -75.163861}, "geometry": {"type": "Point", "coordinates": [-75.163861, 39.926073]}}, {"id": "33", "type": "Feature", "properties": {"Modal": "Bus", "OBJECTID": 6699, "Route": "45", "Station": "11th St & Moore St", "StationID": "16601", "lat": 39.927295, "lon": -75.163562}, "geometry": {"type": "Point", "coordinates": [-75.163562, 39.927295]}}, {"id": "34", "type": "Feature", "properties": {"Modal": "Bus", "OBJECTID": 6700, "Route": "45", "Station": "11th St & Morris St", "StationID": "16603", "lat": 39.928472, "lon": -75.163309}, "geometry": {"type": "Point", "coordinates": [-75.163309, 39.928472]}}, {"id": "35", "type": "Feature", "properties": {"Modal": "Bus", "OBJECTID": 3806, "Route": "4", "Station": "Broad St & Tasker St", "StationID": "17189", "lat": 39.930607, "lon": -75.168449}, "geometry": {"type": "Point", "coordinates": [-75.168449, 39.930607]}}, {"id": "36", "type": "Feature", "properties": {"Modal": "Bus", "OBJECTID": 18928, "Route": "BSO", "Station": "Broad St & Tasker St", "StationID": "17189", "lat": 39.930607, "lon": -75.168449}, "geometry": {"type": "Point", "coordinates": [-75.168449, 39.930607]}}, {"id": "37", "type": "Feature", "properties": {"Modal": "Bus", "OBJECTID": 3807, "Route": "4", "Station": "Broad St & Morris St", "StationID": "17190", "lat": 39.929403, "lon": -75.168713}, "geometry": {"type": "Point", "coordinates": [-75.168713, 39.929403]}}, {"id": "38", "type": "Feature", "properties": {"Modal": "Bus", "OBJECTID": 18929, "Route": "BSO", "Station": "Broad St & Morris St", "StationID": "17190", "lat": 39.929403, "lon": -75.168713}, "geometry": {"type": "Point", "coordinates": [-75.168713, 39.929403]}}, {"id": "39", "type": "Feature", "properties": {"Modal": "Bus", "OBJECTID": 3808, "Route": "4", "Station": "Broad St & Moore St", "StationID": "17192", "lat": 39.928181, "lon": -75.168989}, "geometry": {"type": "Point", "coordinates": [-75.168989, 39.928181]}}, {"id": "40", "type": "Feature", "properties": {"Modal": "Bus", "OBJECTID": 3809, "Route": "4", "Station": "Broad St & Mifflin St", "StationID": "17194", "lat": 39.926967, "lon": -75.169265}, "geometry": {"type": "Point", "coordinates": [-75.169265, 39.926967]}}, {"id": "41", "type": "Feature", "properties": {"Modal": "Bus", "OBJECTID": 3810, "Route": "4", "Station": "Broad St & McKean St", "StationID": "17195", "lat": 39.925692, "lon": -75.169517}, "geometry": {"type": "Point", "coordinates": [-75.169517, 39.925692]}}, {"id": "42", "type": "Feature", "properties": {"Modal": "Bus", "OBJECTID": 3813, "Route": "4", "Station": "Broad St & Wolf St", "StationID": "17198", "lat": 39.922025, "lon": -75.170333}, "geometry": {"type": "Point", "coordinates": [-75.170333, 39.922025]}}, {"id": "43", "type": "Feature", "properties": {"Modal": "Bus", "OBJECTID": 3630, "Route": "4", "Station": "Broad St & Ritner St", "StationID": "17235", "lat": 39.920544, "lon": -75.170433}, "geometry": {"type": "Point", "coordinates": [-75.170433, 39.920544]}}, {"id": "44", "type": "Feature", "properties": {"Modal": "Bus", "OBJECTID": 3631, "Route": "4", "Station": "Broad St & Wolf St", "StationID": "17236", "lat": 39.921766, "lon": -75.170181}, "geometry": {"type": "Point", "coordinates": [-75.170181, 39.921766]}}, {"id": "45", "type": "Feature", "properties": {"Modal": "Bus", "OBJECTID": 3632, "Route": "4", "Station": "Broad St & Jackson St", "StationID": "17237", "lat": 39.923033, "lon": -75.169893}, "geometry": {"type": "Point", "coordinates": [-75.169893, 39.923033]}}, {"id": "46", "type": "Feature", "properties": {"Modal": "Bus", "OBJECTID": 18874, "Route": "BSO", "Station": "Broad St & Snyder Av", "StationID": "17238", "lat": 39.924264, "lon": -75.169617}, "geometry": {"type": "Point", "coordinates": [-75.169617, 39.924264]}}, {"id": "47", "type": "Feature", "properties": {"Modal": "Bus", "OBJECTID": 3633, "Route": "4", "Station": "Broad St & Snyder Av", "StationID": "17238", "lat": 39.924264, "lon": -75.169617}, "geometry": {"type": "Point", "coordinates": [-75.169617, 39.924264]}}, {"id": "48", "type": "Feature", "properties": {"Modal": "Bus", "OBJECTID": 3634, "Route": "4", "Station": "Broad St & McKean St", "StationID": "17239", "lat": 39.925468, "lon": -75.169341}, "geometry": {"type": "Point", "coordinates": [-75.169341, 39.925468]}}, {"id": "49", "type": "Feature", "properties": {"Modal": "Bus", "OBJECTID": 3635, "Route": "4", "Station": "Broad St & Mifflin St", "StationID": "17240", "lat": 39.926717, "lon": -75.1691}, "geometry": {"type": "Point", "coordinates": [-75.1691, 39.926717]}}, {"id": "50", "type": "Feature", "properties": {"Modal": "Bus", "OBJECTID": 3636, "Route": "4", "Station": "Broad St & Moore St", "StationID": "17241", "lat": 39.927922, "lon": -75.168836}, "geometry": {"type": "Point", "coordinates": [-75.168836, 39.927922]}}, {"id": "51", "type": "Feature", "properties": {"Modal": "Bus", "OBJECTID": 18875, "Route": "BSO", "Station": "Broad St & Morris St", "StationID": "17243", "lat": 39.929153, "lon": -75.168548}, "geometry": {"type": "Point", "coordinates": [-75.168548, 39.929153]}}, {"id": "52", "type": "Feature", "properties": {"Modal": "Bus", "OBJECTID": 3637, "Route": "4", "Station": "Broad St & Morris St", "StationID": "17243", "lat": 39.929153, "lon": -75.168548}, "geometry": {"type": "Point", "coordinates": [-75.168548, 39.929153]}}, {"id": "53", "type": "Feature", "properties": {"Modal": "Bus", "OBJECTID": 18876, "Route": "BSO", "Station": "Broad St & Tasker St", "StationID": "17244", "lat": 39.930393, "lon": -75.168284}, "geometry": {"type": "Point", "coordinates": [-75.168284, 39.930393]}}, {"id": "54", "type": "Feature", "properties": {"Modal": "Bus", "OBJECTID": 3638, "Route": "4", "Station": "Broad St & Tasker St", "StationID": "17244", "lat": 39.930393, "lon": -75.168284}, "geometry": {"type": "Point", "coordinates": [-75.168284, 39.930393]}}, {"id": "55", "type": "Feature", "properties": {"Modal": "Bus", "OBJECTID": 6695, "Route": "45", "Station": "11th St & Jackson St", "StationID": "21788", "lat": 39.922362, "lon": -75.164678}, "geometry": {"type": "Point", "coordinates": [-75.164678, 39.922362]}}, {"id": "56", "type": "Feature", "properties": {"Modal": "Bus", "OBJECTID": 6697, "Route": "45", "Station": "11th St & McKean St", "StationID": "21790", "lat": 39.92485, "lon": -75.164125}, "geometry": {"type": "Point", "coordinates": [-75.164125, 39.92485]}}, {"id": "57", "type": "Feature", "properties": {"Modal": "Bus", "OBJECTID": 4681, "Route": "29", "Station": "Morris St & 16th St", "StationID": "24193", "lat": 39.929633, "lon": -75.171947}, "geometry": {"type": "Point", "coordinates": [-75.171947, 39.929633]}}, {"id": "58", "type": "Feature", "properties": {"Modal": "Bus", "OBJECTID": 4682, "Route": "29", "Station": "Morris St & 15th St", "StationID": "24194", "lat": 39.929433, "lon": -75.170424}, "geometry": {"type": "Point", "coordinates": [-75.170424, 39.929433]}}, {"id": "59", "type": "Feature", "properties": {"Modal": "Bus", "OBJECTID": 4684, "Route": "29", "Station": "Morris St & 13th St", "StationID": "24195", "lat": 39.928925, "lon": -75.166613}, "geometry": {"type": "Point", "coordinates": [-75.166613, 39.928925]}}, {"id": "60", "type": "Feature", "properties": {"Modal": "Bus", "OBJECTID": 4685, "Route": "29", "Station": "Morris St & 12th St", "StationID": "24196", "lat": 39.928735, "lon": -75.165044}, "geometry": {"type": "Point", "coordinates": [-75.165044, 39.928735]}}, {"id": "61", "type": "Feature", "properties": {"Modal": "Bus", "OBJECTID": 4686, "Route": "29", "Station": "Morris St & 11th St", "StationID": "24197", "lat": 39.928535, "lon": -75.163474}, "geometry": {"type": "Point", "coordinates": [-75.163474, 39.928535]}}, {"id": "62", "type": "Feature", "properties": {"Modal": "Bus", "OBJECTID": 4715, "Route": "29", "Station": "Tasker St & 13th St", "StationID": "24220", "lat": 39.930254, "lon": -75.166112}, "geometry": {"type": "Point", "coordinates": [-75.166112, 39.930254]}}, {"id": "63", "type": "Feature", "properties": {"Modal": "Bus", "OBJECTID": 4717, "Route": "29", "Station": "Tasker St & 15th St", "StationID": "24221", "lat": 39.930762, "lon": -75.169936}, "geometry": {"type": "Point", "coordinates": [-75.169936, 39.930762]}}, {"id": "64", "type": "Feature", "properties": {"Modal": "Bus", "OBJECTID": 10817, "Route": "79", "Station": "Snyder Av & 17th St", "StationID": "24249", "lat": 39.924944, "lon": -75.174596}, "geometry": {"type": "Point", "coordinates": [-75.174596, 39.924944]}}, {"id": "65", "type": "Feature", "properties": {"Modal": "Bus", "OBJECTID": 10818, "Route": "79", "Station": "Snyder Av & Mole St", "StationID": "24250", "lat": 39.92469, "lon": -75.172578}, "geometry": {"type": "Point", "coordinates": [-75.172578, 39.92469]}}, {"id": "66", "type": "Feature", "properties": {"Modal": "Bus", "OBJECTID": 10819, "Route": "79", "Station": "Snyder Av & 15th St", "StationID": "24251", "lat": 39.924554, "lon": -75.171504}, "geometry": {"type": "Point", "coordinates": [-75.171504, 39.924554]}}, {"id": "67", "type": "Feature", "properties": {"Modal": "Bus", "OBJECTID": 10821, "Route": "79", "Station": "Snyder Av & 13th St", "StationID": "24252", "lat": 39.924064, "lon": -75.167705}, "geometry": {"type": "Point", "coordinates": [-75.167705, 39.924064]}}, {"id": "68", "type": "Feature", "properties": {"Modal": "Bus", "OBJECTID": 10822, "Route": "79", "Station": "Snyder Av & 12th St", "StationID": "24253", "lat": 39.923873, "lon": -75.166148}, "geometry": {"type": "Point", "coordinates": [-75.166148, 39.923873]}}, {"id": "69", "type": "Feature", "properties": {"Modal": "Bus", "OBJECTID": 10823, "Route": "79", "Station": "Snyder Av & 11th St", "StationID": "24254", "lat": 39.923655, "lon": -75.164567}, "geometry": {"type": "Point", "coordinates": [-75.164567, 39.923655]}}, {"id": "70", "type": "Feature", "properties": {"Modal": "Bus", "OBJECTID": 10824, "Route": "79", "Station": "Snyder Av & 10th St", "StationID": "24255", "lat": 39.923456, "lon": -75.162986}, "geometry": {"type": "Point", "coordinates": [-75.162986, 39.923456]}}, {"id": "71", "type": "Feature", "properties": {"Modal": "Bus", "OBJECTID": 10856, "Route": "79", "Station": "Snyder Av & 10th St", "StationID": "24285", "lat": 39.923553, "lon": -75.162761}, "geometry": {"type": "Point", "coordinates": [-75.162761, 39.923553]}}, {"id": "72", "type": "Feature", "properties": {"Modal": "Bus", "OBJECTID": 10857, "Route": "79", "Station": "Snyder Av & 11th St", "StationID": "24286", "lat": 39.923753, "lon": -75.164342}, "geometry": {"type": "Point", "coordinates": [-75.164342, 39.923753]}}, {"id": "73", "type": "Feature", "properties": {"Modal": "Bus", "OBJECTID": 10858, "Route": "79", "Station": "Snyder Av & 12th St", "StationID": "24287", "lat": 39.923971, "lon": -75.165923}, "geometry": {"type": "Point", "coordinates": [-75.165923, 39.923971]}}, {"id": "74", "type": "Feature", "properties": {"Modal": "Bus", "OBJECTID": 10859, "Route": "79", "Station": "Snyder Av & 13th St", "StationID": "24288", "lat": 39.924161, "lon": -75.16748}, "geometry": {"type": "Point", "coordinates": [-75.16748, 39.924161]}}, {"id": "75", "type": "Feature", "properties": {"Modal": "Bus", "OBJECTID": 10861, "Route": "79", "Station": "Snyder Av & 15th St", "StationID": "24289", "lat": 39.924651, "lon": -75.171292}, "geometry": {"type": "Point", "coordinates": [-75.171292, 39.924651]}}, {"id": "76", "type": "Feature", "properties": {"Modal": "Bus", "OBJECTID": 5640, "Route": "37", "Station": "Snyder Av & 15th St", "StationID": "24289", "lat": 39.924651, "lon": -75.171292}, "geometry": {"type": "Point", "coordinates": [-75.171292, 39.924651]}}, {"id": "77", "type": "Feature", "properties": {"Modal": "Bus", "OBJECTID": 10862, "Route": "79", "Station": "Snyder Av & 16th St", "StationID": "24290", "lat": 39.924842, "lon": -75.172932}, "geometry": {"type": "Point", "coordinates": [-75.172932, 39.924842]}}, {"id": "78", "type": "Feature", "properties": {"Modal": "Bus", "OBJECTID": 5641, "Route": "37", "Station": "Snyder Av & 16th St", "StationID": "24290", "lat": 39.924842, "lon": -75.172932}, "geometry": {"type": "Point", "coordinates": [-75.172932, 39.924842]}}, {"id": "79", "type": "Feature", "properties": {"Modal": "Bus", "OBJECTID": 10863, "Route": "79", "Station": "Snyder Av & 17th St", "StationID": "24291", "lat": 39.925041, "lon": -75.174371}, "geometry": {"type": "Point", "coordinates": [-75.174371, 39.925041]}}, {"id": "80", "type": "Feature", "properties": {"Modal": "Bus", "OBJECTID": 5635, "Route": "37", "Station": "Passyunk Av & 17th St", "StationID": "24917", "lat": 39.92448, "lon": -75.174739}, "geometry": {"type": "Point", "coordinates": [-75.174739, 39.92448]}}, {"id": "81", "type": "Feature", "properties": {"Modal": "Bus", "OBJECTID": 5636, "Route": "37", "Station": "Passyunk Av & 16th St", "StationID": "24918", "lat": 39.92478, "lon": -75.173109}, "geometry": {"type": "Point", "coordinates": [-75.173109, 39.92478]}}, {"id": "82", "type": "Feature", "properties": {"Modal": "Bus", "OBJECTID": 5637, "Route": "37", "Station": "Passyunk Av & 15th St", "StationID": "24919", "lat": 39.925116, "lon": -75.171384}, "geometry": {"type": "Point", "coordinates": [-75.171384, 39.925116]}}, {"id": "83", "type": "Feature", "properties": {"Modal": "Bus", "OBJECTID": 5642, "Route": "37", "Station": "Passyunk Av & 17th St", "StationID": "24920", "lat": 39.924622, "lon": -75.174502}, "geometry": {"type": "Point", "coordinates": [-75.174502, 39.924622]}}, {"id": "84", "type": "Feature", "properties": {"Modal": "Bus", "OBJECTID": 5638, "Route": "37", "Station": "Broad St & Snyder Av - MBNS", "StationID": "31566", "lat": 39.9248, "lon": -75.169697}, "geometry": {"type": "Point", "coordinates": [-75.169697, 39.9248]}}, {"id": "85", "type": "Feature", "properties": {"Modal": "Bus", "OBJECTID": 5639, "Route": "37", "Station": "Broad St & Snyder Av - MBNS", "StationID": "31566", "lat": 39.9248, "lon": -75.169697}, "geometry": {"type": "Point", "coordinates": [-75.169697, 39.9248]}}, {"id": "86", "type": "Feature", "properties": {"Modal": "Bus", "OBJECTID": 18826, "Route": "BSL", "Station": "Snyder Station - BSL", "StationID": "32136", "lat": 39.924371, "lon": -75.169652}, "geometry": {"type": "Point", "coordinates": [-75.169652, 39.924371]}}, {"id": "87", "type": "Feature", "properties": {"Modal": "Bus", "OBJECTID": 18827, "Route": "BSL", "Station": "Tasker Morris Station - BSL", "StationID": "32137", "lat": 39.929804, "lon": -75.168475}, "geometry": {"type": "Point", "coordinates": [-75.168475, 39.929804]}}, {"id": "88", "type": "Feature", "properties": {"Modal": "Bike", "OBJECTID": 97, "Route": "", "Station": "15th & Castle, DiSilvestro Playground", "StationID": "bcycle_indego_3150", "lat": 39.92884, "lon": -75.17021}, "geometry": {"type": "Point", "coordinates": [-75.17021, 39.92884]}}, {"id": "89", "type": "Feature", "properties": {"Modal": "Bike", "OBJECTID": 104, "Route": "", "Station": "Broad & Passyunk ", "StationID": "bcycle_indego_3158", "lat": 39.92552, "lon": -75.16904}, "geometry": {"type": "Point", "coordinates": [-75.16904, 39.92552]}}, {"id": "90", "type": "Feature", "properties": {"Modal": "Bike", "OBJECTID": 110, "Route": "", "Station": "12th & Passyunk", "StationID": "bcycle_indego_3164", "lat": 39.92814, "lon": -75.16515}, "geometry": {"type": "Point", "coordinates": [-75.16515, 39.92814]}}, {"id": "91", "type": "Feature", "properties": {"Modal": "Bike", "OBJECTID": 127, "Route": "", "Station": "Broad & Ritner", "StationID": "bcycle_indego_3197", "lat": 39.92083, "lon": -75.17033}, "geometry": {"type": "Point", "coordinates": [-75.17033, 39.92083]}}, {"id": "92", "type": "Feature", "properties": {"Modal": "Subway", "OBJECTID": 3, "Route": "Broad Street Line", "Station": "Snyder", "StationID": "20005", "lat": 39.924389, "lon": -75.16968}, "geometry": {"type": "Point", "coordinates": [-75.16968, 39.924389]}}, {"id": "93", "type": "Feature", "properties": {"Modal": "Subway", "OBJECTID": 4, "Route": "Broad Street Line", "Station": "Tasker-Morris", "StationID": "20007", "lat": 39.929848, "lon": -75.168501}, "geometry": {"type": "Point", "coordinates": [-75.168501, 39.929848]}}]};
+
+            const iconSubway = L.divIcon({
+                html: '<i class="fas fa-subway fa-2x"></i>',
+                iconSize: [20, 20],
+                className: 'icon-subway'
+            });
+
+            const iconBikePrimary = L.divIcon({
+                html: '<i class="fas fa-bicycle fa-6x"></i>',
+                iconSize: [20, 20],
+                className: 'icon-bike-primary'
+            });
+
+            const iconBike = L.divIcon({
+                html: '<i class="fas fa-bicycle fa-4x"></i>',
+                iconSize: [20, 20],
+                className: 'icon-bike'
+            });
+
+            const iconBus = L.divIcon({
+                html: '<i class="fas fa-bus fa-2x"></i>',
+                iconSize: [20, 20],
+                className: 'icon-bus'
+            });
+
+        </script>
+          <!-- Leaflet stylesheet is below -->
+        <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css"
+        integrity="sha512-xodZBNTC5n17Xt2atTPuE1HxjVMSvLVW9ocqUKLsCC5CXdbqCmblAshOMAS6/keqq/sMZMZ19scR4PsZChSR7A=="
+        crossorigin=""/>
+        <!-- C3 stylesheet is below -->
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/c3/0.7.20/c3.css"
+        integrity="sha512-GQSxWe9Cj4o4EduO7zO9HjULmD4olIjiQqZ7VJuwBxZlkWaUFGCxRkn39jYnD2xZBtEilm0m4WBG7YEmQuMs5Q=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+  <!-- Stylesheet for the report's custom layout is below -->
+  <style>
+    body {
+      font-family: sans;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      grid-template-rows: auto auto 1fr 1fr;
+      grid-template-areas:
+        "header header"
+        "map list"
+        "map chart1"
+        "map chart2";
+      column-gap: 1rem;
+      row-gap: 1rem;
+    }
+    h1 {
+      grid-area: header;
+    }
+    #stationmap {
+      grid-area: map;
+      height: 100%;
+    }
+
+    .icon-subway{
+        color: #f14728;
+        -webkit-text-stroke: 1px #edb9b0;
+    }
+    .icon-subway:hover{
+        color: #f14728;
+        -webkit-text-stroke: 1px #edb9b0;
+    }
+
+    .icon-bus{
+        color: #1f4fa3;
+        -webkit-text-stroke: 1px #98b6eb;
+    }
+    .icon-bus:hover{
+        color: #1f4fa3;
+        -webkit-text-stroke: 1px #98b6eb;
+    }
+
+    .icon-bike{
+        color: #36b4e5;
+        -webkit-text-stroke: 1px #FFF;
+    }
+    .icon-bike:hover{
+        color: #0082cb;
+        -webkit-text-stroke: 1px #FFF;
+    }
+    .icon-bike-primary{
+        color: #36b4e5;
+        -webkit-text-stroke: 2px #000;
+    }
+
+  </style>
+    </head>
+    <body>
+        <h1><a href='index.html'>All stations</a> >> Broad & Passyunk </h1>
+
+  <div id="stationmap"></div>
+  <div>
+    <p>Info about Broad & Passyunk .</p>
+</div>
+
+
+          <script>
+    var initialCenter = [39.92552, -75.16904];  // <-- Latitude, Longitude
+    var initialZoom = 16;
+    var stationmap = L.map('stationmap', {
+      zoomSnap: 0,
+      zoomDelta: 0.25
+    }).setView(initialCenter, initialZoom);
+
+    var baseLayer = new L.tileLayer('https://stamen-tiles-{s}.a.ssl.fastly.net/toner-background/{z}/{x}/{y}{r}.{ext}', {
+    	attribution: 'Map tiles by <a href="http://stamen.com">Stamen Design</a>, <a href="http://creativecommons.org/licenses/by/3.0">CC BY 3.0</a> &mdash; Map data &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
+    	subdomains: 'abcd',
+    	minZoom: 0,
+    	maxZoom: 20,
+    	ext: 'png'
+    });
+    baseLayer.addTo(stationmap);
+
+    mapdata.features.forEach( function(location){
+      console.log(location.properties.Modal);
+      console.log(location);
+      switch (location.properties.Modal) {
+        case 'Subway':
+          iconToUse = iconSubway;
+          break;
+        case 'Bus':
+          iconToUse = iconBus;
+          break;
+        case 'Bike':
+          iconToUse = iconBike;
+          break;
+      }
+      if(location.properties.lat != 39.92552 && location.properties.lon != -75.16904) {
+        var marker = L.marker([location.properties.lat, location.properties.lon], {icon: iconToUse}).addTo(stationmap);
+        marker.bindPopup(
+            location.properties.Station
+        );
+      } else {
+        var indego_marker = L.marker([39.92552, -75.16904], {icon: iconBikePrimary}).addTo(stationmap);
+      }
+    });
+  </script>
+
+    </body>
+</html>

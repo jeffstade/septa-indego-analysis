@@ -1,0 +1,163 @@
+
+<html>
+    <head>
+        <title>Jawnt: SEPTA and Indego Connections</title>
+        <!-- Leaflet JavaScript library is below -->
+        <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"
+        integrity="sha512-XQoYMqMTK8LvdxXYG3nZ448hOEQiglfqkJs1NOQV44cWnUrBc8PkAOcXy20w0vlaXaVUearIOBhiXZ5V3ynxwA=="
+        crossorigin=""></script>
+        <!-- D3 JavaScript library is below -->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/5.16.0/d3.min.js"
+        integrity="sha512-FHsFVKQ/T1KWJDGSbrUhTJyS1ph3eRrxI228ND0EGaEp6v4a/vGwPWd3Dtd/+9cI7ccofZvl/wulICEurHN1pg=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+        <!-- C3 JavaScript library is below -->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/c3/0.7.20/c3.js"
+        integrity="sha512-11Z4MD9csmC3vH8Vd0eIPJBQu3uEHEqeznWEt3sLBCdQx3zm9mJbBcJH8WTcyGY9EXDE81BNpjE2vLosPK8cFQ=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+        <script src="https://kit.fontawesome.com/457a87d66e.js" crossorigin="anonymous"></script>
+        <script type='text/javascript'>
+            var mapdata = {"type": "FeatureCollection", "features": [{"id": "0", "type": "Feature", "properties": {"Modal": "Bus", "OBJECTID": 3599, "Route": "3", "Station": "Cecil B Moore Av & Broad St", "StationID": "53", "lat": 39.978707, "lon": -75.157724}, "geometry": {"type": "Point", "coordinates": [-75.157724, 39.978707]}}, {"id": "1", "type": "Feature", "properties": {"Modal": "Bus", "OBJECTID": 3494, "Route": "3", "Station": "Cecil B Moore Av & Broad St", "StationID": "58", "lat": 39.978618, "lon": -75.157972}, "geometry": {"type": "Point", "coordinates": [-75.157972, 39.978618]}}, {"id": "2", "type": "Feature", "properties": {"Modal": "Bus", "OBJECTID": 18857, "Route": "BSL", "Station": "Cecil B Moore Station - BSL", "StationID": "1277", "lat": 39.978672, "lon": -75.157925}, "geometry": {"type": "Point", "coordinates": [-75.157925, 39.978672]}}, {"id": "3", "type": "Feature", "properties": {"Modal": "Bus", "OBJECTID": 649, "Route": "23", "Station": "12th St & Diamond St", "StationID": "16109", "lat": 39.98431, "lon": -75.152906}, "geometry": {"type": "Point", "coordinates": [-75.152906, 39.98431]}}, {"id": "4", "type": "Feature", "properties": {"Modal": "Bus", "OBJECTID": 650, "Route": "23", "Station": "12th St & Norris St", "StationID": "16110", "lat": 39.982856, "lon": -75.153195}, "geometry": {"type": "Point", "coordinates": [-75.153195, 39.982856]}}, {"id": "5", "type": "Feature", "properties": {"Modal": "Bus", "OBJECTID": 651, "Route": "23", "Station": "12th St & Berks St", "StationID": "16111", "lat": 39.981384, "lon": -75.153473}, "geometry": {"type": "Point", "coordinates": [-75.153473, 39.981384]}}, {"id": "6", "type": "Feature", "properties": {"Modal": "Bus", "OBJECTID": 652, "Route": "23", "Station": "12th St & Montgomery Av", "StationID": "16112", "lat": 39.97985, "lon": -75.15388}, "geometry": {"type": "Point", "coordinates": [-75.15388, 39.97985]}}, {"id": "7", "type": "Feature", "properties": {"Modal": "Bus", "OBJECTID": 653, "Route": "23", "Station": "12th St & Cecil B Moore Av", "StationID": "16113", "lat": 39.978271, "lon": -75.154217}, "geometry": {"type": "Point", "coordinates": [-75.154217, 39.978271]}}, {"id": "8", "type": "Feature", "properties": {"Modal": "Bus", "OBJECTID": 654, "Route": "23", "Station": "12th St & Oxford St", "StationID": "16114", "lat": 39.976906, "lon": -75.154529}, "geometry": {"type": "Point", "coordinates": [-75.154529, 39.976906]}}, {"id": "9", "type": "Feature", "properties": {"Modal": "Bus", "OBJECTID": 655, "Route": "23", "Station": "12th St & Jefferson St", "StationID": "16115", "lat": 39.975488, "lon": -75.154818}, "geometry": {"type": "Point", "coordinates": [-75.154818, 39.975488]}}, {"id": "10", "type": "Feature", "properties": {"Modal": "Bus", "OBJECTID": 6986, "Route": "47", "Station": "8th St & Norris St", "StationID": "16273", "lat": 39.982076, "lon": -75.147492}, "geometry": {"type": "Point", "coordinates": [-75.147492, 39.982076]}}, {"id": "11", "type": "Feature", "properties": {"Modal": "Bus", "OBJECTID": 6987, "Route": "47", "Station": "8th St & Berks St", "StationID": "16274", "lat": 39.980595, "lon": -75.147841}, "geometry": {"type": "Point", "coordinates": [-75.147841, 39.980595]}}, {"id": "12", "type": "Feature", "properties": {"Modal": "Bus", "OBJECTID": 6988, "Route": "47", "Station": "8th St & Montgomery Av", "StationID": "16275", "lat": 39.979097, "lon": -75.148154}, "geometry": {"type": "Point", "coordinates": [-75.148154, 39.979097]}}, {"id": "13", "type": "Feature", "properties": {"Modal": "Bus", "OBJECTID": 6989, "Route": "47", "Station": "8th St & Cecil B Moore Av", "StationID": "16276", "lat": 39.97758, "lon": -75.148478}, "geometry": {"type": "Point", "coordinates": [-75.148478, 39.97758]}}, {"id": "14", "type": "Feature", "properties": {"Modal": "Bus", "OBJECTID": 6991, "Route": "47", "Station": "8th St & Oxford St", "StationID": "16277", "lat": 39.976171, "lon": -75.148779}, "geometry": {"type": "Point", "coordinates": [-75.148779, 39.976171]}}, {"id": "15", "type": "Feature", "properties": {"Modal": "Bus", "OBJECTID": 6992, "Route": "47", "Station": "8th St & Jefferson St", "StationID": "16278", "lat": 39.974726, "lon": -75.149104}, "geometry": {"type": "Point", "coordinates": [-75.149104, 39.974726]}}, {"id": "16", "type": "Feature", "properties": {"Modal": "Bus", "OBJECTID": 487, "Route": "23", "Station": "11th St & Jefferson St", "StationID": "16863", "lat": 39.975074, "lon": -75.153143}, "geometry": {"type": "Point", "coordinates": [-75.153143, 39.975074]}}, {"id": "17", "type": "Feature", "properties": {"Modal": "Bus", "OBJECTID": 488, "Route": "23", "Station": "11th St & Oxford St", "StationID": "16864", "lat": 39.976501, "lon": -75.15283}, "geometry": {"type": "Point", "coordinates": [-75.15283, 39.976501]}}, {"id": "18", "type": "Feature", "properties": {"Modal": "Bus", "OBJECTID": 489, "Route": "23", "Station": "11th St & Cecil B Moore Av", "StationID": "16865", "lat": 39.977839, "lon": -75.152541}, "geometry": {"type": "Point", "coordinates": [-75.152541, 39.977839]}}, {"id": "19", "type": "Feature", "properties": {"Modal": "Bus", "OBJECTID": 490, "Route": "23", "Station": "11th St & Montgomery Av", "StationID": "16866", "lat": 39.979364, "lon": -75.152205}, "geometry": {"type": "Point", "coordinates": [-75.152205, 39.979364]}}, {"id": "20", "type": "Feature", "properties": {"Modal": "Bus", "OBJECTID": 491, "Route": "23", "Station": "11th St & Berks St", "StationID": "16867", "lat": 39.980917, "lon": -75.151868}, "geometry": {"type": "Point", "coordinates": [-75.151868, 39.980917]}}, {"id": "21", "type": "Feature", "properties": {"Modal": "Bus", "OBJECTID": 492, "Route": "23", "Station": "11th St & Norris St", "StationID": "16868", "lat": 39.982424, "lon": -75.151543}, "geometry": {"type": "Point", "coordinates": [-75.151543, 39.982424]}}, {"id": "22", "type": "Feature", "properties": {"Modal": "Bus", "OBJECTID": 493, "Route": "23", "Station": "11th St & Diamond St", "StationID": "16869", "lat": 39.983896, "lon": -75.151206}, "geometry": {"type": "Point", "coordinates": [-75.151206, 39.983896]}}, {"id": "23", "type": "Feature", "properties": {"Modal": "Bus", "OBJECTID": 1266, "Route": "16", "Station": "Broad St & Berks St", "StationID": "17160", "lat": 39.981812, "lon": -75.157322}, "geometry": {"type": "Point", "coordinates": [-75.157322, 39.981812]}}, {"id": "24", "type": "Feature", "properties": {"Modal": "Bus", "OBJECTID": 3768, "Route": "4", "Station": "Broad St & Berks St", "StationID": "17160", "lat": 39.981812, "lon": -75.157322}, "geometry": {"type": "Point", "coordinates": [-75.157322, 39.981812]}}, {"id": "25", "type": "Feature", "properties": {"Modal": "Bus", "OBJECTID": 3769, "Route": "4", "Station": "Broad St & Montgomery Av", "StationID": "17161", "lat": 39.980305, "lon": -75.157647}, "geometry": {"type": "Point", "coordinates": [-75.157647, 39.980305]}}, {"id": "26", "type": "Feature", "properties": {"Modal": "Bus", "OBJECTID": 1267, "Route": "16", "Station": "Broad St & Montgomery Av", "StationID": "17161", "lat": 39.980305, "lon": -75.157647}, "geometry": {"type": "Point", "coordinates": [-75.157647, 39.980305]}}, {"id": "27", "type": "Feature", "properties": {"Modal": "Bus", "OBJECTID": 1268, "Route": "16", "Station": "Broad St & Cecil B Moore Av", "StationID": "17162", "lat": 39.978761, "lon": -75.157972}, "geometry": {"type": "Point", "coordinates": [-75.157972, 39.978761]}}, {"id": "28", "type": "Feature", "properties": {"Modal": "Bus", "OBJECTID": 3770, "Route": "4", "Station": "Broad St & Cecil B Moore Av", "StationID": "17162", "lat": 39.978761, "lon": -75.157972}, "geometry": {"type": "Point", "coordinates": [-75.157972, 39.978761]}}, {"id": "29", "type": "Feature", "properties": {"Modal": "Bus", "OBJECTID": 18914, "Route": "BSO", "Station": "Broad St & Cecil B Moore Av", "StationID": "17162", "lat": 39.978761, "lon": -75.157972}, "geometry": {"type": "Point", "coordinates": [-75.157972, 39.978761]}}, {"id": "30", "type": "Feature", "properties": {"Modal": "Bus", "OBJECTID": 18891, "Route": "BSO", "Station": "Broad St & Cecil B Moore Av", "StationID": "17277", "lat": 39.978502, "lon": -75.157819}, "geometry": {"type": "Point", "coordinates": [-75.157819, 39.978502]}}, {"id": "31", "type": "Feature", "properties": {"Modal": "Bus", "OBJECTID": 1136, "Route": "16", "Station": "Broad St & Cecil B Moore Av", "StationID": "17277", "lat": 39.978502, "lon": -75.157819}, "geometry": {"type": "Point", "coordinates": [-75.157819, 39.978502]}}, {"id": "32", "type": "Feature", "properties": {"Modal": "Bus", "OBJECTID": 3673, "Route": "4", "Station": "Broad St & Cecil B Moore Av", "StationID": "17277", "lat": 39.978502, "lon": -75.157819}, "geometry": {"type": "Point", "coordinates": [-75.157819, 39.978502]}}, {"id": "33", "type": "Feature", "properties": {"Modal": "Bus", "OBJECTID": 3674, "Route": "4", "Station": "Broad St & Montgomery Av - FS", "StationID": "17278", "lat": 39.980376, "lon": -75.157422}, "geometry": {"type": "Point", "coordinates": [-75.157422, 39.980376]}}, {"id": "34", "type": "Feature", "properties": {"Modal": "Bus", "OBJECTID": 1137, "Route": "16", "Station": "Broad St & Montgomery Av - FS", "StationID": "17278", "lat": 39.980376, "lon": -75.157422}, "geometry": {"type": "Point", "coordinates": [-75.157422, 39.980376]}}, {"id": "35", "type": "Feature", "properties": {"Modal": "Bus", "OBJECTID": 1138, "Route": "16", "Station": "Broad St & Polett Walk", "StationID": "17279", "lat": 39.981598, "lon": -75.157146}, "geometry": {"type": "Point", "coordinates": [-75.157146, 39.981598]}}, {"id": "36", "type": "Feature", "properties": {"Modal": "Bus", "OBJECTID": 3675, "Route": "4", "Station": "Broad St & Polett Walk", "StationID": "17279", "lat": 39.981598, "lon": -75.157146}, "geometry": {"type": "Point", "coordinates": [-75.157146, 39.981598]}}, {"id": "37", "type": "Feature", "properties": {"Modal": "Bus", "OBJECTID": 6890, "Route": "47", "Station": "7th St & Oxford St", "StationID": "18528", "lat": 39.975756, "lon": -75.14708}, "geometry": {"type": "Point", "coordinates": [-75.14708, 39.975756]}}, {"id": "38", "type": "Feature", "properties": {"Modal": "Bus", "OBJECTID": 3501, "Route": "3", "Station": "7th St & Cecil B Moore Av - FS", "StationID": "18529", "lat": 39.977407, "lon": -75.146766}, "geometry": {"type": "Point", "coordinates": [-75.146766, 39.977407]}}, {"id": "39", "type": "Feature", "properties": {"Modal": "Bus", "OBJECTID": 6891, "Route": "47", "Station": "7th St & Cecil B Moore Av - FS", "StationID": "18529", "lat": 39.977407, "lon": -75.146766}, "geometry": {"type": "Point", "coordinates": [-75.146766, 39.977407]}}, {"id": "40", "type": "Feature", "properties": {"Modal": "Bus", "OBJECTID": 3502, "Route": "3", "Station": "7th St & Montgomery Av", "StationID": "18530", "lat": 39.978709, "lon": -75.146513}, "geometry": {"type": "Point", "coordinates": [-75.146513, 39.978709]}}, {"id": "41", "type": "Feature", "properties": {"Modal": "Bus", "OBJECTID": 6892, "Route": "47", "Station": "7th St & Montgomery Av", "StationID": "18530", "lat": 39.978709, "lon": -75.146513}, "geometry": {"type": "Point", "coordinates": [-75.146513, 39.978709]}}, {"id": "42", "type": "Feature", "properties": {"Modal": "Bus", "OBJECTID": 3503, "Route": "3", "Station": "7th St & Berks St", "StationID": "18531", "lat": 39.980226, "lon": -75.146259}, "geometry": {"type": "Point", "coordinates": [-75.146259, 39.980226]}}, {"id": "43", "type": "Feature", "properties": {"Modal": "Bus", "OBJECTID": 6893, "Route": "47", "Station": "7th St & Berks St", "StationID": "18531", "lat": 39.980226, "lon": -75.146259}, "geometry": {"type": "Point", "coordinates": [-75.146259, 39.980226]}}, {"id": "44", "type": "Feature", "properties": {"Modal": "Bus", "OBJECTID": 6894, "Route": "47", "Station": "7th St & Norris St", "StationID": "18532", "lat": 39.9817, "lon": -75.145957}, "geometry": {"type": "Point", "coordinates": [-75.145957, 39.9817]}}, {"id": "45", "type": "Feature", "properties": {"Modal": "Bus", "OBJECTID": 3495, "Route": "3", "Station": "Cecil B Moore Av & 13th St", "StationID": "25386", "lat": 39.978293, "lon": -75.155824}, "geometry": {"type": "Point", "coordinates": [-75.155824, 39.978293]}}, {"id": "46", "type": "Feature", "properties": {"Modal": "Bus", "OBJECTID": 3496, "Route": "3", "Station": "Cecil B Moore Av & 12th St", "StationID": "25387", "lat": 39.978102, "lon": -75.154253}, "geometry": {"type": "Point", "coordinates": [-75.154253, 39.978102]}}, {"id": "47", "type": "Feature", "properties": {"Modal": "Bus", "OBJECTID": 3497, "Route": "3", "Station": "Cecil B Moore Av & 11th St", "StationID": "25388", "lat": 39.977902, "lon": -75.152695}, "geometry": {"type": "Point", "coordinates": [-75.152695, 39.977902]}}, {"id": "48", "type": "Feature", "properties": {"Modal": "Bus", "OBJECTID": 3498, "Route": "3", "Station": "Cecil B Moore Av & 10th St - FS", "StationID": "25389", "lat": 39.977684, "lon": -75.150805}, "geometry": {"type": "Point", "coordinates": [-75.150805, 39.977684]}}, {"id": "49", "type": "Feature", "properties": {"Modal": "Bus", "OBJECTID": 3499, "Route": "3", "Station": "Cecil B Moore Av & 9th St", "StationID": "25390", "lat": 39.977538, "lon": -75.149518}, "geometry": {"type": "Point", "coordinates": [-75.149518, 39.977538]}}, {"id": "50", "type": "Feature", "properties": {"Modal": "Bus", "OBJECTID": 3500, "Route": "3", "Station": "Cecil B Moore Av & 8th St", "StationID": "25391", "lat": 39.977411, "lon": -75.14855}, "geometry": {"type": "Point", "coordinates": [-75.14855, 39.977411]}}, {"id": "51", "type": "Feature", "properties": {"Modal": "Bus", "OBJECTID": 3504, "Route": "3", "Station": "Berks St & 6th St", "StationID": "25393", "lat": 39.980044, "lon": -75.144866}, "geometry": {"type": "Point", "coordinates": [-75.144866, 39.980044]}}, {"id": "52", "type": "Feature", "properties": {"Modal": "Bus", "OBJECTID": 3590, "Route": "3", "Station": "Berks St & 6th St", "StationID": "25465", "lat": 39.980133, "lon": -75.144523}, "geometry": {"type": "Point", "coordinates": [-75.144523, 39.980133]}}, {"id": "53", "type": "Feature", "properties": {"Modal": "Bus", "OBJECTID": 3591, "Route": "3", "Station": "6th St & Montgomery Av", "StationID": "25467", "lat": 39.978688, "lon": -75.145084}, "geometry": {"type": "Point", "coordinates": [-75.145084, 39.978688]}}, {"id": "54", "type": "Feature", "properties": {"Modal": "Bus", "OBJECTID": 3592, "Route": "3", "Station": "6th St & Cecil B Moore Av", "StationID": "25468", "lat": 39.977154, "lon": -75.145361}, "geometry": {"type": "Point", "coordinates": [-75.145361, 39.977154]}}, {"id": "55", "type": "Feature", "properties": {"Modal": "Bus", "OBJECTID": 3593, "Route": "3", "Station": "Cecil B Moore Av & 7th St", "StationID": "25469", "lat": 39.977299, "lon": -75.146708}, "geometry": {"type": "Point", "coordinates": [-75.146708, 39.977299]}}, {"id": "56", "type": "Feature", "properties": {"Modal": "Bus", "OBJECTID": 3594, "Route": "3", "Station": "Cecil B Moore Av & 8th St - FS", "StationID": "25470", "lat": 39.977554, "lon": -75.148656}, "geometry": {"type": "Point", "coordinates": [-75.148656, 39.977554]}}, {"id": "57", "type": "Feature", "properties": {"Modal": "Bus", "OBJECTID": 3595, "Route": "3", "Station": "Cecil B Moore Av & 10th St", "StationID": "25471", "lat": 39.977817, "lon": -75.150852}, "geometry": {"type": "Point", "coordinates": [-75.150852, 39.977817]}}, {"id": "58", "type": "Feature", "properties": {"Modal": "Bus", "OBJECTID": 3596, "Route": "3", "Station": "Cecil B Moore Av & 11th St", "StationID": "25472", "lat": 39.977999, "lon": -75.152434}, "geometry": {"type": "Point", "coordinates": [-75.152434, 39.977999]}}, {"id": "59", "type": "Feature", "properties": {"Modal": "Bus", "OBJECTID": 3597, "Route": "3", "Station": "Cecil B Moore Av & 12th St", "StationID": "25473", "lat": 39.978199, "lon": -75.153993}, "geometry": {"type": "Point", "coordinates": [-75.153993, 39.978199]}}, {"id": "60", "type": "Feature", "properties": {"Modal": "Bus", "OBJECTID": 3598, "Route": "3", "Station": "Cecil B Moore Av & 13th St", "StationID": "25474", "lat": 39.97839, "lon": -75.155563}, "geometry": {"type": "Point", "coordinates": [-75.155563, 39.97839]}}, {"id": "61", "type": "Feature", "properties": {"Modal": "Bus", "OBJECTID": 6990, "Route": "47", "Station": "8th St & Cecil B Moore Av - FS", "StationID": "26050", "lat": 39.976982, "lon": -75.148599}, "geometry": {"type": "Point", "coordinates": [-75.148599, 39.976982]}}, {"id": "62", "type": "Feature", "properties": {"Modal": "Bus", "OBJECTID": 6985, "Route": "47", "Station": "8th St & Diamond St", "StationID": "30192", "lat": 39.983557, "lon": -75.147179}, "geometry": {"type": "Point", "coordinates": [-75.147179, 39.983557]}}, {"id": "63", "type": "Feature", "properties": {"Modal": "Bus", "OBJECTID": 18838, "Route": "BSL", "Station": "Cecil B Moore Station - BSL", "StationID": "32148", "lat": 39.978663, "lon": -75.157842}, "geometry": {"type": "Point", "coordinates": [-75.157842, 39.978663]}}, {"id": "64", "type": "Feature", "properties": {"Modal": "Bike", "OBJECTID": 5, "Route": "", "Station": "Temple University Station", "StationID": "bcycle_indego_3008", "lat": 39.97944, "lon": -75.15114}, "geometry": {"type": "Point", "coordinates": [-75.15114, 39.97944]}}, {"id": "65", "type": "Feature", "properties": {"Modal": "Bike", "OBJECTID": 26, "Route": "", "Station": "13th & Montgomery", "StationID": "bcycle_indego_3031", "lat": 39.98005, "lon": -75.15522}, "geometry": {"type": "Point", "coordinates": [-75.15522, 39.98005]}}, {"id": "66", "type": "Feature", "properties": {"Modal": "Bike", "OBJECTID": 150, "Route": "", "Station": "8th & Diamond", "StationID": "bcycle_indego_3243", "lat": 39.9835, "lon": -75.14743}, "geometry": {"type": "Point", "coordinates": [-75.14743, 39.9835]}}, {"id": "67", "type": "Feature", "properties": {"Modal": "Bike", "OBJECTID": 152, "Route": "", "Station": "Broad & Cecil B Moore", "StationID": "bcycle_indego_3245", "lat": 39.97887, "lon": -75.15777}, "geometry": {"type": "Point", "coordinates": [-75.15777, 39.97887]}}, {"id": "68", "type": "Feature", "properties": {"Modal": "Subway", "OBJECTID": 13, "Route": "Broad Street Line", "Station": "Cecil B. Moore", "StationID": "20025", "lat": 39.978678, "lon": -75.157881}, "geometry": {"type": "Point", "coordinates": [-75.157881, 39.978678]}}]};
+
+            const iconSubway = L.divIcon({
+                html: '<i class="fas fa-subway fa-2x"></i>',
+                iconSize: [20, 20],
+                className: 'icon-subway'
+            });
+
+            const iconBikePrimary = L.divIcon({
+                html: '<i class="fas fa-bicycle fa-6x"></i>',
+                iconSize: [20, 20],
+                className: 'icon-bike-primary'
+            });
+
+            const iconBike = L.divIcon({
+                html: '<i class="fas fa-bicycle fa-4x"></i>',
+                iconSize: [20, 20],
+                className: 'icon-bike'
+            });
+
+            const iconBus = L.divIcon({
+                html: '<i class="fas fa-bus fa-2x"></i>',
+                iconSize: [20, 20],
+                className: 'icon-bus'
+            });
+
+        </script>
+          <!-- Leaflet stylesheet is below -->
+        <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css"
+        integrity="sha512-xodZBNTC5n17Xt2atTPuE1HxjVMSvLVW9ocqUKLsCC5CXdbqCmblAshOMAS6/keqq/sMZMZ19scR4PsZChSR7A=="
+        crossorigin=""/>
+        <!-- C3 stylesheet is below -->
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/c3/0.7.20/c3.css"
+        integrity="sha512-GQSxWe9Cj4o4EduO7zO9HjULmD4olIjiQqZ7VJuwBxZlkWaUFGCxRkn39jYnD2xZBtEilm0m4WBG7YEmQuMs5Q=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+  <!-- Stylesheet for the report's custom layout is below -->
+  <style>
+    body {
+      font-family: sans;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      grid-template-rows: auto auto 1fr 1fr;
+      grid-template-areas:
+        "header header"
+        "map list"
+        "map chart1"
+        "map chart2";
+      column-gap: 1rem;
+      row-gap: 1rem;
+    }
+    h1 {
+      grid-area: header;
+    }
+    #stationmap {
+      grid-area: map;
+      height: 100%;
+    }
+
+    .icon-subway{
+        color: #f14728;
+        -webkit-text-stroke: 1px #edb9b0;
+    }
+    .icon-subway:hover{
+        color: #f14728;
+        -webkit-text-stroke: 1px #edb9b0;
+    }
+
+    .icon-bus{
+        color: #1f4fa3;
+        -webkit-text-stroke: 1px #98b6eb;
+    }
+    .icon-bus:hover{
+        color: #1f4fa3;
+        -webkit-text-stroke: 1px #98b6eb;
+    }
+
+    .icon-bike{
+        color: #36b4e5;
+        -webkit-text-stroke: 1px #FFF;
+    }
+    .icon-bike:hover{
+        color: #0082cb;
+        -webkit-text-stroke: 1px #FFF;
+    }
+    .icon-bike-primary{
+        color: #36b4e5;
+        -webkit-text-stroke: 2px #000;
+    }
+
+  </style>
+    </head>
+    <body>
+        <h1><a href='index.html'>All stations</a> >> Temple University Station</h1>
+
+  <div id="stationmap"></div>
+  <div>
+    <p>Info about Temple University Station.</p>
+</div>
+
+
+          <script>
+    var initialCenter = [39.97944, -75.15114];  // <-- Latitude, Longitude
+    var initialZoom = 16;
+    var stationmap = L.map('stationmap', {
+      zoomSnap: 0,
+      zoomDelta: 0.25
+    }).setView(initialCenter, initialZoom);
+
+    var baseLayer = new L.tileLayer('https://stamen-tiles-{s}.a.ssl.fastly.net/toner-background/{z}/{x}/{y}{r}.{ext}', {
+    	attribution: 'Map tiles by <a href="http://stamen.com">Stamen Design</a>, <a href="http://creativecommons.org/licenses/by/3.0">CC BY 3.0</a> &mdash; Map data &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
+    	subdomains: 'abcd',
+    	minZoom: 0,
+    	maxZoom: 20,
+    	ext: 'png'
+    });
+    baseLayer.addTo(stationmap);
+
+    mapdata.features.forEach( function(location){
+      console.log(location.properties.Modal);
+      console.log(location);
+      switch (location.properties.Modal) {
+        case 'Subway':
+          iconToUse = iconSubway;
+          break;
+        case 'Bus':
+          iconToUse = iconBus;
+          break;
+        case 'Bike':
+          iconToUse = iconBike;
+          break;
+      }
+      if(location.properties.lat != 39.97944 && location.properties.lon != -75.15114) {
+        var marker = L.marker([location.properties.lat, location.properties.lon], {icon: iconToUse}).addTo(stationmap);
+        marker.bindPopup(
+            location.properties.Station
+        );
+      } else {
+        var indego_marker = L.marker([39.97944, -75.15114], {icon: iconBikePrimary}).addTo(stationmap);
+      }
+    });
+  </script>
+
+    </body>
+</html>

@@ -1,0 +1,163 @@
+
+<html>
+    <head>
+        <title>Jawnt: SEPTA and Indego Connections</title>
+        <!-- Leaflet JavaScript library is below -->
+        <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"
+        integrity="sha512-XQoYMqMTK8LvdxXYG3nZ448hOEQiglfqkJs1NOQV44cWnUrBc8PkAOcXy20w0vlaXaVUearIOBhiXZ5V3ynxwA=="
+        crossorigin=""></script>
+        <!-- D3 JavaScript library is below -->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/5.16.0/d3.min.js"
+        integrity="sha512-FHsFVKQ/T1KWJDGSbrUhTJyS1ph3eRrxI228ND0EGaEp6v4a/vGwPWd3Dtd/+9cI7ccofZvl/wulICEurHN1pg=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+        <!-- C3 JavaScript library is below -->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/c3/0.7.20/c3.js"
+        integrity="sha512-11Z4MD9csmC3vH8Vd0eIPJBQu3uEHEqeznWEt3sLBCdQx3zm9mJbBcJH8WTcyGY9EXDE81BNpjE2vLosPK8cFQ=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+        <script src="https://kit.fontawesome.com/457a87d66e.js" crossorigin="anonymous"></script>
+        <script type='text/javascript'>
+            var mapdata = {"type": "FeatureCollection", "features": [{"id": "0", "type": "Feature", "properties": {"Modal": "Bus", "OBJECTID": 3417, "Route": "2", "Station": "17th St & Girard Av", "StationID": "32", "lat": 39.972153, "lon": -75.164352}, "geometry": {"type": "Point", "coordinates": [-75.164352, 39.972153]}}, {"id": "1", "type": "Feature", "properties": {"Modal": "Bus", "OBJECTID": 3340, "Route": "2", "Station": "16th St & Girard Av", "StationID": "45", "lat": 39.971737, "lon": -75.162628}, "geometry": {"type": "Point", "coordinates": [-75.162628, 39.971737]}}, {"id": "2", "type": "Feature", "properties": {"Modal": "Bus", "OBJECTID": 5229, "Route": "33", "Station": "20th St & Girard Av - MBFS", "StationID": "595", "lat": 39.972921, "lon": -75.168873}, "geometry": {"type": "Point", "coordinates": [-75.168873, 39.972921]}}, {"id": "3", "type": "Feature", "properties": {"Modal": "Bus", "OBJECTID": 9201, "Route": "61", "Station": "Ridge Av & Girard Av", "StationID": "913", "lat": 39.972506, "lon": -75.166701}, "geometry": {"type": "Point", "coordinates": [-75.166701, 39.972506]}}, {"id": "4", "type": "Feature", "properties": {"Modal": "Bus", "OBJECTID": 9102, "Route": "61", "Station": "Ridge Av & Girard Av", "StationID": "917", "lat": 39.972228, "lon": -75.166324}, "geometry": {"type": "Point", "coordinates": [-75.166324, 39.972228]}}, {"id": "5", "type": "Feature", "properties": {"Modal": "Bus", "OBJECTID": 5287, "Route": "33", "Station": "19th St & Girard Av", "StationID": "1206", "lat": 39.972543, "lon": -75.167528}, "geometry": {"type": "Point", "coordinates": [-75.167528, 39.972543]}}, {"id": "6", "type": "Feature", "properties": {"Modal": "Bus", "OBJECTID": 3414, "Route": "2", "Station": "17th St & Jefferson St", "StationID": "2686", "lat": 39.976551, "lon": -75.163391}, "geometry": {"type": "Point", "coordinates": [-75.163391, 39.976551]}}, {"id": "7", "type": "Feature", "properties": {"Modal": "Bus", "OBJECTID": 3415, "Route": "2", "Station": "17th St & Master St", "StationID": "2694", "lat": 39.975177, "lon": -75.163703}, "geometry": {"type": "Point", "coordinates": [-75.163703, 39.975177]}}, {"id": "8", "type": "Feature", "properties": {"Modal": "Bus", "OBJECTID": 3418, "Route": "2", "Station": "17th St & Ridge Av", "StationID": "2709", "lat": 39.970609, "lon": -75.164724}, "geometry": {"type": "Point", "coordinates": [-75.164724, 39.970609]}}, {"id": "9", "type": "Feature", "properties": {"Modal": "Bus", "OBJECTID": 3416, "Route": "2", "Station": "17th St & Thompson St", "StationID": "2721", "lat": 39.973901, "lon": -75.163967}, "geometry": {"type": "Point", "coordinates": [-75.163967, 39.973901]}}, {"id": "10", "type": "Feature", "properties": {"Modal": "Bus", "OBJECTID": 5290, "Route": "33", "Station": "19th St & Brown St", "StationID": "2742", "lat": 39.968975, "lon": -75.168285}, "geometry": {"type": "Point", "coordinates": [-75.168285, 39.968975]}}, {"id": "11", "type": "Feature", "properties": {"Modal": "Bus", "OBJECTID": 5291, "Route": "33", "Station": "19th St & Fairmount Av", "StationID": "2751", "lat": 39.967333, "lon": -75.168634}, "geometry": {"type": "Point", "coordinates": [-75.168634, 39.967333]}}, {"id": "12", "type": "Feature", "properties": {"Modal": "Bus", "OBJECTID": 5233, "Route": "33", "Station": "19th St & Jefferson St", "StationID": "2756", "lat": 39.976789, "lon": -75.166426}, "geometry": {"type": "Point", "coordinates": [-75.166426, 39.976789]}}, {"id": "13", "type": "Feature", "properties": {"Modal": "Bus", "OBJECTID": 5232, "Route": "33", "Station": "19th St & Master St", "StationID": "2761", "lat": 39.975424, "lon": -75.166726}, "geometry": {"type": "Point", "coordinates": [-75.166726, 39.975424]}}, {"id": "14", "type": "Feature", "properties": {"Modal": "Bus", "OBJECTID": 5289, "Route": "33", "Station": "19th St & Parrish St", "StationID": "2770", "lat": 39.970045, "lon": -75.168045}, "geometry": {"type": "Point", "coordinates": [-75.168045, 39.970045]}}, {"id": "15", "type": "Feature", "properties": {"Modal": "Bus", "OBJECTID": 5288, "Route": "33", "Station": "19th St & Poplar St", "StationID": "2773", "lat": 39.97125, "lon": -75.167804}, "geometry": {"type": "Point", "coordinates": [-75.167804, 39.97125]}}, {"id": "16", "type": "Feature", "properties": {"Modal": "Bus", "OBJECTID": 5231, "Route": "33", "Station": "19th St & Thompson St - MBNS", "StationID": "2783", "lat": 39.974015, "lon": -75.167026}, "geometry": {"type": "Point", "coordinates": [-75.167026, 39.974015]}}, {"id": "17", "type": "Feature", "properties": {"Modal": "Bus", "OBJECTID": 5226, "Route": "33", "Station": "20th St & Brown St", "StationID": "2801", "lat": 39.96896, "lon": -75.169726}, "geometry": {"type": "Point", "coordinates": [-75.169726, 39.96896]}}, {"id": "18", "type": "Feature", "properties": {"Modal": "Bus", "OBJECTID": 5227, "Route": "33", "Station": "20th St & Parrish St", "StationID": "2828", "lat": 39.970093, "lon": -75.169486}, "geometry": {"type": "Point", "coordinates": [-75.169486, 39.970093]}}, {"id": "19", "type": "Feature", "properties": {"Modal": "Bus", "OBJECTID": 5228, "Route": "33", "Station": "20th St & Poplar St", "StationID": "2834", "lat": 39.971313, "lon": -75.169213}, "geometry": {"type": "Point", "coordinates": [-75.169213, 39.971313]}}, {"id": "20", "type": "Feature", "properties": {"Modal": "Bus", "OBJECTID": 3342, "Route": "2", "Station": "16th St & Master St", "StationID": "3044", "lat": 39.974772, "lon": -75.162003}, "geometry": {"type": "Point", "coordinates": [-75.162003, 39.974772]}}, {"id": "21", "type": "Feature", "properties": {"Modal": "Bus", "OBJECTID": 3339, "Route": "2", "Station": "16th St & Poplar St", "StationID": "3055", "lat": 39.970402, "lon": -75.162909}, "geometry": {"type": "Point", "coordinates": [-75.162909, 39.970402]}}, {"id": "22", "type": "Feature", "properties": {"Modal": "Bus", "OBJECTID": 3338, "Route": "2", "Station": "16th St & Ridge Av", "StationID": "3059", "lat": 39.968971, "lon": -75.16324}, "geometry": {"type": "Point", "coordinates": [-75.16324, 39.968971]}}, {"id": "23", "type": "Feature", "properties": {"Modal": "Bus", "OBJECTID": 3341, "Route": "2", "Station": "16th St & Thompson St", "StationID": "3068", "lat": 39.973505, "lon": -75.16228}, "geometry": {"type": "Point", "coordinates": [-75.16228, 39.973505]}}, {"id": "24", "type": "Feature", "properties": {"Modal": "Bus", "OBJECTID": 3420, "Route": "2", "Station": "17th St & Brown St", "StationID": "3080", "lat": 39.968566, "lon": -75.165133}, "geometry": {"type": "Point", "coordinates": [-75.165133, 39.968566]}}, {"id": "25", "type": "Feature", "properties": {"Modal": "Bus", "OBJECTID": 3419, "Route": "2", "Station": "Francis St & Field St", "StationID": "12270", "lat": 39.969466, "lon": -75.164326}, "geometry": {"type": "Point", "coordinates": [-75.164326, 39.969466]}}, {"id": "26", "type": "Feature", "properties": {"Modal": "Bus", "OBJECTID": 5284, "Route": "33", "Station": "Ridge Av & Jefferson St", "StationID": "12293", "lat": 39.977367, "lon": -75.169566}, "geometry": {"type": "Point", "coordinates": [-75.169566, 39.977367]}}, {"id": "27", "type": "Feature", "properties": {"Modal": "Bus", "OBJECTID": 9198, "Route": "61", "Station": "Ridge Av & Jefferson St", "StationID": "12293", "lat": 39.977367, "lon": -75.169566}, "geometry": {"type": "Point", "coordinates": [-75.169566, 39.977367]}}, {"id": "28", "type": "Feature", "properties": {"Modal": "Bus", "OBJECTID": 5285, "Route": "33", "Station": "Ridge Av & Master St", "StationID": "12307", "lat": 39.975848, "lon": -75.168709}, "geometry": {"type": "Point", "coordinates": [-75.168709, 39.975848]}}, {"id": "29", "type": "Feature", "properties": {"Modal": "Bus", "OBJECTID": 9199, "Route": "61", "Station": "Ridge Av & Master St", "StationID": "12307", "lat": 39.975848, "lon": -75.168709}, "geometry": {"type": "Point", "coordinates": [-75.168709, 39.975848]}}, {"id": "30", "type": "Feature", "properties": {"Modal": "Bus", "OBJECTID": 5230, "Route": "33", "Station": "College Av & Ridge Av", "StationID": "14918", "lat": 39.973302, "lon": -75.16749}, "geometry": {"type": "Point", "coordinates": [-75.16749, 39.973302]}}, {"id": "31", "type": "Feature", "properties": {"Modal": "Bus", "OBJECTID": 9099, "Route": "61", "Station": "Ridge Av & 16th St", "StationID": "17865", "lat": 39.969151, "lon": -75.16317}, "geometry": {"type": "Point", "coordinates": [-75.16317, 39.969151]}}, {"id": "32", "type": "Feature", "properties": {"Modal": "Bus", "OBJECTID": 9100, "Route": "61", "Station": "Ridge Av & 17th St", "StationID": "17867", "lat": 39.970395, "lon": -75.164571}, "geometry": {"type": "Point", "coordinates": [-75.164571, 39.970395]}}, {"id": "33", "type": "Feature", "properties": {"Modal": "Bus", "OBJECTID": 9103, "Route": "61", "Station": "Ridge Av & 19th St", "StationID": "17871", "lat": 39.973337, "lon": -75.167123}, "geometry": {"type": "Point", "coordinates": [-75.167123, 39.973337]}}, {"id": "34", "type": "Feature", "properties": {"Modal": "Bus", "OBJECTID": 9104, "Route": "61", "Station": "Ridge Av & Master St", "StationID": "17873", "lat": 39.975651, "lon": -75.168414}, "geometry": {"type": "Point", "coordinates": [-75.168414, 39.975651]}}, {"id": "35", "type": "Feature", "properties": {"Modal": "Bus", "OBJECTID": 9105, "Route": "61", "Station": "Ridge Av & Jefferson St", "StationID": "17874", "lat": 39.977134, "lon": -75.169248}, "geometry": {"type": "Point", "coordinates": [-75.169248, 39.977134]}}, {"id": "36", "type": "Feature", "properties": {"Modal": "Bus", "OBJECTID": 5286, "Route": "33", "Station": "Ridge Av & 19th St", "StationID": "18426", "lat": 39.973507, "lon": -75.167371}, "geometry": {"type": "Point", "coordinates": [-75.167371, 39.973507]}}, {"id": "37", "type": "Feature", "properties": {"Modal": "Bus", "OBJECTID": 9200, "Route": "61", "Station": "Ridge Av & 19th St", "StationID": "18426", "lat": 39.973507, "lon": -75.167371}, "geometry": {"type": "Point", "coordinates": [-75.167371, 39.973507]}}, {"id": "38", "type": "Feature", "properties": {"Modal": "Bus", "OBJECTID": 9202, "Route": "61", "Station": "Ridge Av & Poplar St", "StationID": "18428", "lat": 39.971039, "lon": -75.165525}, "geometry": {"type": "Point", "coordinates": [-75.165525, 39.971039]}}, {"id": "39", "type": "Feature", "properties": {"Modal": "Bus", "OBJECTID": 9203, "Route": "61", "Station": "Ridge Av & Wylie St", "StationID": "18429", "lat": 39.970467, "lon": -75.164854}, "geometry": {"type": "Point", "coordinates": [-75.164854, 39.970467]}}, {"id": "40", "type": "Feature", "properties": {"Modal": "Bus", "OBJECTID": 9204, "Route": "61", "Station": "Ridge Av & Francis St", "StationID": "18430", "lat": 39.969689, "lon": -75.163971}, "geometry": {"type": "Point", "coordinates": [-75.163971, 39.969689]}}, {"id": "41", "type": "Feature", "properties": {"Modal": "Bus", "OBJECTID": 9205, "Route": "61", "Station": "Ridge Av & 16th St", "StationID": "18431", "lat": 39.969188, "lon": -75.163406}, "geometry": {"type": "Point", "coordinates": [-75.163406, 39.969188]}}, {"id": "42", "type": "Feature", "properties": {"Modal": "Bus", "OBJECTID": 1085, "Route": "15", "Station": "Girard Av & 16th St", "StationID": "21005", "lat": 39.971908, "lon": -75.162605}, "geometry": {"type": "Point", "coordinates": [-75.162605, 39.971908]}}, {"id": "43", "type": "Feature", "properties": {"Modal": "Bus", "OBJECTID": 1086, "Route": "15", "Station": "Girard Av & 17th St", "StationID": "21006", "lat": 39.972116, "lon": -75.164151}, "geometry": {"type": "Point", "coordinates": [-75.164151, 39.972116]}}, {"id": "44", "type": "Feature", "properties": {"Modal": "Bus", "OBJECTID": 1087, "Route": "15", "Station": "Girard Av & Ridge Av", "StationID": "21008", "lat": 39.97238, "lon": -75.166217}, "geometry": {"type": "Point", "coordinates": [-75.166217, 39.97238]}}, {"id": "45", "type": "Feature", "properties": {"Modal": "Bus", "OBJECTID": 1089, "Route": "15", "Station": "Girard Av & 20th St", "StationID": "21009", "lat": 39.972715, "lon": -75.168874}, "geometry": {"type": "Point", "coordinates": [-75.168874, 39.972715]}}, {"id": "46", "type": "Feature", "properties": {"Modal": "Bus", "OBJECTID": 1090, "Route": "15", "Station": "Girard Av & Corinthian Av", "StationID": "21010", "lat": 39.972888, "lon": -75.17022}, "geometry": {"type": "Point", "coordinates": [-75.17022, 39.972888]}}, {"id": "47", "type": "Feature", "properties": {"Modal": "Bus", "OBJECTID": 1015, "Route": "15", "Station": "Girard Av & Corinthian Av", "StationID": "21078", "lat": 39.972817, "lon": -75.170421}, "geometry": {"type": "Point", "coordinates": [-75.170421, 39.972817]}}, {"id": "48", "type": "Feature", "properties": {"Modal": "Bus", "OBJECTID": 1016, "Route": "15", "Station": "Girard Av & 20th St", "StationID": "21079", "lat": 39.972636, "lon": -75.169087}, "geometry": {"type": "Point", "coordinates": [-75.169087, 39.972636]}}, {"id": "49", "type": "Feature", "properties": {"Modal": "Bus", "OBJECTID": 1017, "Route": "15", "Station": "Girard Av & 19th St", "StationID": "21080", "lat": 39.972427, "lon": -75.16754}, "geometry": {"type": "Point", "coordinates": [-75.16754, 39.972427]}}, {"id": "50", "type": "Feature", "properties": {"Modal": "Bus", "OBJECTID": 1018, "Route": "15", "Station": "Girard Av & Ridge Av", "StationID": "21081", "lat": 39.972309, "lon": -75.166572}, "geometry": {"type": "Point", "coordinates": [-75.166572, 39.972309]}}, {"id": "51", "type": "Feature", "properties": {"Modal": "Bus", "OBJECTID": 1019, "Route": "15", "Station": "Girard Av & 17th St", "StationID": "21082", "lat": 39.972028, "lon": -75.164352}, "geometry": {"type": "Point", "coordinates": [-75.164352, 39.972028]}}, {"id": "52", "type": "Feature", "properties": {"Modal": "Bus", "OBJECTID": 1020, "Route": "15", "Station": "Girard Av & 16th St", "StationID": "21083", "lat": 39.971828, "lon": -75.162806}, "geometry": {"type": "Point", "coordinates": [-75.162806, 39.971828]}}, {"id": "53", "type": "Feature", "properties": {"Modal": "Bus", "OBJECTID": 1088, "Route": "15", "Station": "Girard Av & 19th St", "StationID": "30290", "lat": 39.972507, "lon": -75.167339}, "geometry": {"type": "Point", "coordinates": [-75.167339, 39.972507]}}, {"id": "54", "type": "Feature", "properties": {"Modal": "Bus", "OBJECTID": 9101, "Route": "61", "Station": "Ridge Av & Poplar St", "StationID": "30905", "lat": 39.970806, "lon": -75.165042}, "geometry": {"type": "Point", "coordinates": [-75.165042, 39.970806]}}, {"id": "55", "type": "Feature", "properties": {"Modal": "Bike", "OBJECTID": 66, "Route": "", "Station": "17th & Girard", "StationID": "bcycle_indego_3077", "lat": 39.97207, "lon": -75.16351}, "geometry": {"type": "Point", "coordinates": [-75.16351, 39.97207]}}, {"id": "56", "type": "Feature", "properties": {"Modal": "Bike", "OBJECTID": 87, "Route": "", "Station": "19th & Girard, PTTI", "StationID": "bcycle_indego_3115", "lat": 39.97263, "lon": -75.16757}, "geometry": {"type": "Point", "coordinates": [-75.16757, 39.97263]}}, {"id": "57", "type": "Feature", "properties": {"Modal": "Bike", "OBJECTID": 128, "Route": "", "Station": "Ridge & Master", "StationID": "bcycle_indego_3200", "lat": 39.97583, "lon": -75.16846}, "geometry": {"type": "Point", "coordinates": [-75.16846, 39.97583]}}, {"id": "58", "type": "Feature", "properties": {"Modal": "Bike", "OBJECTID": 139, "Route": "", "Station": "Corinthian & Poplar", "StationID": "bcycle_indego_3211", "lat": 39.97172, "lon": -75.1706}, "geometry": {"type": "Point", "coordinates": [-75.1706, 39.97172]}}]};
+
+            const iconSubway = L.divIcon({
+                html: '<i class="fas fa-subway fa-2x"></i>',
+                iconSize: [20, 20],
+                className: 'icon-subway'
+            });
+
+            const iconBikePrimary = L.divIcon({
+                html: '<i class="fas fa-bicycle fa-6x"></i>',
+                iconSize: [20, 20],
+                className: 'icon-bike-primary'
+            });
+
+            const iconBike = L.divIcon({
+                html: '<i class="fas fa-bicycle fa-4x"></i>',
+                iconSize: [20, 20],
+                className: 'icon-bike'
+            });
+
+            const iconBus = L.divIcon({
+                html: '<i class="fas fa-bus fa-2x"></i>',
+                iconSize: [20, 20],
+                className: 'icon-bus'
+            });
+
+        </script>
+          <!-- Leaflet stylesheet is below -->
+        <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css"
+        integrity="sha512-xodZBNTC5n17Xt2atTPuE1HxjVMSvLVW9ocqUKLsCC5CXdbqCmblAshOMAS6/keqq/sMZMZ19scR4PsZChSR7A=="
+        crossorigin=""/>
+        <!-- C3 stylesheet is below -->
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/c3/0.7.20/c3.css"
+        integrity="sha512-GQSxWe9Cj4o4EduO7zO9HjULmD4olIjiQqZ7VJuwBxZlkWaUFGCxRkn39jYnD2xZBtEilm0m4WBG7YEmQuMs5Q=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+  <!-- Stylesheet for the report's custom layout is below -->
+  <style>
+    body {
+      font-family: sans;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      grid-template-rows: auto auto 1fr 1fr;
+      grid-template-areas:
+        "header header"
+        "map list"
+        "map chart1"
+        "map chart2";
+      column-gap: 1rem;
+      row-gap: 1rem;
+    }
+    h1 {
+      grid-area: header;
+    }
+    #stationmap {
+      grid-area: map;
+      height: 100%;
+    }
+
+    .icon-subway{
+        color: #f14728;
+        -webkit-text-stroke: 1px #edb9b0;
+    }
+    .icon-subway:hover{
+        color: #f14728;
+        -webkit-text-stroke: 1px #edb9b0;
+    }
+
+    .icon-bus{
+        color: #1f4fa3;
+        -webkit-text-stroke: 1px #98b6eb;
+    }
+    .icon-bus:hover{
+        color: #1f4fa3;
+        -webkit-text-stroke: 1px #98b6eb;
+    }
+
+    .icon-bike{
+        color: #36b4e5;
+        -webkit-text-stroke: 1px #FFF;
+    }
+    .icon-bike:hover{
+        color: #0082cb;
+        -webkit-text-stroke: 1px #FFF;
+    }
+    .icon-bike-primary{
+        color: #36b4e5;
+        -webkit-text-stroke: 2px #000;
+    }
+
+  </style>
+    </head>
+    <body>
+        <h1><a href='index.html'>All stations</a> >> 19th & Girard, PTTI</h1>
+
+  <div id="stationmap"></div>
+  <div>
+    <p>Info about 19th & Girard, PTTI.</p>
+</div>
+
+
+          <script>
+    var initialCenter = [39.97263, -75.16757];  // <-- Latitude, Longitude
+    var initialZoom = 16;
+    var stationmap = L.map('stationmap', {
+      zoomSnap: 0,
+      zoomDelta: 0.25
+    }).setView(initialCenter, initialZoom);
+
+    var baseLayer = new L.tileLayer('https://stamen-tiles-{s}.a.ssl.fastly.net/toner-background/{z}/{x}/{y}{r}.{ext}', {
+    	attribution: 'Map tiles by <a href="http://stamen.com">Stamen Design</a>, <a href="http://creativecommons.org/licenses/by/3.0">CC BY 3.0</a> &mdash; Map data &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
+    	subdomains: 'abcd',
+    	minZoom: 0,
+    	maxZoom: 20,
+    	ext: 'png'
+    });
+    baseLayer.addTo(stationmap);
+
+    mapdata.features.forEach( function(location){
+      console.log(location.properties.Modal);
+      console.log(location);
+      switch (location.properties.Modal) {
+        case 'Subway':
+          iconToUse = iconSubway;
+          break;
+        case 'Bus':
+          iconToUse = iconBus;
+          break;
+        case 'Bike':
+          iconToUse = iconBike;
+          break;
+      }
+      if(location.properties.lat != 39.97263 && location.properties.lon != -75.16757) {
+        var marker = L.marker([location.properties.lat, location.properties.lon], {icon: iconToUse}).addTo(stationmap);
+        marker.bindPopup(
+            location.properties.Station
+        );
+      } else {
+        var indego_marker = L.marker([39.97263, -75.16757], {icon: iconBikePrimary}).addTo(stationmap);
+      }
+    });
+  </script>
+
+    </body>
+</html>

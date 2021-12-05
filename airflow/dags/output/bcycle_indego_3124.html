@@ -1,0 +1,163 @@
+
+<html>
+    <head>
+        <title>Jawnt: SEPTA and Indego Connections</title>
+        <!-- Leaflet JavaScript library is below -->
+        <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"
+        integrity="sha512-XQoYMqMTK8LvdxXYG3nZ448hOEQiglfqkJs1NOQV44cWnUrBc8PkAOcXy20w0vlaXaVUearIOBhiXZ5V3ynxwA=="
+        crossorigin=""></script>
+        <!-- D3 JavaScript library is below -->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/5.16.0/d3.min.js"
+        integrity="sha512-FHsFVKQ/T1KWJDGSbrUhTJyS1ph3eRrxI228ND0EGaEp6v4a/vGwPWd3Dtd/+9cI7ccofZvl/wulICEurHN1pg=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+        <!-- C3 JavaScript library is below -->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/c3/0.7.20/c3.js"
+        integrity="sha512-11Z4MD9csmC3vH8Vd0eIPJBQu3uEHEqeznWEt3sLBCdQx3zm9mJbBcJH8WTcyGY9EXDE81BNpjE2vLosPK8cFQ=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+        <script src="https://kit.fontawesome.com/457a87d66e.js" crossorigin="anonymous"></script>
+        <script type='text/javascript'>
+            var mapdata = {"type": "FeatureCollection", "features": [{"id": "0", "type": "Feature", "properties": {"Modal": "Bus", "OBJECTID": 7043, "Route": "48", "Station": "Front St & Market St Loop", "StationID": "69", "lat": 39.949765, "lon": -75.142317}, "geometry": {"type": "Point", "coordinates": [-75.142317, 39.949765]}}, {"id": "1", "type": "Feature", "properties": {"Modal": "Bus", "OBJECTID": 3950, "Route": "5", "Station": "Front St & Market St Loop", "StationID": "69", "lat": 39.949765, "lon": -75.142317}, "geometry": {"type": "Point", "coordinates": [-75.142317, 39.949765]}}, {"id": "2", "type": "Feature", "properties": {"Modal": "Bus", "OBJECTID": 7176, "Route": "48", "Station": "Front St & Market St Loop", "StationID": "69", "lat": 39.949765, "lon": -75.142317}, "geometry": {"type": "Point", "coordinates": [-75.142317, 39.949765]}}, {"id": "3", "type": "Feature", "properties": {"Modal": "Bus", "OBJECTID": 1359, "Route": "17", "Station": "Front St & Market St Loop", "StationID": "69", "lat": 39.949765, "lon": -75.142317}, "geometry": {"type": "Point", "coordinates": [-75.142317, 39.949765]}}, {"id": "4", "type": "Feature", "properties": {"Modal": "Bus", "OBJECTID": 3825, "Route": "5", "Station": "Front St & Market St Loop", "StationID": "69", "lat": 39.949765, "lon": -75.142317}, "geometry": {"type": "Point", "coordinates": [-75.142317, 39.949765]}}, {"id": "5", "type": "Feature", "properties": {"Modal": "Bus", "OBJECTID": 5198, "Route": "33", "Station": "Front St & Market St Loop", "StationID": "69", "lat": 39.949765, "lon": -75.142317}, "geometry": {"type": "Point", "coordinates": [-75.142317, 39.949765]}}, {"id": "6", "type": "Feature", "properties": {"Modal": "Bus", "OBJECTID": 1356, "Route": "17", "Station": "Front St & Market St Loop", "StationID": "69", "lat": 39.949765, "lon": -75.142317}, "geometry": {"type": "Point", "coordinates": [-75.142317, 39.949765]}}, {"id": "7", "type": "Feature", "properties": {"Modal": "Bus", "OBJECTID": 5316, "Route": "33", "Station": "Front St & Market St Loop", "StationID": "69", "lat": 39.949765, "lon": -75.142317}, "geometry": {"type": "Point", "coordinates": [-75.142317, 39.949765]}}, {"id": "8", "type": "Feature", "properties": {"Modal": "Bus", "OBJECTID": 18255, "Route": "MFL", "Station": "2nd St Station - MFL", "StationID": "428", "lat": 39.949795, "lon": -75.143758}, "geometry": {"type": "Point", "coordinates": [-75.143758, 39.949795]}}, {"id": "9", "type": "Feature", "properties": {"Modal": "Bus", "OBJECTID": 1357, "Route": "17", "Station": "Penn's Landing - 1", "StationID": "593", "lat": 39.948716, "lon": -75.140231}, "geometry": {"type": "Point", "coordinates": [-75.140231, 39.948716]}}, {"id": "10", "type": "Feature", "properties": {"Modal": "Bus", "OBJECTID": 5197, "Route": "33", "Station": "Penn's Landing - 1", "StationID": "593", "lat": 39.948716, "lon": -75.140231}, "geometry": {"type": "Point", "coordinates": [-75.140231, 39.948716]}}, {"id": "11", "type": "Feature", "properties": {"Modal": "Bus", "OBJECTID": 6281, "Route": "42", "Station": "Penn's Landing - 1", "StationID": "593", "lat": 39.948716, "lon": -75.140231}, "geometry": {"type": "Point", "coordinates": [-75.140231, 39.948716]}}, {"id": "12", "type": "Feature", "properties": {"Modal": "Bus", "OBJECTID": 160, "Route": "21", "Station": "Penn's Landing - 1", "StationID": "593", "lat": 39.948716, "lon": -75.140231}, "geometry": {"type": "Point", "coordinates": [-75.140231, 39.948716]}}, {"id": "13", "type": "Feature", "properties": {"Modal": "Bus", "OBJECTID": 161, "Route": "21", "Station": "Penn's Landing - 1", "StationID": "593", "lat": 39.948716, "lon": -75.140231}, "geometry": {"type": "Point", "coordinates": [-75.140231, 39.948716]}}, {"id": "14", "type": "Feature", "properties": {"Modal": "Bus", "OBJECTID": 6282, "Route": "42", "Station": "Penn's Landing - 1", "StationID": "593", "lat": 39.948716, "lon": -75.140231}, "geometry": {"type": "Point", "coordinates": [-75.140231, 39.948716]}}, {"id": "15", "type": "Feature", "properties": {"Modal": "Bus", "OBJECTID": 1358, "Route": "17", "Station": "Penn's Landing - 1", "StationID": "593", "lat": 39.948716, "lon": -75.140231}, "geometry": {"type": "Point", "coordinates": [-75.140231, 39.948716]}}, {"id": "16", "type": "Feature", "properties": {"Modal": "Bus", "OBJECTID": 5317, "Route": "33", "Station": "Penn's Landing - 1", "StationID": "593", "lat": 39.948716, "lon": -75.140231}, "geometry": {"type": "Point", "coordinates": [-75.140231, 39.948716]}}, {"id": "17", "type": "Feature", "properties": {"Modal": "Bus", "OBJECTID": 6284, "Route": "42", "Station": "Market St & 2nd St - 1 MBNS", "StationID": "3210", "lat": 39.950017, "lon": -75.143237}, "geometry": {"type": "Point", "coordinates": [-75.143237, 39.950017]}}, {"id": "18", "type": "Feature", "properties": {"Modal": "Bus", "OBJECTID": 163, "Route": "21", "Station": "Market St & 2nd St - 1 MBNS", "StationID": "3210", "lat": 39.950017, "lon": -75.143237}, "geometry": {"type": "Point", "coordinates": [-75.143237, 39.950017]}}, {"id": "19", "type": "Feature", "properties": {"Modal": "Bus", "OBJECTID": 7045, "Route": "48", "Station": "Arch St & 3rd St", "StationID": "4467", "lat": 39.952208, "lon": -75.145082}, "geometry": {"type": "Point", "coordinates": [-75.145082, 39.952208]}}, {"id": "20", "type": "Feature", "properties": {"Modal": "Bus", "OBJECTID": 3827, "Route": "5", "Station": "Arch St & 3rd St", "StationID": "4467", "lat": 39.952208, "lon": -75.145082}, "geometry": {"type": "Point", "coordinates": [-75.145082, 39.952208]}}, {"id": "21", "type": "Feature", "properties": {"Modal": "Bus", "OBJECTID": 5315, "Route": "33", "Station": "Market St & Front St", "StationID": "7657", "lat": 39.949649, "lon": -75.142329}, "geometry": {"type": "Point", "coordinates": [-75.142329, 39.949649]}}, {"id": "22", "type": "Feature", "properties": {"Modal": "Bus", "OBJECTID": 1355, "Route": "17", "Station": "Market St & Front St", "StationID": "7657", "lat": 39.949649, "lon": -75.142329}, "geometry": {"type": "Point", "coordinates": [-75.142329, 39.949649]}}, {"id": "23", "type": "Feature", "properties": {"Modal": "Bus", "OBJECTID": 1354, "Route": "17", "Station": "Market St & Front St", "StationID": "7657", "lat": 39.949649, "lon": -75.142329}, "geometry": {"type": "Point", "coordinates": [-75.142329, 39.949649]}}, {"id": "24", "type": "Feature", "properties": {"Modal": "Bus", "OBJECTID": 7175, "Route": "48", "Station": "Market St & 2nd St", "StationID": "10288", "lat": 39.949894, "lon": -75.143852}, "geometry": {"type": "Point", "coordinates": [-75.143852, 39.949894]}}, {"id": "25", "type": "Feature", "properties": {"Modal": "Bus", "OBJECTID": 5314, "Route": "33", "Station": "Market St & 2nd St", "StationID": "10288", "lat": 39.949894, "lon": -75.143852}, "geometry": {"type": "Point", "coordinates": [-75.143852, 39.949894]}}, {"id": "26", "type": "Feature", "properties": {"Modal": "Bus", "OBJECTID": 1353, "Route": "17", "Station": "Market St & 2nd St", "StationID": "10288", "lat": 39.949894, "lon": -75.143852}, "geometry": {"type": "Point", "coordinates": [-75.143852, 39.949894]}}, {"id": "27", "type": "Feature", "properties": {"Modal": "Bus", "OBJECTID": 18313, "Route": "MFO", "Station": "Market St & 2nd St", "StationID": "10288", "lat": 39.949894, "lon": -75.143852}, "geometry": {"type": "Point", "coordinates": [-75.143852, 39.949894]}}, {"id": "28", "type": "Feature", "properties": {"Modal": "Bus", "OBJECTID": 7044, "Route": "48", "Station": "Arch St & 2nd St", "StationID": "14931", "lat": 39.951971, "lon": -75.143147}, "geometry": {"type": "Point", "coordinates": [-75.143147, 39.951971]}}, {"id": "29", "type": "Feature", "properties": {"Modal": "Bus", "OBJECTID": 3826, "Route": "5", "Station": "Arch St & 2nd St", "StationID": "14931", "lat": 39.951971, "lon": -75.143147}, "geometry": {"type": "Point", "coordinates": [-75.143147, 39.951971]}}, {"id": "30", "type": "Feature", "properties": {"Modal": "Bus", "OBJECTID": 8364, "Route": "57", "Station": "3rd St & Arch St", "StationID": "17571", "lat": 39.952092, "lon": -75.145177}, "geometry": {"type": "Point", "coordinates": [-75.145177, 39.952092]}}, {"id": "31", "type": "Feature", "properties": {"Modal": "Bus", "OBJECTID": 3828, "Route": "5", "Station": "3rd St & Race St", "StationID": "17575", "lat": 39.953849, "lon": -75.144793}, "geometry": {"type": "Point", "coordinates": [-75.144793, 39.953849]}}, {"id": "32", "type": "Feature", "properties": {"Modal": "Bus", "OBJECTID": 8365, "Route": "57", "Station": "3rd St & Race St", "StationID": "17575", "lat": 39.953849, "lon": -75.144793}, "geometry": {"type": "Point", "coordinates": [-75.144793, 39.953849]}}, {"id": "33", "type": "Feature", "properties": {"Modal": "Bus", "OBJECTID": 3829, "Route": "5", "Station": "3rd St & Vine St", "StationID": "17579", "lat": 39.955767, "lon": -75.144395}, "geometry": {"type": "Point", "coordinates": [-75.144395, 39.955767]}}, {"id": "34", "type": "Feature", "properties": {"Modal": "Bus", "OBJECTID": 8366, "Route": "57", "Station": "3rd St & Vine St", "StationID": "17579", "lat": 39.955767, "lon": -75.144395}, "geometry": {"type": "Point", "coordinates": [-75.144395, 39.955767]}}, {"id": "35", "type": "Feature", "properties": {"Modal": "Bus", "OBJECTID": 8367, "Route": "57", "Station": "3rd St & Callowhill St", "StationID": "17581", "lat": 39.957382, "lon": -75.14407}, "geometry": {"type": "Point", "coordinates": [-75.14407, 39.957382]}}, {"id": "36", "type": "Feature", "properties": {"Modal": "Bus", "OBJECTID": 3830, "Route": "5", "Station": "3rd St & Callowhill St", "StationID": "17581", "lat": 39.957382, "lon": -75.14407}, "geometry": {"type": "Point", "coordinates": [-75.14407, 39.957382]}}, {"id": "37", "type": "Feature", "properties": {"Modal": "Bus", "OBJECTID": 8547, "Route": "57", "Station": "4th St & Race St", "StationID": "18092", "lat": 39.954291, "lon": -75.14648}, "geometry": {"type": "Point", "coordinates": [-75.14648, 39.954291]}}, {"id": "38", "type": "Feature", "properties": {"Modal": "Bus", "OBJECTID": 18339, "Route": "MFO", "Station": "2nd St & Market St", "StationID": "20961", "lat": 39.95009, "lon": -75.143768}, "geometry": {"type": "Point", "coordinates": [-75.143768, 39.95009]}}, {"id": "39", "type": "Feature", "properties": {"Modal": "Bus", "OBJECTID": 1360, "Route": "17", "Station": "2nd St & Market St", "StationID": "20961", "lat": 39.95009, "lon": -75.143768}, "geometry": {"type": "Point", "coordinates": [-75.143768, 39.95009]}}, {"id": "40", "type": "Feature", "properties": {"Modal": "Bus", "OBJECTID": 885, "Route": "25", "Station": "Columbus Blvd & Penns Landing", "StationID": "23985", "lat": 39.949708, "lon": -75.140735}, "geometry": {"type": "Point", "coordinates": [-75.140735, 39.949708]}}, {"id": "41", "type": "Feature", "properties": {"Modal": "Bus", "OBJECTID": 887, "Route": "25", "Station": "Columbus Blvd & Race St", "StationID": "23986", "lat": 39.953401, "lon": -75.139752}, "geometry": {"type": "Point", "coordinates": [-75.139752, 39.953401]}}, {"id": "42", "type": "Feature", "properties": {"Modal": "Bus", "OBJECTID": 888, "Route": "25", "Station": "Columbus Blvd & Vine St - FS", "StationID": "23987", "lat": 39.955291, "lon": -75.139071}, "geometry": {"type": "Point", "coordinates": [-75.139071, 39.955291]}}, {"id": "43", "type": "Feature", "properties": {"Modal": "Bus", "OBJECTID": 889, "Route": "25", "Station": "Columbus Blvd & Callowhill St", "StationID": "23988", "lat": 39.95662, "lon": -75.138617}, "geometry": {"type": "Point", "coordinates": [-75.138617, 39.95662]}}, {"id": "44", "type": "Feature", "properties": {"Modal": "Bus", "OBJECTID": 4042, "Route": "25", "Station": "Columbus Blvd & Vine St", "StationID": "24042", "lat": 39.955408, "lon": -75.139425}, "geometry": {"type": "Point", "coordinates": [-75.139425, 39.955408]}}, {"id": "45", "type": "Feature", "properties": {"Modal": "Bus", "OBJECTID": 4044, "Route": "25", "Station": "Columbus Blvd & Market St", "StationID": "24043", "lat": 39.950182, "lon": -75.141017}, "geometry": {"type": "Point", "coordinates": [-75.141017, 39.950182]}}, {"id": "46", "type": "Feature", "properties": {"Modal": "Bus", "OBJECTID": 3945, "Route": "5", "Station": "2nd St & Callowhill St", "StationID": "24168", "lat": 39.957315, "lon": -75.14224}, "geometry": {"type": "Point", "coordinates": [-75.14224, 39.957315]}}, {"id": "47", "type": "Feature", "properties": {"Modal": "Bus", "OBJECTID": 3946, "Route": "5", "Station": "2nd St & Vine St", "StationID": "24169", "lat": 39.955692, "lon": -75.142589}, "geometry": {"type": "Point", "coordinates": [-75.142589, 39.955692]}}, {"id": "48", "type": "Feature", "properties": {"Modal": "Bus", "OBJECTID": 3947, "Route": "5", "Station": "2nd St & Race St", "StationID": "24170", "lat": 39.953908, "lon": -75.14295}, "geometry": {"type": "Point", "coordinates": [-75.14295, 39.953908]}}, {"id": "49", "type": "Feature", "properties": {"Modal": "Bus", "OBJECTID": 3948, "Route": "5", "Station": "2nd St & Arch St", "StationID": "24171", "lat": 39.952043, "lon": -75.143359}, "geometry": {"type": "Point", "coordinates": [-75.143359, 39.952043]}}, {"id": "50", "type": "Feature", "properties": {"Modal": "Bus", "OBJECTID": 4040, "Route": "25", "Station": "Columbus Blvd & Noble St - FS", "StationID": "30599", "lat": 39.958742, "lon": -75.137923}, "geometry": {"type": "Point", "coordinates": [-75.137923, 39.958742]}}, {"id": "51", "type": "Feature", "properties": {"Modal": "Bus", "OBJECTID": 4041, "Route": "25", "Station": "Columbus Av & Callowhill St", "StationID": "30600", "lat": 39.956915, "lon": -75.138864}, "geometry": {"type": "Point", "coordinates": [-75.138864, 39.956915]}}, {"id": "52", "type": "Feature", "properties": {"Modal": "Bus", "OBJECTID": 162, "Route": "21", "Station": "Penn's Landing - 2", "StationID": "30631", "lat": 39.949797, "lon": -75.140487}, "geometry": {"type": "Point", "coordinates": [-75.140487, 39.949797]}}, {"id": "53", "type": "Feature", "properties": {"Modal": "Bus", "OBJECTID": 5199, "Route": "33", "Station": "Penn's Landing - 2", "StationID": "30631", "lat": 39.949797, "lon": -75.140487}, "geometry": {"type": "Point", "coordinates": [-75.140487, 39.949797]}}, {"id": "54", "type": "Feature", "properties": {"Modal": "Bus", "OBJECTID": 6283, "Route": "42", "Station": "Penn's Landing - 2", "StationID": "30631", "lat": 39.949797, "lon": -75.140487}, "geometry": {"type": "Point", "coordinates": [-75.140487, 39.949797]}}, {"id": "55", "type": "Feature", "properties": {"Modal": "Bus", "OBJECTID": 4043, "Route": "25", "Station": "Columbus Blvd & Race St - MBFS", "StationID": "30898", "lat": 39.952688, "lon": -75.140357}, "geometry": {"type": "Point", "coordinates": [-75.140357, 39.952688]}}, {"id": "56", "type": "Feature", "properties": {"Modal": "Bus", "OBJECTID": 1361, "Route": "17", "Station": "Market St & 2nd St - 2", "StationID": "31041", "lat": 39.950009, "lon": -75.143473}, "geometry": {"type": "Point", "coordinates": [-75.143473, 39.950009]}}, {"id": "57", "type": "Feature", "properties": {"Modal": "Bus", "OBJECTID": 5200, "Route": "33", "Station": "Market St & 2nd St - 2", "StationID": "31041", "lat": 39.950009, "lon": -75.143473}, "geometry": {"type": "Point", "coordinates": [-75.143473, 39.950009]}}, {"id": "58", "type": "Feature", "properties": {"Modal": "Bus", "OBJECTID": 3949, "Route": "5", "Station": "2nd St & Market St - MBNS", "StationID": "31442", "lat": 39.950322, "lon": -75.14372}, "geometry": {"type": "Point", "coordinates": [-75.14372, 39.950322]}}, {"id": "59", "type": "Feature", "properties": {"Modal": "Bus", "OBJECTID": 18280, "Route": "MFL", "Station": "2nd St Station - MFL", "StationID": "32170", "lat": 39.949858, "lon": -75.143746}, "geometry": {"type": "Point", "coordinates": [-75.143746, 39.949858]}}, {"id": "60", "type": "Feature", "properties": {"Modal": "Bike", "OBJECTID": 37, "Route": "", "Station": "2nd & Market", "StationID": "bcycle_indego_3046", "lat": 39.95012, "lon": -75.14472}, "geometry": {"type": "Point", "coordinates": [-75.14472, 39.95012]}}, {"id": "61", "type": "Feature", "properties": {"Modal": "Bike", "OBJECTID": 95, "Route": "", "Station": "Race Street Pier", "StationID": "bcycle_indego_3124", "lat": 39.95367, "lon": -75.13956}, "geometry": {"type": "Point", "coordinates": [-75.13956, 39.95367]}}, {"id": "62", "type": "Feature", "properties": {"Modal": "Bike", "OBJECTID": 115, "Route": "", "Station": "2nd & Race", "StationID": "bcycle_indego_3169", "lat": 39.95382, "lon": -75.14263}, "geometry": {"type": "Point", "coordinates": [-75.14263, 39.95382]}}, {"id": "63", "type": "Feature", "properties": {"Modal": "Subway", "OBJECTID": 16, "Route": "Market-Frankford Line", "Station": "2nd Street", "StationID": "20079", "lat": 39.949889, "lon": -75.143755}, "geometry": {"type": "Point", "coordinates": [-75.143755, 39.949889]}}]};
+
+            const iconSubway = L.divIcon({
+                html: '<i class="fas fa-subway fa-2x"></i>',
+                iconSize: [20, 20],
+                className: 'icon-subway'
+            });
+
+            const iconBikePrimary = L.divIcon({
+                html: '<i class="fas fa-bicycle fa-6x"></i>',
+                iconSize: [20, 20],
+                className: 'icon-bike-primary'
+            });
+
+            const iconBike = L.divIcon({
+                html: '<i class="fas fa-bicycle fa-4x"></i>',
+                iconSize: [20, 20],
+                className: 'icon-bike'
+            });
+
+            const iconBus = L.divIcon({
+                html: '<i class="fas fa-bus fa-2x"></i>',
+                iconSize: [20, 20],
+                className: 'icon-bus'
+            });
+
+        </script>
+          <!-- Leaflet stylesheet is below -->
+        <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css"
+        integrity="sha512-xodZBNTC5n17Xt2atTPuE1HxjVMSvLVW9ocqUKLsCC5CXdbqCmblAshOMAS6/keqq/sMZMZ19scR4PsZChSR7A=="
+        crossorigin=""/>
+        <!-- C3 stylesheet is below -->
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/c3/0.7.20/c3.css"
+        integrity="sha512-GQSxWe9Cj4o4EduO7zO9HjULmD4olIjiQqZ7VJuwBxZlkWaUFGCxRkn39jYnD2xZBtEilm0m4WBG7YEmQuMs5Q=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+  <!-- Stylesheet for the report's custom layout is below -->
+  <style>
+    body {
+      font-family: sans;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      grid-template-rows: auto auto 1fr 1fr;
+      grid-template-areas:
+        "header header"
+        "map list"
+        "map chart1"
+        "map chart2";
+      column-gap: 1rem;
+      row-gap: 1rem;
+    }
+    h1 {
+      grid-area: header;
+    }
+    #stationmap {
+      grid-area: map;
+      height: 100%;
+    }
+
+    .icon-subway{
+        color: #f14728;
+        -webkit-text-stroke: 1px #edb9b0;
+    }
+    .icon-subway:hover{
+        color: #f14728;
+        -webkit-text-stroke: 1px #edb9b0;
+    }
+
+    .icon-bus{
+        color: #1f4fa3;
+        -webkit-text-stroke: 1px #98b6eb;
+    }
+    .icon-bus:hover{
+        color: #1f4fa3;
+        -webkit-text-stroke: 1px #98b6eb;
+    }
+
+    .icon-bike{
+        color: #36b4e5;
+        -webkit-text-stroke: 1px #FFF;
+    }
+    .icon-bike:hover{
+        color: #0082cb;
+        -webkit-text-stroke: 1px #FFF;
+    }
+    .icon-bike-primary{
+        color: #36b4e5;
+        -webkit-text-stroke: 2px #000;
+    }
+
+  </style>
+    </head>
+    <body>
+        <h1><a href='index.html'>All stations</a> >> Race Street Pier</h1>
+
+  <div id="stationmap"></div>
+  <div>
+    <p>Info about Race Street Pier.</p>
+</div>
+
+
+          <script>
+    var initialCenter = [39.95367, -75.13956];  // <-- Latitude, Longitude
+    var initialZoom = 16;
+    var stationmap = L.map('stationmap', {
+      zoomSnap: 0,
+      zoomDelta: 0.25
+    }).setView(initialCenter, initialZoom);
+
+    var baseLayer = new L.tileLayer('https://stamen-tiles-{s}.a.ssl.fastly.net/toner-background/{z}/{x}/{y}{r}.{ext}', {
+    	attribution: 'Map tiles by <a href="http://stamen.com">Stamen Design</a>, <a href="http://creativecommons.org/licenses/by/3.0">CC BY 3.0</a> &mdash; Map data &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
+    	subdomains: 'abcd',
+    	minZoom: 0,
+    	maxZoom: 20,
+    	ext: 'png'
+    });
+    baseLayer.addTo(stationmap);
+
+    mapdata.features.forEach( function(location){
+      console.log(location.properties.Modal);
+      console.log(location);
+      switch (location.properties.Modal) {
+        case 'Subway':
+          iconToUse = iconSubway;
+          break;
+        case 'Bus':
+          iconToUse = iconBus;
+          break;
+        case 'Bike':
+          iconToUse = iconBike;
+          break;
+      }
+      if(location.properties.lat != 39.95367 && location.properties.lon != -75.13956) {
+        var marker = L.marker([location.properties.lat, location.properties.lon], {icon: iconToUse}).addTo(stationmap);
+        marker.bindPopup(
+            location.properties.Station
+        );
+      } else {
+        var indego_marker = L.marker([39.95367, -75.13956], {icon: iconBikePrimary}).addTo(stationmap);
+      }
+    });
+  </script>
+
+    </body>
+</html>

@@ -1,0 +1,163 @@
+
+<html>
+    <head>
+        <title>Jawnt: SEPTA and Indego Connections</title>
+        <!-- Leaflet JavaScript library is below -->
+        <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"
+        integrity="sha512-XQoYMqMTK8LvdxXYG3nZ448hOEQiglfqkJs1NOQV44cWnUrBc8PkAOcXy20w0vlaXaVUearIOBhiXZ5V3ynxwA=="
+        crossorigin=""></script>
+        <!-- D3 JavaScript library is below -->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/5.16.0/d3.min.js"
+        integrity="sha512-FHsFVKQ/T1KWJDGSbrUhTJyS1ph3eRrxI228ND0EGaEp6v4a/vGwPWd3Dtd/+9cI7ccofZvl/wulICEurHN1pg=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+        <!-- C3 JavaScript library is below -->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/c3/0.7.20/c3.js"
+        integrity="sha512-11Z4MD9csmC3vH8Vd0eIPJBQu3uEHEqeznWEt3sLBCdQx3zm9mJbBcJH8WTcyGY9EXDE81BNpjE2vLosPK8cFQ=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+        <script src="https://kit.fontawesome.com/457a87d66e.js" crossorigin="anonymous"></script>
+        <script type='text/javascript'>
+            var mapdata = {"type": "FeatureCollection", "features": [{"id": "0", "type": "Feature", "properties": {"Modal": "Bus", "OBJECTID": 7134, "Route": "48", "Station": "29th St & Girard Av", "StationID": "92", "lat": 39.974628, "lon": -75.183527}, "geometry": {"type": "Point", "coordinates": [-75.183527, 39.974628]}}, {"id": "1", "type": "Feature", "properties": {"Modal": "Bus", "OBJECTID": 7253, "Route": "49", "Station": "29th St & Girard Av", "StationID": "92", "lat": 39.974628, "lon": -75.183527}, "geometry": {"type": "Point", "coordinates": [-75.183527, 39.974628]}}, {"id": "2", "type": "Feature", "properties": {"Modal": "Bus", "OBJECTID": 2149, "Route": "7", "Station": "29th St & Girard Av", "StationID": "92", "lat": 39.974628, "lon": -75.183527}, "geometry": {"type": "Point", "coordinates": [-75.183527, 39.974628]}}, {"id": "3", "type": "Feature", "properties": {"Modal": "Bus", "OBJECTID": 7135, "Route": "48", "Station": "29th St & Girard Av", "StationID": "92", "lat": 39.974628, "lon": -75.183527}, "geometry": {"type": "Point", "coordinates": [-75.183527, 39.974628]}}, {"id": "4", "type": "Feature", "properties": {"Modal": "Bus", "OBJECTID": 2104, "Route": "7", "Station": "27th St & Girard Av", "StationID": "108", "lat": 39.974077, "lon": -75.180363}, "geometry": {"type": "Point", "coordinates": [-75.180363, 39.974077]}}, {"id": "5", "type": "Feature", "properties": {"Modal": "Bus", "OBJECTID": 2103, "Route": "7", "Station": "27th St & Poplar St", "StationID": "584", "lat": 39.972757, "lon": -75.180674}, "geometry": {"type": "Point", "coordinates": [-75.180674, 39.972757]}}, {"id": "6", "type": "Feature", "properties": {"Modal": "Bus", "OBJECTID": 5058, "Route": "32", "Station": "27th St & Poplar St", "StationID": "584", "lat": 39.972757, "lon": -75.180674}, "geometry": {"type": "Point", "coordinates": [-75.180674, 39.972757]}}, {"id": "7", "type": "Feature", "properties": {"Modal": "Bus", "OBJECTID": 7081, "Route": "48", "Station": "27th St & Poplar St", "StationID": "584", "lat": 39.972757, "lon": -75.180674}, "geometry": {"type": "Point", "coordinates": [-75.180674, 39.972757]}}, {"id": "8", "type": "Feature", "properties": {"Modal": "Bus", "OBJECTID": 7221, "Route": "49", "Station": "29th St & Girard Av", "StationID": "751", "lat": 39.974423, "lon": -75.183433}, "geometry": {"type": "Point", "coordinates": [-75.183433, 39.974423]}}, {"id": "9", "type": "Feature", "properties": {"Modal": "Bus", "OBJECTID": 7085, "Route": "48", "Station": "29th St & Girard Av", "StationID": "751", "lat": 39.974423, "lon": -75.183433}, "geometry": {"type": "Point", "coordinates": [-75.183433, 39.974423]}}, {"id": "10", "type": "Feature", "properties": {"Modal": "Bus", "OBJECTID": 7084, "Route": "48", "Station": "29th St & Girard Av", "StationID": "751", "lat": 39.974423, "lon": -75.183433}, "geometry": {"type": "Point", "coordinates": [-75.183433, 39.974423]}}, {"id": "11", "type": "Feature", "properties": {"Modal": "Bus", "OBJECTID": 5161, "Route": "32", "Station": "Poplar St & 29th St", "StationID": "1313", "lat": 39.973156, "lon": -75.183862}, "geometry": {"type": "Point", "coordinates": [-75.183862, 39.973156]}}, {"id": "12", "type": "Feature", "properties": {"Modal": "Bus", "OBJECTID": 7080, "Route": "48", "Station": "27th St & Parrish St", "StationID": "2880", "lat": 39.971508, "lon": -75.18095}, "geometry": {"type": "Point", "coordinates": [-75.18095, 39.971508]}}, {"id": "13", "type": "Feature", "properties": {"Modal": "Bus", "OBJECTID": 5057, "Route": "32", "Station": "27th St & Parrish St", "StationID": "2880", "lat": 39.971508, "lon": -75.18095}, "geometry": {"type": "Point", "coordinates": [-75.18095, 39.971508]}}, {"id": "14", "type": "Feature", "properties": {"Modal": "Bus", "OBJECTID": 2102, "Route": "7", "Station": "27th St & Parrish St", "StationID": "2880", "lat": 39.971508, "lon": -75.18095}, "geometry": {"type": "Point", "coordinates": [-75.18095, 39.971508]}}, {"id": "15", "type": "Feature", "properties": {"Modal": "Bus", "OBJECTID": 2146, "Route": "7", "Station": "29th St & Jefferson St", "StationID": "2891", "lat": 39.979017, "lon": -75.182578}, "geometry": {"type": "Point", "coordinates": [-75.182578, 39.979017]}}, {"id": "16", "type": "Feature", "properties": {"Modal": "Bus", "OBJECTID": 7250, "Route": "49", "Station": "29th St & Jefferson St", "StationID": "2891", "lat": 39.979017, "lon": -75.182578}, "geometry": {"type": "Point", "coordinates": [-75.182578, 39.979017]}}, {"id": "17", "type": "Feature", "properties": {"Modal": "Bus", "OBJECTID": 7131, "Route": "48", "Station": "29th St & Jefferson St", "StationID": "2891", "lat": 39.979017, "lon": -75.182578}, "geometry": {"type": "Point", "coordinates": [-75.182578, 39.979017]}}, {"id": "18", "type": "Feature", "properties": {"Modal": "Bus", "OBJECTID": 7251, "Route": "49", "Station": "29th St & Master St", "StationID": "2895", "lat": 39.977661, "lon": -75.182878}, "geometry": {"type": "Point", "coordinates": [-75.182878, 39.977661]}}, {"id": "19", "type": "Feature", "properties": {"Modal": "Bus", "OBJECTID": 7132, "Route": "48", "Station": "29th St & Master St", "StationID": "2895", "lat": 39.977661, "lon": -75.182878}, "geometry": {"type": "Point", "coordinates": [-75.182878, 39.977661]}}, {"id": "20", "type": "Feature", "properties": {"Modal": "Bus", "OBJECTID": 2147, "Route": "7", "Station": "29th St & Master St", "StationID": "2895", "lat": 39.977661, "lon": -75.182878}, "geometry": {"type": "Point", "coordinates": [-75.182878, 39.977661]}}, {"id": "21", "type": "Feature", "properties": {"Modal": "Bus", "OBJECTID": 7137, "Route": "48", "Station": "29th St & Ogden St - FS", "StationID": "2899", "lat": 39.972353, "lon": -75.184019}, "geometry": {"type": "Point", "coordinates": [-75.184019, 39.972353]}}, {"id": "22", "type": "Feature", "properties": {"Modal": "Bus", "OBJECTID": 7255, "Route": "49", "Station": "29th St & Ogden St - FS", "StationID": "2899", "lat": 39.972353, "lon": -75.184019}, "geometry": {"type": "Point", "coordinates": [-75.184019, 39.972353]}}, {"id": "23", "type": "Feature", "properties": {"Modal": "Bus", "OBJECTID": 2151, "Route": "7", "Station": "29th St & Ogden St - FS", "StationID": "2899", "lat": 39.972353, "lon": -75.184019}, "geometry": {"type": "Point", "coordinates": [-75.184019, 39.972353]}}, {"id": "24", "type": "Feature", "properties": {"Modal": "Bus", "OBJECTID": 2152, "Route": "7", "Station": "29th St & Pennsylvania Av", "StationID": "2902", "lat": 39.971408, "lon": -75.184235}, "geometry": {"type": "Point", "coordinates": [-75.184235, 39.971408]}}, {"id": "25", "type": "Feature", "properties": {"Modal": "Bus", "OBJECTID": 7256, "Route": "49", "Station": "29th St & Pennsylvania Av", "StationID": "2902", "lat": 39.971408, "lon": -75.184235}, "geometry": {"type": "Point", "coordinates": [-75.184235, 39.971408]}}, {"id": "26", "type": "Feature", "properties": {"Modal": "Bus", "OBJECTID": 7138, "Route": "48", "Station": "29th St & Pennsylvania Av", "StationID": "2902", "lat": 39.971408, "lon": -75.184235}, "geometry": {"type": "Point", "coordinates": [-75.184235, 39.971408]}}, {"id": "27", "type": "Feature", "properties": {"Modal": "Bus", "OBJECTID": 7136, "Route": "48", "Station": "29th St & Poplar St", "StationID": "2903", "lat": 39.973344, "lon": -75.183826}, "geometry": {"type": "Point", "coordinates": [-75.183826, 39.973344]}}, {"id": "28", "type": "Feature", "properties": {"Modal": "Bus", "OBJECTID": 7254, "Route": "49", "Station": "29th St & Poplar St", "StationID": "2903", "lat": 39.973344, "lon": -75.183826}, "geometry": {"type": "Point", "coordinates": [-75.183826, 39.973344]}}, {"id": "29", "type": "Feature", "properties": {"Modal": "Bus", "OBJECTID": 2150, "Route": "7", "Station": "29th St & Poplar St", "StationID": "2903", "lat": 39.973344, "lon": -75.183826}, "geometry": {"type": "Point", "coordinates": [-75.183826, 39.973344]}}, {"id": "30", "type": "Feature", "properties": {"Modal": "Bus", "OBJECTID": 2148, "Route": "7", "Station": "29th St & Thompson St", "StationID": "2908", "lat": 39.976386, "lon": -75.183154}, "geometry": {"type": "Point", "coordinates": [-75.183154, 39.976386]}}, {"id": "31", "type": "Feature", "properties": {"Modal": "Bus", "OBJECTID": 7133, "Route": "48", "Station": "29th St & Thompson St", "StationID": "2908", "lat": 39.976386, "lon": -75.183154}, "geometry": {"type": "Point", "coordinates": [-75.183154, 39.976386]}}, {"id": "32", "type": "Feature", "properties": {"Modal": "Bus", "OBJECTID": 7252, "Route": "49", "Station": "29th St & Thompson St", "StationID": "2908", "lat": 39.976386, "lon": -75.183154}, "geometry": {"type": "Point", "coordinates": [-75.183154, 39.976386]}}, {"id": "33", "type": "Feature", "properties": {"Modal": "Bus", "OBJECTID": 2109, "Route": "7", "Station": "29th St & Jefferson St", "StationID": "3201", "lat": 39.978839, "lon": -75.182473}, "geometry": {"type": "Point", "coordinates": [-75.182473, 39.978839]}}, {"id": "34", "type": "Feature", "properties": {"Modal": "Bus", "OBJECTID": 7088, "Route": "48", "Station": "29th St & Jefferson St", "StationID": "3201", "lat": 39.978839, "lon": -75.182473}, "geometry": {"type": "Point", "coordinates": [-75.182473, 39.978839]}}, {"id": "35", "type": "Feature", "properties": {"Modal": "Bus", "OBJECTID": 7224, "Route": "49", "Station": "29th St & Jefferson St", "StationID": "3201", "lat": 39.978839, "lon": -75.182473}, "geometry": {"type": "Point", "coordinates": [-75.182473, 39.978839]}}, {"id": "36", "type": "Feature", "properties": {"Modal": "Bus", "OBJECTID": 7078, "Route": "48", "Station": "Aspen St & Taney St", "StationID": "4557", "lat": 39.969223, "lon": -75.180616}, "geometry": {"type": "Point", "coordinates": [-75.180616, 39.969223]}}, {"id": "37", "type": "Feature", "properties": {"Modal": "Bus", "OBJECTID": 2157, "Route": "7", "Station": "Brown St & 24th St", "StationID": "5370", "lat": 39.969866, "lon": -75.17655}, "geometry": {"type": "Point", "coordinates": [-75.17655, 39.969866]}}, {"id": "38", "type": "Feature", "properties": {"Modal": "Bus", "OBJECTID": 7143, "Route": "48", "Station": "Brown St & 24th St", "StationID": "5370", "lat": 39.969866, "lon": -75.17655}, "geometry": {"type": "Point", "coordinates": [-75.17655, 39.969866]}}, {"id": "39", "type": "Feature", "properties": {"Modal": "Bus", "OBJECTID": 2156, "Route": "7", "Station": "Brown St & 25th St", "StationID": "5371", "lat": 39.970066, "lon": -75.178168}, "geometry": {"type": "Point", "coordinates": [-75.178168, 39.970066]}}, {"id": "40", "type": "Feature", "properties": {"Modal": "Bus", "OBJECTID": 7142, "Route": "48", "Station": "Brown St & 25th St", "StationID": "5371", "lat": 39.970066, "lon": -75.178168}, "geometry": {"type": "Point", "coordinates": [-75.178168, 39.970066]}}, {"id": "41", "type": "Feature", "properties": {"Modal": "Bus", "OBJECTID": 7141, "Route": "48", "Station": "Brown St & 26th St", "StationID": "5372", "lat": 39.970283, "lon": -75.179773}, "geometry": {"type": "Point", "coordinates": [-75.179773, 39.970283]}}, {"id": "42", "type": "Feature", "properties": {"Modal": "Bus", "OBJECTID": 2155, "Route": "7", "Station": "Brown St & 26th St", "StationID": "5372", "lat": 39.970283, "lon": -75.179773}, "geometry": {"type": "Point", "coordinates": [-75.179773, 39.970283]}}, {"id": "43", "type": "Feature", "properties": {"Modal": "Bus", "OBJECTID": 7139, "Route": "48", "Station": "Brown St & 28th St", "StationID": "5373", "lat": 39.970646, "lon": -75.182772}, "geometry": {"type": "Point", "coordinates": [-75.182772, 39.970646]}}, {"id": "44", "type": "Feature", "properties": {"Modal": "Bus", "OBJECTID": 2153, "Route": "7", "Station": "Brown St & 28th St", "StationID": "5373", "lat": 39.970646, "lon": -75.182772}, "geometry": {"type": "Point", "coordinates": [-75.182772, 39.970646]}}, {"id": "45", "type": "Feature", "properties": {"Modal": "Bus", "OBJECTID": 5059, "Route": "32", "Station": "Poplar St & 28th St", "StationID": "11944", "lat": 39.973046, "lon": -75.182067}, "geometry": {"type": "Point", "coordinates": [-75.182067, 39.973046]}}, {"id": "46", "type": "Feature", "properties": {"Modal": "Bus", "OBJECTID": 7082, "Route": "48", "Station": "Poplar St & 28th St", "StationID": "11944", "lat": 39.973046, "lon": -75.182067}, "geometry": {"type": "Point", "coordinates": [-75.182067, 39.973046]}}, {"id": "47", "type": "Feature", "properties": {"Modal": "Bus", "OBJECTID": 7140, "Route": "48", "Station": "Brown St & 27th St", "StationID": "14926", "lat": 39.970474, "lon": -75.181344}, "geometry": {"type": "Point", "coordinates": [-75.181344, 39.970474]}}, {"id": "48", "type": "Feature", "properties": {"Modal": "Bus", "OBJECTID": 2154, "Route": "7", "Station": "Brown St & 27th St", "StationID": "14926", "lat": 39.970474, "lon": -75.181344}, "geometry": {"type": "Point", "coordinates": [-75.181344, 39.970474]}}, {"id": "49", "type": "Feature", "properties": {"Modal": "Bus", "OBJECTID": 7077, "Route": "48", "Station": "Aspen St & 26th St", "StationID": "14938", "lat": 39.969141, "lon": -75.179789}, "geometry": {"type": "Point", "coordinates": [-75.179789, 39.969141]}}, {"id": "50", "type": "Feature", "properties": {"Modal": "Bus", "OBJECTID": 2101, "Route": "7", "Station": "27th St & Brown St", "StationID": "14939", "lat": 39.970456, "lon": -75.181167}, "geometry": {"type": "Point", "coordinates": [-75.181167, 39.970456]}}, {"id": "51", "type": "Feature", "properties": {"Modal": "Bus", "OBJECTID": 7079, "Route": "48", "Station": "27th St & Brown St", "StationID": "14939", "lat": 39.970456, "lon": -75.181167}, "geometry": {"type": "Point", "coordinates": [-75.181167, 39.970456]}}, {"id": "52", "type": "Feature", "properties": {"Modal": "Bus", "OBJECTID": 5056, "Route": "32", "Station": "27th St & Brown St", "StationID": "14939", "lat": 39.970456, "lon": -75.181167}, "geometry": {"type": "Point", "coordinates": [-75.181167, 39.970456]}}, {"id": "53", "type": "Feature", "properties": {"Modal": "Bus", "OBJECTID": 5060, "Route": "32", "Station": "Poplar St & 29th St", "StationID": "14941", "lat": 39.973236, "lon": -75.183661}, "geometry": {"type": "Point", "coordinates": [-75.183661, 39.973236]}}, {"id": "54", "type": "Feature", "properties": {"Modal": "Bus", "OBJECTID": 7083, "Route": "48", "Station": "Poplar St & 29th St", "StationID": "14941", "lat": 39.973236, "lon": -75.183661}, "geometry": {"type": "Point", "coordinates": [-75.183661, 39.973236]}}, {"id": "55", "type": "Feature", "properties": {"Modal": "Bus", "OBJECTID": 7086, "Route": "48", "Station": "29th St & Thompson St", "StationID": "14942", "lat": 39.976198, "lon": -75.183049}, "geometry": {"type": "Point", "coordinates": [-75.183049, 39.976198]}}, {"id": "56", "type": "Feature", "properties": {"Modal": "Bus", "OBJECTID": 7222, "Route": "49", "Station": "29th St & Thompson St", "StationID": "14942", "lat": 39.976198, "lon": -75.183049}, "geometry": {"type": "Point", "coordinates": [-75.183049, 39.976198]}}, {"id": "57", "type": "Feature", "properties": {"Modal": "Bus", "OBJECTID": 7223, "Route": "49", "Station": "29th St & Master St", "StationID": "14943", "lat": 39.977474, "lon": -75.182773}, "geometry": {"type": "Point", "coordinates": [-75.182773, 39.977474]}}, {"id": "58", "type": "Feature", "properties": {"Modal": "Bus", "OBJECTID": 7087, "Route": "48", "Station": "29th St & Master St", "StationID": "14943", "lat": 39.977474, "lon": -75.182773}, "geometry": {"type": "Point", "coordinates": [-75.182773, 39.977474]}}, {"id": "59", "type": "Feature", "properties": {"Modal": "Bus", "OBJECTID": 5061, "Route": "32", "Station": "Poplar St & 30th St", "StationID": "15960", "lat": 39.973445, "lon": -75.185303}, "geometry": {"type": "Point", "coordinates": [-75.185303, 39.973445]}}, {"id": "60", "type": "Feature", "properties": {"Modal": "Bus", "OBJECTID": 5162, "Route": "32", "Station": "Poplar St & 28th St", "StationID": "16557", "lat": 39.972948, "lon": -75.182221}, "geometry": {"type": "Point", "coordinates": [-75.182221, 39.972948]}}, {"id": "61", "type": "Feature", "properties": {"Modal": "Bus", "OBJECTID": 5163, "Route": "32", "Station": "Poplar St & 27th St", "StationID": "16558", "lat": 39.972775, "lon": -75.180863}, "geometry": {"type": "Point", "coordinates": [-75.180863, 39.972775]}}, {"id": "62", "type": "Feature", "properties": {"Modal": "Bus", "OBJECTID": 5164, "Route": "32", "Station": "Poplar St & 26th St", "StationID": "16559", "lat": 39.972576, "lon": -75.179258}, "geometry": {"type": "Point", "coordinates": [-75.179258, 39.972576]}}, {"id": "63", "type": "Feature", "properties": {"Modal": "Bus", "OBJECTID": 5165, "Route": "32", "Station": "26th St & Parrish St", "StationID": "16560", "lat": 39.97147, "lon": -75.179462}, "geometry": {"type": "Point", "coordinates": [-75.179462, 39.97147]}}, {"id": "64", "type": "Feature", "properties": {"Modal": "Bus", "OBJECTID": 5166, "Route": "32", "Station": "26th St & Brown St", "StationID": "16561", "lat": 39.970372, "lon": -75.179702}, "geometry": {"type": "Point", "coordinates": [-75.179702, 39.970372]}}, {"id": "65", "type": "Feature", "properties": {"Modal": "Bus", "OBJECTID": 5167, "Route": "32", "Station": "26th St & Aspen St", "StationID": "16562", "lat": 39.969159, "lon": -75.179978}, "geometry": {"type": "Point", "coordinates": [-75.179978, 39.969159]}}, {"id": "66", "type": "Feature", "properties": {"Modal": "Bus", "OBJECTID": 1092, "Route": "15", "Station": "Poplar St & 25th St", "StationID": "21014", "lat": 39.972492, "lon": -75.177403}, "geometry": {"type": "Point", "coordinates": [-75.177403, 39.972492]}}, {"id": "67", "type": "Feature", "properties": {"Modal": "Bus", "OBJECTID": 1093, "Route": "15", "Station": "Girard Av & 26th St", "StationID": "21016", "lat": 39.973976, "lon": -75.178733}, "geometry": {"type": "Point", "coordinates": [-75.178733, 39.973976]}}, {"id": "68", "type": "Feature", "properties": {"Modal": "Bus", "OBJECTID": 1094, "Route": "15", "Station": "Girard Av & 27th St", "StationID": "21017", "lat": 39.974202, "lon": -75.18028}, "geometry": {"type": "Point", "coordinates": [-75.18028, 39.974202]}}, {"id": "69", "type": "Feature", "properties": {"Modal": "Bus", "OBJECTID": 1095, "Route": "15", "Station": "Girard Av & 28th St", "StationID": "21018", "lat": 39.974375, "lon": -75.181756}, "geometry": {"type": "Point", "coordinates": [-75.181756, 39.974375]}}, {"id": "70", "type": "Feature", "properties": {"Modal": "Bus", "OBJECTID": 1096, "Route": "15", "Station": "Girard Av & 29th St", "StationID": "21019", "lat": 39.974574, "lon": -75.183361}, "geometry": {"type": "Point", "coordinates": [-75.183361, 39.974574]}}, {"id": "71", "type": "Feature", "properties": {"Modal": "Bus", "OBJECTID": 1097, "Route": "15", "Station": "Girard Av & 31st St", "StationID": "21021", "lat": 39.975009, "lon": -75.186549}, "geometry": {"type": "Point", "coordinates": [-75.186549, 39.975009]}}, {"id": "72", "type": "Feature", "properties": {"Modal": "Bus", "OBJECTID": 1007, "Route": "15", "Station": "Girard Av & 31st St", "StationID": "21067", "lat": 39.974938, "lon": -75.18675}, "geometry": {"type": "Point", "coordinates": [-75.18675, 39.974938]}}, {"id": "73", "type": "Feature", "properties": {"Modal": "Bus", "OBJECTID": 1008, "Route": "15", "Station": "Girard Av & 29th St", "StationID": "21068", "lat": 39.974486, "lon": -75.183622}, "geometry": {"type": "Point", "coordinates": [-75.183622, 39.974486]}}, {"id": "74", "type": "Feature", "properties": {"Modal": "Bus", "OBJECTID": 1009, "Route": "15", "Station": "Girard Av & 28th St", "StationID": "21069", "lat": 39.974286, "lon": -75.181969}, "geometry": {"type": "Point", "coordinates": [-75.181969, 39.974286]}}, {"id": "75", "type": "Feature", "properties": {"Modal": "Bus", "OBJECTID": 1010, "Route": "15", "Station": "Girard Av & 27th St", "StationID": "21070", "lat": 39.974113, "lon": -75.180504}, "geometry": {"type": "Point", "coordinates": [-75.180504, 39.974113]}}, {"id": "76", "type": "Feature", "properties": {"Modal": "Bus", "OBJECTID": 1011, "Route": "15", "Station": "Girard Av & 26th St", "StationID": "21071", "lat": 39.973896, "lon": -75.178946}, "geometry": {"type": "Point", "coordinates": [-75.178946, 39.973896]}}, {"id": "77", "type": "Feature", "properties": {"Modal": "Bus", "OBJECTID": 1012, "Route": "15", "Station": "26th St & Poplar St", "StationID": "21072", "lat": 39.972701, "lon": -75.179198}, "geometry": {"type": "Point", "coordinates": [-75.179198, 39.972701]}}, {"id": "78", "type": "Feature", "properties": {"Modal": "Bus", "OBJECTID": 1013, "Route": "15", "Station": "Poplar St & Stillman St", "StationID": "21073", "lat": 39.97244, "lon": -75.178171}, "geometry": {"type": "Point", "coordinates": [-75.178171, 39.97244]}}, {"id": "79", "type": "Feature", "properties": {"Modal": "Bus", "OBJECTID": 1014, "Route": "15", "Station": "College Av & 24th St - FS", "StationID": "21075", "lat": 39.97239, "lon": -75.175384}, "geometry": {"type": "Point", "coordinates": [-75.175384, 39.97239]}}, {"id": "80", "type": "Feature", "properties": {"Modal": "Bus", "OBJECTID": 2105, "Route": "7", "Station": "27th St & Thompson St", "StationID": "25170", "lat": 39.975799, "lon": -75.180026}, "geometry": {"type": "Point", "coordinates": [-75.180026, 39.975799]}}, {"id": "81", "type": "Feature", "properties": {"Modal": "Bus", "OBJECTID": 2106, "Route": "7", "Station": "Master St & 27th St - FS", "StationID": "25172", "lat": 39.977263, "lon": -75.179962}, "geometry": {"type": "Point", "coordinates": [-75.179962, 39.977263]}}, {"id": "82", "type": "Feature", "properties": {"Modal": "Bus", "OBJECTID": 2107, "Route": "7", "Station": "Master St & 28th St", "StationID": "25174", "lat": 39.977408, "lon": -75.181084}, "geometry": {"type": "Point", "coordinates": [-75.181084, 39.977408]}}, {"id": "83", "type": "Feature", "properties": {"Modal": "Bus", "OBJECTID": 2108, "Route": "7", "Station": "Master St & 29th St", "StationID": "25175", "lat": 39.977607, "lon": -75.182689}, "geometry": {"type": "Point", "coordinates": [-75.182689, 39.977607]}}, {"id": "84", "type": "Feature", "properties": {"Modal": "Bus", "OBJECTID": 1091, "Route": "15", "Station": "Girard Av & 24th St", "StationID": "30791", "lat": 39.972453, "lon": -75.175844}, "geometry": {"type": "Point", "coordinates": [-75.175844, 39.972453]}}, {"id": "85", "type": "Feature", "properties": {"Modal": "Bus", "OBJECTID": 5160, "Route": "32", "Station": "Poplar St & 30th St", "StationID": "31117", "lat": 39.973356, "lon": -75.185468}, "geometry": {"type": "Point", "coordinates": [-75.185468, 39.973356]}}, {"id": "86", "type": "Feature", "properties": {"Modal": "Bus", "OBJECTID": 7257, "Route": "49", "Station": "Pennsylvania Av & 27th St", "StationID": "32489", "lat": 39.969198, "lon": -75.181714}, "geometry": {"type": "Point", "coordinates": [-75.181714, 39.969198]}}, {"id": "87", "type": "Feature", "properties": {"Modal": "Bus", "OBJECTID": 7219, "Route": "49", "Station": "Pennsylvania Av & 29th St", "StationID": "32504", "lat": 39.971247, "lon": -75.184023}, "geometry": {"type": "Point", "coordinates": [-75.184023, 39.971247]}}, {"id": "88", "type": "Feature", "properties": {"Modal": "Bus", "OBJECTID": 7220, "Route": "49", "Station": "29th St & Poplar St", "StationID": "32505", "lat": 39.973093, "lon": -75.183721}, "geometry": {"type": "Point", "coordinates": [-75.183721, 39.973093]}}, {"id": "89", "type": "Feature", "properties": {"Modal": "Bike", "OBJECTID": 92, "Route": "", "Station": "31st & Girard", "StationID": "bcycle_indego_3120", "lat": 39.97522, "lon": -75.18669}, "geometry": {"type": "Point", "coordinates": [-75.18669, 39.97522]}}, {"id": "90", "type": "Feature", "properties": {"Modal": "Bike", "OBJECTID": 93, "Route": "", "Station": "27th & Girard", "StationID": "bcycle_indego_3121", "lat": 39.97414, "lon": -75.18022}, "geometry": {"type": "Point", "coordinates": [-75.18022, 39.97414]}}]};
+
+            const iconSubway = L.divIcon({
+                html: '<i class="fas fa-subway fa-2x"></i>',
+                iconSize: [20, 20],
+                className: 'icon-subway'
+            });
+
+            const iconBikePrimary = L.divIcon({
+                html: '<i class="fas fa-bicycle fa-6x"></i>',
+                iconSize: [20, 20],
+                className: 'icon-bike-primary'
+            });
+
+            const iconBike = L.divIcon({
+                html: '<i class="fas fa-bicycle fa-4x"></i>',
+                iconSize: [20, 20],
+                className: 'icon-bike'
+            });
+
+            const iconBus = L.divIcon({
+                html: '<i class="fas fa-bus fa-2x"></i>',
+                iconSize: [20, 20],
+                className: 'icon-bus'
+            });
+
+        </script>
+          <!-- Leaflet stylesheet is below -->
+        <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css"
+        integrity="sha512-xodZBNTC5n17Xt2atTPuE1HxjVMSvLVW9ocqUKLsCC5CXdbqCmblAshOMAS6/keqq/sMZMZ19scR4PsZChSR7A=="
+        crossorigin=""/>
+        <!-- C3 stylesheet is below -->
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/c3/0.7.20/c3.css"
+        integrity="sha512-GQSxWe9Cj4o4EduO7zO9HjULmD4olIjiQqZ7VJuwBxZlkWaUFGCxRkn39jYnD2xZBtEilm0m4WBG7YEmQuMs5Q=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+  <!-- Stylesheet for the report's custom layout is below -->
+  <style>
+    body {
+      font-family: sans;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      grid-template-rows: auto auto 1fr 1fr;
+      grid-template-areas:
+        "header header"
+        "map list"
+        "map chart1"
+        "map chart2";
+      column-gap: 1rem;
+      row-gap: 1rem;
+    }
+    h1 {
+      grid-area: header;
+    }
+    #stationmap {
+      grid-area: map;
+      height: 100%;
+    }
+
+    .icon-subway{
+        color: #f14728;
+        -webkit-text-stroke: 1px #edb9b0;
+    }
+    .icon-subway:hover{
+        color: #f14728;
+        -webkit-text-stroke: 1px #edb9b0;
+    }
+
+    .icon-bus{
+        color: #1f4fa3;
+        -webkit-text-stroke: 1px #98b6eb;
+    }
+    .icon-bus:hover{
+        color: #1f4fa3;
+        -webkit-text-stroke: 1px #98b6eb;
+    }
+
+    .icon-bike{
+        color: #36b4e5;
+        -webkit-text-stroke: 1px #FFF;
+    }
+    .icon-bike:hover{
+        color: #0082cb;
+        -webkit-text-stroke: 1px #FFF;
+    }
+    .icon-bike-primary{
+        color: #36b4e5;
+        -webkit-text-stroke: 2px #000;
+    }
+
+  </style>
+    </head>
+    <body>
+        <h1><a href='index.html'>All stations</a> >> 27th & Girard</h1>
+
+  <div id="stationmap"></div>
+  <div>
+    <p>Info about 27th & Girard.</p>
+</div>
+
+
+          <script>
+    var initialCenter = [39.97414, -75.18022];  // <-- Latitude, Longitude
+    var initialZoom = 16;
+    var stationmap = L.map('stationmap', {
+      zoomSnap: 0,
+      zoomDelta: 0.25
+    }).setView(initialCenter, initialZoom);
+
+    var baseLayer = new L.tileLayer('https://stamen-tiles-{s}.a.ssl.fastly.net/toner-background/{z}/{x}/{y}{r}.{ext}', {
+    	attribution: 'Map tiles by <a href="http://stamen.com">Stamen Design</a>, <a href="http://creativecommons.org/licenses/by/3.0">CC BY 3.0</a> &mdash; Map data &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
+    	subdomains: 'abcd',
+    	minZoom: 0,
+    	maxZoom: 20,
+    	ext: 'png'
+    });
+    baseLayer.addTo(stationmap);
+
+    mapdata.features.forEach( function(location){
+      console.log(location.properties.Modal);
+      console.log(location);
+      switch (location.properties.Modal) {
+        case 'Subway':
+          iconToUse = iconSubway;
+          break;
+        case 'Bus':
+          iconToUse = iconBus;
+          break;
+        case 'Bike':
+          iconToUse = iconBike;
+          break;
+      }
+      if(location.properties.lat != 39.97414 && location.properties.lon != -75.18022) {
+        var marker = L.marker([location.properties.lat, location.properties.lon], {icon: iconToUse}).addTo(stationmap);
+        marker.bindPopup(
+            location.properties.Station
+        );
+      } else {
+        var indego_marker = L.marker([39.97414, -75.18022], {icon: iconBikePrimary}).addTo(stationmap);
+      }
+    });
+  </script>
+
+    </body>
+</html>

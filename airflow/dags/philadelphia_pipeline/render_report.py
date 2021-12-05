@@ -4,8 +4,8 @@ from pathlib import Path
 from jinja2 import Environment, FileSystemLoader
 from pipeline_tools import upload_to_gcs
 
-output_root = Path(__file__).parent.parent.parent.parent / 'output'
-template_root = Path(__file__).parent.parent.parent.parent / 'templates'
+output_root = Path(__file__).parent.parent / 'output'
+template_root = Path(__file__).parent.parent / 'templates'
 
 def render_index(template, mapdata_gdf, counts):
     output = template.render(

@@ -1,0 +1,163 @@
+
+<html>
+    <head>
+        <title>Jawnt: SEPTA and Indego Connections</title>
+        <!-- Leaflet JavaScript library is below -->
+        <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"
+        integrity="sha512-XQoYMqMTK8LvdxXYG3nZ448hOEQiglfqkJs1NOQV44cWnUrBc8PkAOcXy20w0vlaXaVUearIOBhiXZ5V3ynxwA=="
+        crossorigin=""></script>
+        <!-- D3 JavaScript library is below -->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/5.16.0/d3.min.js"
+        integrity="sha512-FHsFVKQ/T1KWJDGSbrUhTJyS1ph3eRrxI228ND0EGaEp6v4a/vGwPWd3Dtd/+9cI7ccofZvl/wulICEurHN1pg=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+        <!-- C3 JavaScript library is below -->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/c3/0.7.20/c3.js"
+        integrity="sha512-11Z4MD9csmC3vH8Vd0eIPJBQu3uEHEqeznWEt3sLBCdQx3zm9mJbBcJH8WTcyGY9EXDE81BNpjE2vLosPK8cFQ=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+        <script src="https://kit.fontawesome.com/457a87d66e.js" crossorigin="anonymous"></script>
+        <script type='text/javascript'>
+            var mapdata = {"type": "FeatureCollection", "features": [{"id": "0", "type": "Feature", "properties": {"Modal": "Bus", "OBJECTID": 107, "Route": "21", "Station": "Chestnut St & 50th St", "StationID": "19122", "lat": 39.957936, "lon": -75.22134}, "geometry": {"type": "Point", "coordinates": [-75.22134, 39.957936]}}, {"id": "1", "type": "Feature", "properties": {"Modal": "Bus", "OBJECTID": 110, "Route": "21", "Station": "Chestnut St & 47th St", "StationID": "19123", "lat": 39.957212, "lon": -75.215426}, "geometry": {"type": "Point", "coordinates": [-75.215426, 39.957212]}}, {"id": "2", "type": "Feature", "properties": {"Modal": "Bus", "OBJECTID": 112, "Route": "21", "Station": "Chestnut St & 46th St", "StationID": "19124", "lat": 39.956958, "lon": -75.213419}, "geometry": {"type": "Point", "coordinates": [-75.213419, 39.956958]}}, {"id": "3", "type": "Feature", "properties": {"Modal": "Bus", "OBJECTID": 5337, "Route": "34", "Station": "Baltimore Av & 47th St", "StationID": "20871", "lat": 39.94854, "lon": -75.217188}, "geometry": {"type": "Point", "coordinates": [-75.217188, 39.94854]}}, {"id": "4", "type": "Feature", "properties": {"Modal": "Bus", "OBJECTID": 5370, "Route": "34", "Station": "Baltimore Av & 47th St", "StationID": "20884", "lat": 39.948691, "lon": -75.21701}, "geometry": {"type": "Point", "coordinates": [-75.21701, 39.948691]}}, {"id": "5", "type": "Feature", "properties": {"Modal": "Bus", "OBJECTID": 5371, "Route": "34", "Station": "Baltimore Av & 48th St", "StationID": "20885", "lat": 39.948472, "lon": -75.219101}, "geometry": {"type": "Point", "coordinates": [-75.219101, 39.948472]}}, {"id": "6", "type": "Feature", "properties": {"Modal": "Bus", "OBJECTID": 204, "Route": "21", "Station": "Walnut St & 45th St", "StationID": "21369", "lat": 39.955268, "lon": -75.211546}, "geometry": {"type": "Point", "coordinates": [-75.211546, 39.955268]}}, {"id": "7", "type": "Feature", "properties": {"Modal": "Bus", "OBJECTID": 205, "Route": "21", "Station": "Walnut St & 46th St", "StationID": "21370", "lat": 39.955513, "lon": -75.213529}, "geometry": {"type": "Point", "coordinates": [-75.213529, 39.955513]}}, {"id": "8", "type": "Feature", "properties": {"Modal": "Bus", "OBJECTID": 207, "Route": "21", "Station": "Walnut St & 47th St", "StationID": "21371", "lat": 39.955757, "lon": -75.215513}, "geometry": {"type": "Point", "coordinates": [-75.215513, 39.955757]}}, {"id": "9", "type": "Feature", "properties": {"Modal": "Bus", "OBJECTID": 208, "Route": "21", "Station": "Walnut St & 48th St", "StationID": "21372", "lat": 39.95601, "lon": -75.217531}, "geometry": {"type": "Point", "coordinates": [-75.217531, 39.95601]}}, {"id": "10", "type": "Feature", "properties": {"Modal": "Bus", "OBJECTID": 209, "Route": "21", "Station": "Walnut St & 49th St", "StationID": "21374", "lat": 39.956255, "lon": -75.219491}, "geometry": {"type": "Point", "coordinates": [-75.219491, 39.956255]}}, {"id": "11", "type": "Feature", "properties": {"Modal": "Bus", "OBJECTID": 210, "Route": "21", "Station": "Walnut St & 50th St", "StationID": "21375", "lat": 39.956508, "lon": -75.221463}, "geometry": {"type": "Point", "coordinates": [-75.221463, 39.956508]}}, {"id": "12", "type": "Feature", "properties": {"Modal": "Bus", "OBJECTID": 211, "Route": "21", "Station": "Walnut St & 51st St", "StationID": "21376", "lat": 39.956743, "lon": -75.223434}, "geometry": {"type": "Point", "coordinates": [-75.223434, 39.956743]}}, {"id": "13", "type": "Feature", "properties": {"Modal": "Bus", "OBJECTID": 9374, "Route": "64", "Station": "Farragut St & Chestnut St", "StationID": "21637", "lat": 39.957263, "lon": -75.214363}, "geometry": {"type": "Point", "coordinates": [-75.214363, 39.957263]}}, {"id": "14", "type": "Feature", "properties": {"Modal": "Bus", "OBJECTID": 6221, "Route": "42", "Station": "Spruce St & 51st St", "StationID": "22118", "lat": 39.95429, "lon": -75.224126}, "geometry": {"type": "Point", "coordinates": [-75.224126, 39.95429]}}, {"id": "15", "type": "Feature", "properties": {"Modal": "Bus", "OBJECTID": 6222, "Route": "42", "Station": "Spruce St & 50th St", "StationID": "22119", "lat": 39.954037, "lon": -75.222167}, "geometry": {"type": "Point", "coordinates": [-75.222167, 39.954037]}}, {"id": "16", "type": "Feature", "properties": {"Modal": "Bus", "OBJECTID": 6223, "Route": "42", "Station": "Spruce St & 49th St", "StationID": "22120", "lat": 39.953793, "lon": -75.220195}, "geometry": {"type": "Point", "coordinates": [-75.220195, 39.953793]}}, {"id": "17", "type": "Feature", "properties": {"Modal": "Bus", "OBJECTID": 6224, "Route": "42", "Station": "Spruce St & 48th St", "StationID": "22121", "lat": 39.953566, "lon": -75.218247}, "geometry": {"type": "Point", "coordinates": [-75.218247, 39.953566]}}, {"id": "18", "type": "Feature", "properties": {"Modal": "Bus", "OBJECTID": 6225, "Route": "42", "Station": "Spruce St & 47th St", "StationID": "22122", "lat": 39.953313, "lon": -75.216252}, "geometry": {"type": "Point", "coordinates": [-75.216252, 39.953313]}}, {"id": "19", "type": "Feature", "properties": {"Modal": "Bus", "OBJECTID": 6230, "Route": "42", "Station": "Spruce St & 45th St", "StationID": "22123", "lat": 39.952815, "lon": -75.212286}, "geometry": {"type": "Point", "coordinates": [-75.212286, 39.952815]}}, {"id": "20", "type": "Feature", "properties": {"Modal": "Bus", "OBJECTID": 6329, "Route": "42", "Station": "Spruce St & 45th St", "StationID": "22158", "lat": 39.952913, "lon": -75.212061}, "geometry": {"type": "Point", "coordinates": [-75.212061, 39.952913]}}, {"id": "21", "type": "Feature", "properties": {"Modal": "Bus", "OBJECTID": 6330, "Route": "42", "Station": "Spruce St & 46th St", "StationID": "22160", "lat": 39.953166, "lon": -75.214044}, "geometry": {"type": "Point", "coordinates": [-75.214044, 39.953166]}}, {"id": "22", "type": "Feature", "properties": {"Modal": "Bus", "OBJECTID": 6335, "Route": "42", "Station": "Spruce St & 51st St", "StationID": "22161", "lat": 39.954388, "lon": -75.223902}, "geometry": {"type": "Point", "coordinates": [-75.223902, 39.954388]}}, {"id": "23", "type": "Feature", "properties": {"Modal": "Bus", "OBJECTID": 6331, "Route": "42", "Station": "Spruce St & 47th St", "StationID": "22190", "lat": 39.953411, "lon": -75.216028}, "geometry": {"type": "Point", "coordinates": [-75.216028, 39.953411]}}, {"id": "24", "type": "Feature", "properties": {"Modal": "Bus", "OBJECTID": 6332, "Route": "42", "Station": "Spruce St & 48th St", "StationID": "22191", "lat": 39.953664, "lon": -75.218023}, "geometry": {"type": "Point", "coordinates": [-75.218023, 39.953664]}}, {"id": "25", "type": "Feature", "properties": {"Modal": "Bus", "OBJECTID": 6333, "Route": "42", "Station": "Spruce St & 49th St", "StationID": "22192", "lat": 39.95389, "lon": -75.21997}, "geometry": {"type": "Point", "coordinates": [-75.21997, 39.95389]}}, {"id": "26", "type": "Feature", "properties": {"Modal": "Bus", "OBJECTID": 6334, "Route": "42", "Station": "Spruce St & 50th St", "StationID": "22193", "lat": 39.954135, "lon": -75.221942}, "geometry": {"type": "Point", "coordinates": [-75.221942, 39.954135]}}, {"id": "27", "type": "Feature", "properties": {"Modal": "Bus", "OBJECTID": 9377, "Route": "64", "Station": "48th St & Locust St", "StationID": "24624", "lat": 39.954931, "lon": -75.21796}, "geometry": {"type": "Point", "coordinates": [-75.21796, 39.954931]}}, {"id": "28", "type": "Feature", "properties": {"Modal": "Bus", "OBJECTID": 9378, "Route": "64", "Station": "48th St & Spruce St", "StationID": "24625", "lat": 39.953718, "lon": -75.218211}, "geometry": {"type": "Point", "coordinates": [-75.218211, 39.953718]}}, {"id": "29", "type": "Feature", "properties": {"Modal": "Bus", "OBJECTID": 9379, "Route": "64", "Station": "48th St & Pine St", "StationID": "24626", "lat": 39.952647, "lon": -75.218439}, "geometry": {"type": "Point", "coordinates": [-75.218439, 39.952647]}}, {"id": "30", "type": "Feature", "properties": {"Modal": "Bus", "OBJECTID": 9381, "Route": "64", "Station": "48th St & Larchwood Av", "StationID": "24627", "lat": 39.951139, "lon": -75.21875}, "geometry": {"type": "Point", "coordinates": [-75.21875, 39.951139]}}, {"id": "31", "type": "Feature", "properties": {"Modal": "Bus", "OBJECTID": 9382, "Route": "64", "Station": "48th St & Hazel Av", "StationID": "24628", "lat": 39.950372, "lon": -75.218906}, "geometry": {"type": "Point", "coordinates": [-75.218906, 39.950372]}}, {"id": "32", "type": "Feature", "properties": {"Modal": "Bus", "OBJECTID": 9383, "Route": "64", "Station": "48th St & Cedar Av", "StationID": "24629", "lat": 39.949578, "lon": -75.219074}, "geometry": {"type": "Point", "coordinates": [-75.219074, 39.949578]}}, {"id": "33", "type": "Feature", "properties": {"Modal": "Bus", "OBJECTID": 9384, "Route": "64", "Station": "48th St & Baltimore Av", "StationID": "24630", "lat": 39.948508, "lon": -75.219278}, "geometry": {"type": "Point", "coordinates": [-75.219278, 39.948508]}}, {"id": "34", "type": "Feature", "properties": {"Modal": "Bus", "OBJECTID": 9496, "Route": "64", "Station": "48th St & Baltimore Av - FS", "StationID": "24852", "lat": 39.948588, "lon": -75.219124}, "geometry": {"type": "Point", "coordinates": [-75.219124, 39.948588]}}, {"id": "35", "type": "Feature", "properties": {"Modal": "Bus", "OBJECTID": 9497, "Route": "64", "Station": "48th St & Cedar Av", "StationID": "24853", "lat": 39.949408, "lon": -75.218944}, "geometry": {"type": "Point", "coordinates": [-75.218944, 39.949408]}}, {"id": "36", "type": "Feature", "properties": {"Modal": "Bus", "OBJECTID": 9498, "Route": "64", "Station": "48th St & Hazel Av", "StationID": "24854", "lat": 39.950202, "lon": -75.218777}, "geometry": {"type": "Point", "coordinates": [-75.218777, 39.950202]}}, {"id": "37", "type": "Feature", "properties": {"Modal": "Bus", "OBJECTID": 9499, "Route": "64", "Station": "48th St & Larchwood Av", "StationID": "24855", "lat": 39.95097, "lon": -75.218621}, "geometry": {"type": "Point", "coordinates": [-75.218621, 39.95097]}}, {"id": "38", "type": "Feature", "properties": {"Modal": "Bus", "OBJECTID": 9500, "Route": "64", "Station": "48th St & Pine St", "StationID": "24856", "lat": 39.952477, "lon": -75.21831}, "geometry": {"type": "Point", "coordinates": [-75.21831, 39.952477]}}, {"id": "39", "type": "Feature", "properties": {"Modal": "Bus", "OBJECTID": 9501, "Route": "64", "Station": "48th St & Spruce St", "StationID": "24857", "lat": 39.953512, "lon": -75.218094}, "geometry": {"type": "Point", "coordinates": [-75.218094, 39.953512]}}, {"id": "40", "type": "Feature", "properties": {"Modal": "Bus", "OBJECTID": 9502, "Route": "64", "Station": "48th St & Locust St", "StationID": "24858", "lat": 39.954761, "lon": -75.21783}, "geometry": {"type": "Point", "coordinates": [-75.21783, 39.954761]}}, {"id": "41", "type": "Feature", "properties": {"Modal": "Bus", "OBJECTID": 9503, "Route": "64", "Station": "48th St & Walnut St", "StationID": "24859", "lat": 39.955859, "lon": -75.217603}, "geometry": {"type": "Point", "coordinates": [-75.217603, 39.955859]}}, {"id": "42", "type": "Feature", "properties": {"Modal": "Bus", "OBJECTID": 9504, "Route": "64", "Station": "48th St & Chestnut St", "StationID": "25587", "lat": 39.957393, "lon": -75.217291}, "geometry": {"type": "Point", "coordinates": [-75.217291, 39.957393]}}, {"id": "43", "type": "Feature", "properties": {"Modal": "Bus", "OBJECTID": 6229, "Route": "42", "Station": "Spruce St & 46th St", "StationID": "26111", "lat": 39.95306, "lon": -75.214257}, "geometry": {"type": "Point", "coordinates": [-75.214257, 39.95306]}}, {"id": "44", "type": "Feature", "properties": {"Modal": "Bus", "OBJECTID": 109, "Route": "21", "Station": "Chestnut St & 48th St", "StationID": "30194", "lat": 39.957438, "lon": -75.217492}, "geometry": {"type": "Point", "coordinates": [-75.217492, 39.957438]}}, {"id": "45", "type": "Feature", "properties": {"Modal": "Bus", "OBJECTID": 108, "Route": "21", "Station": "Chestnut St & 49th St", "StationID": "30195", "lat": 39.9577, "lon": -75.219381}, "geometry": {"type": "Point", "coordinates": [-75.219381, 39.9577]}}, {"id": "46", "type": "Feature", "properties": {"Modal": "Bus", "OBJECTID": 111, "Route": "21", "Station": "Chestnut St & Farragut St", "StationID": "30633", "lat": 39.957085, "lon": -75.21441}, "geometry": {"type": "Point", "coordinates": [-75.21441, 39.957085]}}, {"id": "47", "type": "Feature", "properties": {"Modal": "Bus", "OBJECTID": 9505, "Route": "64", "Station": "Farragut St & Chestnut St - FS", "StationID": "30827", "lat": 39.957299, "lon": -75.214221}, "geometry": {"type": "Point", "coordinates": [-75.214221, 39.957299]}}, {"id": "48", "type": "Feature", "properties": {"Modal": "Bus", "OBJECTID": 9375, "Route": "64", "Station": "Farragut St & Walnut St", "StationID": "30830", "lat": 39.955729, "lon": -75.214686}, "geometry": {"type": "Point", "coordinates": [-75.214686, 39.955729]}}, {"id": "49", "type": "Feature", "properties": {"Modal": "Bus", "OBJECTID": 9376, "Route": "64", "Station": "48th St & Walnut St - FS", "StationID": "30880", "lat": 39.955823, "lon": -75.217756}, "geometry": {"type": "Point", "coordinates": [-75.217756, 39.955823]}}, {"id": "50", "type": "Feature", "properties": {"Modal": "Bus", "OBJECTID": 4900, "Route": "31", "Station": "Market St & 48th St - FS", "StationID": "31146", "lat": 39.958874, "lon": -75.216814}, "geometry": {"type": "Point", "coordinates": [-75.216814, 39.958874]}}, {"id": "51", "type": "Feature", "properties": {"Modal": "Bus", "OBJECTID": 206, "Route": "21", "Station": "Walnut St & Farragut St", "StationID": "31148", "lat": 39.95563, "lon": -75.214533}, "geometry": {"type": "Point", "coordinates": [-75.214533, 39.95563]}}, {"id": "52", "type": "Feature", "properties": {"Modal": "Bus", "OBJECTID": 9380, "Route": "64", "Station": "48th St & Osage Av", "StationID": "31787", "lat": 39.951871, "lon": -75.218607}, "geometry": {"type": "Point", "coordinates": [-75.218607, 39.951871]}}, {"id": "53", "type": "Feature", "properties": {"Modal": "Bike", "OBJECTID": 84, "Route": "", "Station": "48th & Spruce", "StationID": "bcycle_indego_3112", "lat": 39.95373, "lon": -75.21825}, "geometry": {"type": "Point", "coordinates": [-75.21825, 39.95373]}}]};
+
+            const iconSubway = L.divIcon({
+                html: '<i class="fas fa-subway fa-2x"></i>',
+                iconSize: [20, 20],
+                className: 'icon-subway'
+            });
+
+            const iconBikePrimary = L.divIcon({
+                html: '<i class="fas fa-bicycle fa-6x"></i>',
+                iconSize: [20, 20],
+                className: 'icon-bike-primary'
+            });
+
+            const iconBike = L.divIcon({
+                html: '<i class="fas fa-bicycle fa-4x"></i>',
+                iconSize: [20, 20],
+                className: 'icon-bike'
+            });
+
+            const iconBus = L.divIcon({
+                html: '<i class="fas fa-bus fa-2x"></i>',
+                iconSize: [20, 20],
+                className: 'icon-bus'
+            });
+
+        </script>
+          <!-- Leaflet stylesheet is below -->
+        <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css"
+        integrity="sha512-xodZBNTC5n17Xt2atTPuE1HxjVMSvLVW9ocqUKLsCC5CXdbqCmblAshOMAS6/keqq/sMZMZ19scR4PsZChSR7A=="
+        crossorigin=""/>
+        <!-- C3 stylesheet is below -->
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/c3/0.7.20/c3.css"
+        integrity="sha512-GQSxWe9Cj4o4EduO7zO9HjULmD4olIjiQqZ7VJuwBxZlkWaUFGCxRkn39jYnD2xZBtEilm0m4WBG7YEmQuMs5Q=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+  <!-- Stylesheet for the report's custom layout is below -->
+  <style>
+    body {
+      font-family: sans;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      grid-template-rows: auto auto 1fr 1fr;
+      grid-template-areas:
+        "header header"
+        "map list"
+        "map chart1"
+        "map chart2";
+      column-gap: 1rem;
+      row-gap: 1rem;
+    }
+    h1 {
+      grid-area: header;
+    }
+    #stationmap {
+      grid-area: map;
+      height: 100%;
+    }
+
+    .icon-subway{
+        color: #f14728;
+        -webkit-text-stroke: 1px #edb9b0;
+    }
+    .icon-subway:hover{
+        color: #f14728;
+        -webkit-text-stroke: 1px #edb9b0;
+    }
+
+    .icon-bus{
+        color: #1f4fa3;
+        -webkit-text-stroke: 1px #98b6eb;
+    }
+    .icon-bus:hover{
+        color: #1f4fa3;
+        -webkit-text-stroke: 1px #98b6eb;
+    }
+
+    .icon-bike{
+        color: #36b4e5;
+        -webkit-text-stroke: 1px #FFF;
+    }
+    .icon-bike:hover{
+        color: #0082cb;
+        -webkit-text-stroke: 1px #FFF;
+    }
+    .icon-bike-primary{
+        color: #36b4e5;
+        -webkit-text-stroke: 2px #000;
+    }
+
+  </style>
+    </head>
+    <body>
+        <h1><a href='index.html'>All stations</a> >> 48th & Spruce</h1>
+
+  <div id="stationmap"></div>
+  <div>
+    <p>Info about 48th & Spruce.</p>
+</div>
+
+
+          <script>
+    var initialCenter = [39.95373, -75.21825];  // <-- Latitude, Longitude
+    var initialZoom = 16;
+    var stationmap = L.map('stationmap', {
+      zoomSnap: 0,
+      zoomDelta: 0.25
+    }).setView(initialCenter, initialZoom);
+
+    var baseLayer = new L.tileLayer('https://stamen-tiles-{s}.a.ssl.fastly.net/toner-background/{z}/{x}/{y}{r}.{ext}', {
+    	attribution: 'Map tiles by <a href="http://stamen.com">Stamen Design</a>, <a href="http://creativecommons.org/licenses/by/3.0">CC BY 3.0</a> &mdash; Map data &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
+    	subdomains: 'abcd',
+    	minZoom: 0,
+    	maxZoom: 20,
+    	ext: 'png'
+    });
+    baseLayer.addTo(stationmap);
+
+    mapdata.features.forEach( function(location){
+      console.log(location.properties.Modal);
+      console.log(location);
+      switch (location.properties.Modal) {
+        case 'Subway':
+          iconToUse = iconSubway;
+          break;
+        case 'Bus':
+          iconToUse = iconBus;
+          break;
+        case 'Bike':
+          iconToUse = iconBike;
+          break;
+      }
+      if(location.properties.lat != 39.95373 && location.properties.lon != -75.21825) {
+        var marker = L.marker([location.properties.lat, location.properties.lon], {icon: iconToUse}).addTo(stationmap);
+        marker.bindPopup(
+            location.properties.Station
+        );
+      } else {
+        var indego_marker = L.marker([39.95373, -75.21825], {icon: iconBikePrimary}).addTo(stationmap);
+      }
+    });
+  </script>
+
+    </body>
+</html>

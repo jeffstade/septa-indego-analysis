@@ -1,0 +1,163 @@
+
+<html>
+    <head>
+        <title>Jawnt: SEPTA and Indego Connections</title>
+        <!-- Leaflet JavaScript library is below -->
+        <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"
+        integrity="sha512-XQoYMqMTK8LvdxXYG3nZ448hOEQiglfqkJs1NOQV44cWnUrBc8PkAOcXy20w0vlaXaVUearIOBhiXZ5V3ynxwA=="
+        crossorigin=""></script>
+        <!-- D3 JavaScript library is below -->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/5.16.0/d3.min.js"
+        integrity="sha512-FHsFVKQ/T1KWJDGSbrUhTJyS1ph3eRrxI228ND0EGaEp6v4a/vGwPWd3Dtd/+9cI7ccofZvl/wulICEurHN1pg=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+        <!-- C3 JavaScript library is below -->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/c3/0.7.20/c3.js"
+        integrity="sha512-11Z4MD9csmC3vH8Vd0eIPJBQu3uEHEqeznWEt3sLBCdQx3zm9mJbBcJH8WTcyGY9EXDE81BNpjE2vLosPK8cFQ=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+        <script src="https://kit.fontawesome.com/457a87d66e.js" crossorigin="anonymous"></script>
+        <script type='text/javascript'>
+            var mapdata = {"type": "FeatureCollection", "features": [{"id": "0", "type": "Feature", "properties": {"Modal": "Bus", "OBJECTID": 9481, "Route": "64", "Station": "33rd St & Wharton St", "StationID": "937", "lat": 39.937938, "lon": -75.197679}, "geometry": {"type": "Point", "coordinates": [-75.197679, 39.937938]}}, {"id": "1", "type": "Feature", "properties": {"Modal": "Bus", "OBJECTID": 9406, "Route": "64", "Station": "Grays Ferry Av & 28th St", "StationID": "14781", "lat": 39.939031, "lon": -75.190107}, "geometry": {"type": "Point", "coordinates": [-75.190107, 39.939031]}}, {"id": "2", "type": "Feature", "properties": {"Modal": "Bus", "OBJECTID": 2578, "Route": "12", "Station": "Grays Ferry Av & 28th St", "StationID": "14781", "lat": 39.939031, "lon": -75.190107}, "geometry": {"type": "Point", "coordinates": [-75.190107, 39.939031]}}, {"id": "3", "type": "Feature", "properties": {"Modal": "Bus", "OBJECTID": 4663, "Route": "29", "Station": "Dickinson St & 32nd St", "StationID": "24176", "lat": 39.935403, "lon": -75.197439}, "geometry": {"type": "Point", "coordinates": [-75.197439, 39.935403]}}, {"id": "4", "type": "Feature", "properties": {"Modal": "Bus", "OBJECTID": 4731, "Route": "29", "Station": "Tasker St & 29th St", "StationID": "24234", "lat": 39.933663, "lon": -75.192699}, "geometry": {"type": "Point", "coordinates": [-75.192699, 39.933663]}}, {"id": "5", "type": "Feature", "properties": {"Modal": "Bus", "OBJECTID": 4732, "Route": "29", "Station": "Tasker St & 30th St", "StationID": "24235", "lat": 39.933871, "lon": -75.194292}, "geometry": {"type": "Point", "coordinates": [-75.194292, 39.933871]}}, {"id": "6", "type": "Feature", "properties": {"Modal": "Bus", "OBJECTID": 4733, "Route": "29", "Station": "Tasker St & 31st St", "StationID": "24236", "lat": 39.934079, "lon": -75.195838}, "geometry": {"type": "Point", "coordinates": [-75.195838, 39.934079]}}, {"id": "7", "type": "Feature", "properties": {"Modal": "Bus", "OBJECTID": 9398, "Route": "64", "Station": "Grays Ferry Av & 35th St", "StationID": "24640", "lat": 39.939879, "lon": -75.199928}, "geometry": {"type": "Point", "coordinates": [-75.199928, 39.939879]}}, {"id": "8", "type": "Feature", "properties": {"Modal": "Bus", "OBJECTID": 2571, "Route": "12", "Station": "Grays Ferry Av & 35th St", "StationID": "24640", "lat": 39.939879, "lon": -75.199928}, "geometry": {"type": "Point", "coordinates": [-75.199928, 39.939879]}}, {"id": "9", "type": "Feature", "properties": {"Modal": "Bus", "OBJECTID": 2572, "Route": "12", "Station": "Grays Ferry Av & 34th St", "StationID": "24641", "lat": 39.939618, "lon": -75.198736}, "geometry": {"type": "Point", "coordinates": [-75.198736, 39.939618]}}, {"id": "10", "type": "Feature", "properties": {"Modal": "Bus", "OBJECTID": 9399, "Route": "64", "Station": "Grays Ferry Av & 34th St", "StationID": "24641", "lat": 39.939618, "lon": -75.198736}, "geometry": {"type": "Point", "coordinates": [-75.198736, 39.939618]}}, {"id": "11", "type": "Feature", "properties": {"Modal": "Bus", "OBJECTID": 9400, "Route": "64", "Station": "Wharton St & 33rd St", "StationID": "24642", "lat": 39.937992, "lon": -75.197868}, "geometry": {"type": "Point", "coordinates": [-75.197868, 39.937992]}}, {"id": "12", "type": "Feature", "properties": {"Modal": "Bus", "OBJECTID": 9401, "Route": "64", "Station": "Wharton St & 32nd St", "StationID": "24643", "lat": 39.937821, "lon": -75.196853}, "geometry": {"type": "Point", "coordinates": [-75.196853, 39.937821]}}, {"id": "13", "type": "Feature", "properties": {"Modal": "Bus", "OBJECTID": 9402, "Route": "64", "Station": "Wharton St & 31st St", "StationID": "24644", "lat": 39.937639, "lon": -75.195271}, "geometry": {"type": "Point", "coordinates": [-75.195271, 39.937639]}}, {"id": "14", "type": "Feature", "properties": {"Modal": "Bus", "OBJECTID": 9478, "Route": "64", "Station": "Reed St & 31st St", "StationID": "24839", "lat": 39.936524, "lon": -75.195346}, "geometry": {"type": "Point", "coordinates": [-75.195346, 39.936524]}}, {"id": "15", "type": "Feature", "properties": {"Modal": "Bus", "OBJECTID": 9479, "Route": "64", "Station": "Reed St & 32nd St", "StationID": "24840", "lat": 39.936714, "lon": -75.196927}, "geometry": {"type": "Point", "coordinates": [-75.196927, 39.936714]}}, {"id": "16", "type": "Feature", "properties": {"Modal": "Bus", "OBJECTID": 9480, "Route": "64", "Station": "Reed St & 33rd St", "StationID": "24841", "lat": 39.936877, "lon": -75.198013}, "geometry": {"type": "Point", "coordinates": [-75.198013, 39.936877]}}, {"id": "17", "type": "Feature", "properties": {"Modal": "Bus", "OBJECTID": 2573, "Route": "12", "Station": "Grays Ferry Av & 33rd St", "StationID": "25039", "lat": 39.93933, "lon": -75.197344}, "geometry": {"type": "Point", "coordinates": [-75.197344, 39.93933]}}, {"id": "18", "type": "Feature", "properties": {"Modal": "Bus", "OBJECTID": 7289, "Route": "49", "Station": "Grays Ferry Av & 33rd St", "StationID": "25039", "lat": 39.93933, "lon": -75.197344}, "geometry": {"type": "Point", "coordinates": [-75.197344, 39.93933]}}, {"id": "19", "type": "Feature", "properties": {"Modal": "Bus", "OBJECTID": 2574, "Route": "12", "Station": "Grays Ferry Av & 32rd St", "StationID": "25040", "lat": 39.939195, "lon": -75.196553}, "geometry": {"type": "Point", "coordinates": [-75.196553, 39.939195]}}, {"id": "20", "type": "Feature", "properties": {"Modal": "Bus", "OBJECTID": 2575, "Route": "12", "Station": "Grays Ferry Av & 31st St", "StationID": "25041", "lat": 39.938995, "lon": -75.194983}, "geometry": {"type": "Point", "coordinates": [-75.194983, 39.938995]}}, {"id": "21", "type": "Feature", "properties": {"Modal": "Bus", "OBJECTID": 7290, "Route": "49", "Station": "Grays Ferry Av & 31st St", "StationID": "25041", "lat": 39.938995, "lon": -75.194983}, "geometry": {"type": "Point", "coordinates": [-75.194983, 39.938995]}}, {"id": "22", "type": "Feature", "properties": {"Modal": "Bus", "OBJECTID": 2576, "Route": "12", "Station": "Grays Ferry Av & 30th St", "StationID": "25042", "lat": 39.938992, "lon": -75.193366}, "geometry": {"type": "Point", "coordinates": [-75.193366, 39.938992]}}, {"id": "23", "type": "Feature", "properties": {"Modal": "Bus", "OBJECTID": 7291, "Route": "49", "Station": "Grays Ferry Av & 30th St", "StationID": "25042", "lat": 39.938992, "lon": -75.193366}, "geometry": {"type": "Point", "coordinates": [-75.193366, 39.938992]}}, {"id": "24", "type": "Feature", "properties": {"Modal": "Bus", "OBJECTID": 2577, "Route": "12", "Station": "Grays Ferry Av & 29th St", "StationID": "25043", "lat": 39.938998, "lon": -75.191807}, "geometry": {"type": "Point", "coordinates": [-75.191807, 39.938998]}}, {"id": "25", "type": "Feature", "properties": {"Modal": "Bus", "OBJECTID": 9405, "Route": "64", "Station": "Grays Ferry Av & 29th St", "StationID": "25043", "lat": 39.938998, "lon": -75.191807}, "geometry": {"type": "Point", "coordinates": [-75.191807, 39.938998]}}, {"id": "26", "type": "Feature", "properties": {"Modal": "Bus", "OBJECTID": 7292, "Route": "49", "Station": "Grays Ferry Av & 29th St", "StationID": "25043", "lat": 39.938998, "lon": -75.191807}, "geometry": {"type": "Point", "coordinates": [-75.191807, 39.938998]}}, {"id": "27", "type": "Feature", "properties": {"Modal": "Bus", "OBJECTID": 2651, "Route": "12", "Station": "Grays Ferry Av & 28th St", "StationID": "25105", "lat": 39.939325, "lon": -75.189811}, "geometry": {"type": "Point", "coordinates": [-75.189811, 39.939325]}}, {"id": "28", "type": "Feature", "properties": {"Modal": "Bus", "OBJECTID": 9473, "Route": "64", "Station": "Grays Ferry Av & 28th St", "StationID": "25105", "lat": 39.939325, "lon": -75.189811}, "geometry": {"type": "Point", "coordinates": [-75.189811, 39.939325]}}, {"id": "29", "type": "Feature", "properties": {"Modal": "Bus", "OBJECTID": 2652, "Route": "12", "Station": "Grays Ferry Av & 29th St", "StationID": "25106", "lat": 39.93923, "lon": -75.191559}, "geometry": {"type": "Point", "coordinates": [-75.191559, 39.93923]}}, {"id": "30", "type": "Feature", "properties": {"Modal": "Bus", "OBJECTID": 2653, "Route": "12", "Station": "Grays Ferry Av & 30th St", "StationID": "25107", "lat": 39.939224, "lon": -75.193188}, "geometry": {"type": "Point", "coordinates": [-75.193188, 39.939224]}}, {"id": "31", "type": "Feature", "properties": {"Modal": "Bus", "OBJECTID": 2654, "Route": "12", "Station": "Grays Ferry Av & 31st St", "StationID": "25108", "lat": 39.939245, "lon": -75.194794}, "geometry": {"type": "Point", "coordinates": [-75.194794, 39.939245]}}, {"id": "32", "type": "Feature", "properties": {"Modal": "Bus", "OBJECTID": 7184, "Route": "49", "Station": "Grays Ferry Av & 31st St", "StationID": "25108", "lat": 39.939245, "lon": -75.194794}, "geometry": {"type": "Point", "coordinates": [-75.194794, 39.939245]}}, {"id": "33", "type": "Feature", "properties": {"Modal": "Bus", "OBJECTID": 2655, "Route": "12", "Station": "Grays Ferry Av & 32nd St", "StationID": "25109", "lat": 39.939373, "lon": -75.196364}, "geometry": {"type": "Point", "coordinates": [-75.196364, 39.939373]}}, {"id": "34", "type": "Feature", "properties": {"Modal": "Bus", "OBJECTID": 7185, "Route": "49", "Station": "Grays Ferry Av & 32nd St", "StationID": "25109", "lat": 39.939373, "lon": -75.196364}, "geometry": {"type": "Point", "coordinates": [-75.196364, 39.939373]}}, {"id": "35", "type": "Feature", "properties": {"Modal": "Bus", "OBJECTID": 7186, "Route": "49", "Station": "Grays Ferry Av & 33rd St - FS", "StationID": "25110", "lat": 39.939544, "lon": -75.197201}, "geometry": {"type": "Point", "coordinates": [-75.197201, 39.939544]}}, {"id": "36", "type": "Feature", "properties": {"Modal": "Bus", "OBJECTID": 2656, "Route": "12", "Station": "Grays Ferry Av & 33rd St - FS", "StationID": "25110", "lat": 39.939544, "lon": -75.197201}, "geometry": {"type": "Point", "coordinates": [-75.197201, 39.939544]}}, {"id": "37", "type": "Feature", "properties": {"Modal": "Bus", "OBJECTID": 2579, "Route": "12", "Station": "Grays Ferry Av & 27th St", "StationID": "25915", "lat": 39.939697, "lon": -75.188464}, "geometry": {"type": "Point", "coordinates": [-75.188464, 39.939697]}}, {"id": "38", "type": "Feature", "properties": {"Modal": "Bus", "OBJECTID": 9407, "Route": "64", "Station": "Grays Ferry Av & 27th St", "StationID": "25915", "lat": 39.939697, "lon": -75.188464}, "geometry": {"type": "Point", "coordinates": [-75.188464, 39.939697]}}, {"id": "39", "type": "Feature", "properties": {"Modal": "Bus", "OBJECTID": 9403, "Route": "64", "Station": "Wharton St & 30th St", "StationID": "25920", "lat": 39.93744, "lon": -75.193713}, "geometry": {"type": "Point", "coordinates": [-75.193713, 39.93744]}}, {"id": "40", "type": "Feature", "properties": {"Modal": "Bus", "OBJECTID": 9404, "Route": "64", "Station": "30th St & Grays Ferry Av", "StationID": "25921", "lat": 39.938938, "lon": -75.193236}, "geometry": {"type": "Point", "coordinates": [-75.193236, 39.938938]}}, {"id": "41", "type": "Feature", "properties": {"Modal": "Bus", "OBJECTID": 7183, "Route": "49", "Station": "30th St & Grays Ferry Av", "StationID": "25921", "lat": 39.938938, "lon": -75.193236}, "geometry": {"type": "Point", "coordinates": [-75.193236, 39.938938]}}, {"id": "42", "type": "Feature", "properties": {"Modal": "Bus", "OBJECTID": 2657, "Route": "12", "Station": "Grays Ferry Av & 35th St", "StationID": "30283", "lat": 39.940019, "lon": -75.199595}, "geometry": {"type": "Point", "coordinates": [-75.199595, 39.940019]}}, {"id": "43", "type": "Feature", "properties": {"Modal": "Bus", "OBJECTID": 9483, "Route": "64", "Station": "Grays Ferry Av & 35th St", "StationID": "30283", "lat": 39.940019, "lon": -75.199595}, "geometry": {"type": "Point", "coordinates": [-75.199595, 39.940019]}}, {"id": "44", "type": "Feature", "properties": {"Modal": "Bus", "OBJECTID": 9472, "Route": "64", "Station": "Grays Ferry Av & Peltz St", "StationID": "30366", "lat": 39.940205, "lon": -75.188049}, "geometry": {"type": "Point", "coordinates": [-75.188049, 39.940205]}}, {"id": "45", "type": "Feature", "properties": {"Modal": "Bus", "OBJECTID": 2650, "Route": "12", "Station": "Grays Ferry Av & Peltz St", "StationID": "30366", "lat": 39.940205, "lon": -75.188049}, "geometry": {"type": "Point", "coordinates": [-75.188049, 39.940205]}}, {"id": "46", "type": "Feature", "properties": {"Modal": "Bus", "OBJECTID": 9474, "Route": "64", "Station": "29th St & Oakford St", "StationID": "30367", "lat": 39.938472, "lon": -75.191868}, "geometry": {"type": "Point", "coordinates": [-75.191868, 39.938472]}}, {"id": "47", "type": "Feature", "properties": {"Modal": "Bus", "OBJECTID": 9476, "Route": "64", "Station": "29th St & Reed St", "StationID": "30368", "lat": 39.936188, "lon": -75.19236}, "geometry": {"type": "Point", "coordinates": [-75.19236, 39.936188]}}, {"id": "48", "type": "Feature", "properties": {"Modal": "Bus", "OBJECTID": 7294, "Route": "49", "Station": "29th St & Reed St", "StationID": "30368", "lat": 39.936188, "lon": -75.19236}, "geometry": {"type": "Point", "coordinates": [-75.19236, 39.936188]}}, {"id": "49", "type": "Feature", "properties": {"Modal": "Bus", "OBJECTID": 9475, "Route": "64", "Station": "29th St & Wharton St", "StationID": "30369", "lat": 39.937392, "lon": -75.19212}, "geometry": {"type": "Point", "coordinates": [-75.19212, 39.937392]}}, {"id": "50", "type": "Feature", "properties": {"Modal": "Bus", "OBJECTID": 7293, "Route": "49", "Station": "29th St & Wharton St", "StationID": "30369", "lat": 39.937392, "lon": -75.19212}, "geometry": {"type": "Point", "coordinates": [-75.19212, 39.937392]}}, {"id": "51", "type": "Feature", "properties": {"Modal": "Bus", "OBJECTID": 9477, "Route": "64", "Station": "Reed St & 30th St", "StationID": "30370", "lat": 39.936324, "lon": -75.193741}, "geometry": {"type": "Point", "coordinates": [-75.193741, 39.936324]}}, {"id": "52", "type": "Feature", "properties": {"Modal": "Bus", "OBJECTID": 9482, "Route": "64", "Station": "33rd St & Grays Ferry Av", "StationID": "32276", "lat": 39.939258, "lon": -75.197202}, "geometry": {"type": "Point", "coordinates": [-75.197202, 39.939258]}}, {"id": "53", "type": "Feature", "properties": {"Modal": "Bus", "OBJECTID": 7295, "Route": "49", "Station": "29th St & Tasker St", "StationID": "32485", "lat": 39.933735, "lon": -75.192852}, "geometry": {"type": "Point", "coordinates": [-75.192852, 39.933735]}}, {"id": "54", "type": "Feature", "properties": {"Modal": "Bus", "OBJECTID": 7181, "Route": "49", "Station": "30th St & Reed St", "StationID": "32507", "lat": 39.936173, "lon": -75.193824}, "geometry": {"type": "Point", "coordinates": [-75.193824, 39.936173]}}, {"id": "55", "type": "Feature", "properties": {"Modal": "Bus", "OBJECTID": 7182, "Route": "49", "Station": "30th St & Wharton St", "StationID": "32509", "lat": 39.937386, "lon": -75.193572}, "geometry": {"type": "Point", "coordinates": [-75.193572, 39.937386]}}, {"id": "56", "type": "Feature", "properties": {"Modal": "Bus", "OBJECTID": 7180, "Route": "49", "Station": "30th St & Tasker St", "StationID": "32514", "lat": 39.933711, "lon": -75.194363}, "geometry": {"type": "Point", "coordinates": [-75.194363, 39.933711]}}, {"id": "57", "type": "Feature", "properties": {"Modal": "Bike", "OBJECTID": 158, "Route": "", "Station": "29th & Tasker", "StationID": "bcycle_indego_3251", "lat": 39.93366, "lon": -75.19319}, "geometry": {"type": "Point", "coordinates": [-75.19319, 39.93366]}}, {"id": "58", "type": "Feature", "properties": {"Modal": "Bike", "OBJECTID": 159, "Route": "", "Station": "30th & Oakford", "StationID": "bcycle_indego_3252", "lat": 39.93882, "lon": -75.19324}, "geometry": {"type": "Point", "coordinates": [-75.19324, 39.93882]}}]};
+
+            const iconSubway = L.divIcon({
+                html: '<i class="fas fa-subway fa-2x"></i>',
+                iconSize: [20, 20],
+                className: 'icon-subway'
+            });
+
+            const iconBikePrimary = L.divIcon({
+                html: '<i class="fas fa-bicycle fa-6x"></i>',
+                iconSize: [20, 20],
+                className: 'icon-bike-primary'
+            });
+
+            const iconBike = L.divIcon({
+                html: '<i class="fas fa-bicycle fa-4x"></i>',
+                iconSize: [20, 20],
+                className: 'icon-bike'
+            });
+
+            const iconBus = L.divIcon({
+                html: '<i class="fas fa-bus fa-2x"></i>',
+                iconSize: [20, 20],
+                className: 'icon-bus'
+            });
+
+        </script>
+          <!-- Leaflet stylesheet is below -->
+        <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css"
+        integrity="sha512-xodZBNTC5n17Xt2atTPuE1HxjVMSvLVW9ocqUKLsCC5CXdbqCmblAshOMAS6/keqq/sMZMZ19scR4PsZChSR7A=="
+        crossorigin=""/>
+        <!-- C3 stylesheet is below -->
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/c3/0.7.20/c3.css"
+        integrity="sha512-GQSxWe9Cj4o4EduO7zO9HjULmD4olIjiQqZ7VJuwBxZlkWaUFGCxRkn39jYnD2xZBtEilm0m4WBG7YEmQuMs5Q=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+  <!-- Stylesheet for the report's custom layout is below -->
+  <style>
+    body {
+      font-family: sans;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      grid-template-rows: auto auto 1fr 1fr;
+      grid-template-areas:
+        "header header"
+        "map list"
+        "map chart1"
+        "map chart2";
+      column-gap: 1rem;
+      row-gap: 1rem;
+    }
+    h1 {
+      grid-area: header;
+    }
+    #stationmap {
+      grid-area: map;
+      height: 100%;
+    }
+
+    .icon-subway{
+        color: #f14728;
+        -webkit-text-stroke: 1px #edb9b0;
+    }
+    .icon-subway:hover{
+        color: #f14728;
+        -webkit-text-stroke: 1px #edb9b0;
+    }
+
+    .icon-bus{
+        color: #1f4fa3;
+        -webkit-text-stroke: 1px #98b6eb;
+    }
+    .icon-bus:hover{
+        color: #1f4fa3;
+        -webkit-text-stroke: 1px #98b6eb;
+    }
+
+    .icon-bike{
+        color: #36b4e5;
+        -webkit-text-stroke: 1px #FFF;
+    }
+    .icon-bike:hover{
+        color: #0082cb;
+        -webkit-text-stroke: 1px #FFF;
+    }
+    .icon-bike-primary{
+        color: #36b4e5;
+        -webkit-text-stroke: 2px #000;
+    }
+
+  </style>
+    </head>
+    <body>
+        <h1><a href='index.html'>All stations</a> >> 30th & Oakford</h1>
+
+  <div id="stationmap"></div>
+  <div>
+    <p>Info about 30th & Oakford.</p>
+</div>
+
+
+          <script>
+    var initialCenter = [39.93882, -75.19324];  // <-- Latitude, Longitude
+    var initialZoom = 16;
+    var stationmap = L.map('stationmap', {
+      zoomSnap: 0,
+      zoomDelta: 0.25
+    }).setView(initialCenter, initialZoom);
+
+    var baseLayer = new L.tileLayer('https://stamen-tiles-{s}.a.ssl.fastly.net/toner-background/{z}/{x}/{y}{r}.{ext}', {
+    	attribution: 'Map tiles by <a href="http://stamen.com">Stamen Design</a>, <a href="http://creativecommons.org/licenses/by/3.0">CC BY 3.0</a> &mdash; Map data &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
+    	subdomains: 'abcd',
+    	minZoom: 0,
+    	maxZoom: 20,
+    	ext: 'png'
+    });
+    baseLayer.addTo(stationmap);
+
+    mapdata.features.forEach( function(location){
+      console.log(location.properties.Modal);
+      console.log(location);
+      switch (location.properties.Modal) {
+        case 'Subway':
+          iconToUse = iconSubway;
+          break;
+        case 'Bus':
+          iconToUse = iconBus;
+          break;
+        case 'Bike':
+          iconToUse = iconBike;
+          break;
+      }
+      if(location.properties.lat != 39.93882 && location.properties.lon != -75.19324) {
+        var marker = L.marker([location.properties.lat, location.properties.lon], {icon: iconToUse}).addTo(stationmap);
+        marker.bindPopup(
+            location.properties.Station
+        );
+      } else {
+        var indego_marker = L.marker([39.93882, -75.19324], {icon: iconBikePrimary}).addTo(stationmap);
+      }
+    });
+  </script>
+
+    </body>
+</html>
