@@ -89,7 +89,7 @@
 
     .icon-bike{
         color: #36b4e5;
-        text-shadow: 2px 2px #CCC;
+        -webkit-text-stroke: 1px #FFF;
     }
     .icon-bike:hover{
         color: #0082cb;
@@ -98,14 +98,22 @@
   </style>
     </head>
     <body>
-        <h1>Unifying SEPTA and Indego fares with Jawnt</h1>
+        <h1>Connecting Indego to SEPTA</h1>
 
   <div id="stationmap"></div>
   <div>
     <h3>Unified transit in Philadelphia</h3>
-    <p>In the Philadelphia region there are {{counts.bus}} SEPTA bus <i class="fas fa-bus "></i> stops, {{counts.subway}} SEPTA subway <i class="fas fa-subway "></i> stops, and {{counts.bike}} Indego bike share  <i class="fas fa-bicycle "></i> stations.</p>
-    <p>This interactive dashboard explores the benefits of unifying SEPTA and Indego stations.</p>
-    <p>On the whole there are usually about XX Indego stops within a 5-minute walk from any given SEPTA stop. The most connected stop is XXX.</p>
+    <p>As of today, Indego operates {{counts.bike}} bike share stations <i class="fas fa-bicycle "></i>.</p>
+    
+    <p>SEPTA operates a system with {{counts.bus}} bus stops <i class="fas fa-bus "></i> and 
+    {{counts.subway}} subway stops <i class="fas fa-subway "></i>.</p> 
+
+    <p>This interactive dashboard explores the benefits of connecting SEPTA and Indego stations.</p>
+
+    <p>On the whole there are about XX bus stops and XX subway stops within a
+       600-meter radius of an Indego station</p>
+    
+    <p>The most connected Indego stations are XXX.</p>
 </div>
 
 

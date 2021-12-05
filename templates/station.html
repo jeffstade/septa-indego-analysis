@@ -16,10 +16,10 @@
         crossorigin="anonymous" referrerpolicy="no-referrer"></script>
         <script src="https://kit.fontawesome.com/457a87d66e.js" crossorigin="anonymous"></script>
         <script type='text/javascript'>
-//            var mapdata = {{mapdata}};
+            var mapdata = {{mapdata}};
 
             const iconSubway = L.divIcon({
-                html: '<i class="fas fa-subway fa-3x"></i>',
+                html: '<i class="fas fa-subway fa-2x"></i>',
                 iconSize: [20, 20],
                 className: 'icon-subway'
             });
@@ -27,17 +27,17 @@
             const iconBikePrimary = L.divIcon({
                 html: '<i class="fas fa-bicycle fa-6x"></i>',
                 iconSize: [20, 20],
-                className: 'icon-bike'
+                className: 'icon-bike-primary'
             });
 
             const iconBike = L.divIcon({
-                html: '<i class="fas fa-bicycle fa-3x"></i>',
+                html: '<i class="fas fa-bicycle fa-4x"></i>',
                 iconSize: [20, 20],
                 className: 'icon-bike'
             });
 
             const iconBus = L.divIcon({
-                html: '<i class="fas fa-bus fa-3x"></i>',
+                html: '<i class="fas fa-bus fa-2x"></i>',
                 iconSize: [20, 20],
                 className: 'icon-bus'
             });
@@ -76,31 +76,36 @@
     }
 
     .icon-subway{
-        color: blue;
-        text-shadow: 2px 2px #CCC;
+        color: #f14728;
+        -webkit-text-stroke: 1px #edb9b0;
     }
     .icon-subway:hover{
-        color: red;
-        text-shadow: 2px 2px #CCC;
+        color: #f14728;
+        -webkit-text-stroke: 1px #edb9b0;
     }
 
     .icon-bus{
-        color: orange;
-        text-shadow: 2px 2px #CCC;
+        color: #1f4fa3;
+        -webkit-text-stroke: 1px #98b6eb;
     }
     .icon-bus:hover{
-        color: red;
-        text-shadow: 2px 2px #CCC;
+        color: #1f4fa3;
+        -webkit-text-stroke: 1px #98b6eb;
     }
 
     .icon-bike{
         color: #36b4e5;
-        text-shadow: 2px 2px #CCC;
+        -webkit-text-stroke: 1px #FFF;
     }
     .icon-bike:hover{
         color: #0082cb;
-        text-shadow: 2px 2px #CCC;
+        -webkit-text-stroke: 1px #FFF;
     }
+    .icon-bike-primary{
+        color: #36b4e5;
+        -webkit-text-stroke: 2px #000;
+    }
+
   </style>
     </head>
     <body>
@@ -128,7 +133,30 @@
     	ext: 'png'
     });
     baseLayer.addTo(stationmap);
-    var indego_marker = L.marker([{{lat}}, {{lon}}], {icon: iconBike}).addTo(stationmap);
+
+    mapdata.features.forEach( function(location){
+      console.log(location.properties.Modal);
+      console.log(location);
+      switch (location.properties.Modal) {
+        case 'Subway':
+          iconToUse = iconSubway;
+          break;
+        case 'Bus':
+          iconToUse = iconBus;
+          break;
+        case 'Bike':
+          iconToUse = iconBike;
+          break;
+      }
+      if(location.properties.lat != {{lat}} && location.properties.lon != {{lon}}) {
+        var marker = L.marker([location.properties.lat, location.properties.lon], {icon: iconToUse}).addTo(stationmap);
+        marker.bindPopup(
+            location.properties.Station
+        );
+      } else {
+        var indego_marker = L.marker([{{lat}}, {{lon}}], {icon: iconBikePrimary}).addTo(stationmap);
+      }
+    });
   </script>
 
     </body>

@@ -19,15 +19,22 @@ def render_index(template, mapdata_gdf, counts):
 
 def render_station_pages(template, station_data):
     for index, row in station_data.iterrows():
+        lon = row['lon']
+        lat = row['lat']        
+        mapdata_df = pd.read_gbq(f"SELECT * FROM `musa509-lab09.finalproj.combined_stations` WHERE ST_INTERSECTS( ST_BUFFER(  ST_GEOGPOINT({lon}, {lat}), 600 ), the_geom)")
+        mapdata_df.the_geom = gpd.GeoSeries.from_wkt(mapdata_df.the_geom)
+        mapdata_gdf = gpd.GeoDataFrame(mapdata_df, geometry='the_geom')
+        print(mapdata_df)
         output_station = template.render(
             station_name = row['name'],
             station_address = row['address'],
             lon = row['lon'],
-            lat=row['lat'])
+            lat = row['lat'],
+            mapdata = mapdata_gdf.to_json())
         pagename = row.station_id + '.html'
         with open(output_root + '/' + pagename, mode='w+') as outfile:
             outfile.write(output_station)
-        upload_to_gcs(output_root+ '/' + pagename, 'jawnt_philadelphia', pagename)
+        #upload_to_gcs(output_root+ '/' + pagename, 'jawnt_philadelphia', pagename)
 
 def main():
     # Download the map data.
