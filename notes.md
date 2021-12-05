@@ -6,8 +6,9 @@
 - [ ] Set up scripts to run on airflow (https://github.com/musa-509-fall-2021/lab-07-airflow-in-the-cloud)
 - [X] Add remaining bus and indego data to overview map
 - [X] Add statistics to overview
-- [ ] Try in ipython narrowing down all station data geopandas df to just indego stations
-- [ ] Write a loop to create a station page for each Indego station
+- [X] Try in ipython narrowing down all station data geopandas df to just indego stations
+- [X] Write a loop to create a station page for each Indego station
+- [ ] Fix DAG - templates folder not found, update route to template folder
 - [ ] Create individual station query (want to get all stops that are on a different service or line than the current one)
 - [ ] Create individual station pages (show a map of the station, all nearby stations on a different line within a 5 minute walk, added value of linking bikes)
 - [ ] Uncomment the upload to gcs line in render report, and the lines in transform data
