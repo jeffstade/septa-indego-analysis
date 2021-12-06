@@ -117,5 +117,4 @@ dmypy.json
 .DS_Store
 credentials.md
 
-/output
-/airflow/dags/output
+airflow/dags/output
