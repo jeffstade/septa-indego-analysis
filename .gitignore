@@ -118,3 +118,4 @@ dmypy.json
 credentials.md
 
 /output
+/airflow/dags/output
