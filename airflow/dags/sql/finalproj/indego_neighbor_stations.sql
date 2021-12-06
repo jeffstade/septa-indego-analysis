@@ -1,0 +1,3 @@
+SELECT i.station_id as station_id, i.name as name, i.address as address, i.lon as lon, i.lat as lat, cs.Modal as neighbor_modal, cs.Route as neighbor_route, cs.Station as neighbor_station, cs.StationId as neighbor_StationID, cs.lon as neighbor_lon, cs.lat as neighbor_lat, cs.the_geom as the_geom FROM `musa509-lab09.finalproj.combined_stations` as cs
+JOIN `musa509-lab09.finalproj.indego_stations` as i 
+ON ST_INTERSECTS( ST_BUFFER(ST_GEOGPOINT(i.lon, i.lat), 600), cs.the_geom )

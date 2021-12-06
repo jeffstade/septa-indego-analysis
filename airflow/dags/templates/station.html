@@ -135,9 +135,7 @@
     baseLayer.addTo(stationmap);
 
     mapdata.features.forEach( function(location){
-      console.log(location.properties.Modal);
-      console.log(location);
-      switch (location.properties.Modal) {
+      switch (location.properties.neighbor_modal) {
         case 'Subway':
           iconToUse = iconSubway;
           break;
@@ -148,10 +146,11 @@
           iconToUse = iconBike;
           break;
       }
-      if(location.properties.lat != {{lat}} && location.properties.lon != {{lon}}) {
-        var marker = L.marker([location.properties.lat, location.properties.lon], {icon: iconToUse}).addTo(stationmap);
+      console.log(location.properties);
+      if(location.properties.neighbor_lat != {{lat}} && location.properties.neighbor_lon != {{lon}}) {
+        var marker = L.marker([location.properties.neighbor_lat, location.properties.neighbor_lon], {icon: iconToUse}).addTo(stationmap);
         marker.bindPopup(
-            location.properties.Station
+            location.properties.neighbor_station + "<br />(" + location.properties.neighbor_modal + " on the " + location.properties.neighbor_route + " route)"
         );
       } else {
         var indego_marker = L.marker([{{lat}}, {{lon}}], {icon: iconBikePrimary}).addTo(stationmap);

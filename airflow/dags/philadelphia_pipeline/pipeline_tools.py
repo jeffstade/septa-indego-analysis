@@ -7,7 +7,7 @@ import requests
 import tempfile
 
 
-# PATCH THE GEODATAFRAME.TO_PARQUET FUNCTION.
+# PATCH THE GEODATAFRAME.TO_PARQUET FUNCTION.env
 original_to_parquet = None
 def patched_to_parquet(self, path, index=None, compression="snappy", **kwargs):
     kwargs.pop('engine', None)

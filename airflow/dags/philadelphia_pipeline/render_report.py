@@ -12,7 +12,7 @@ def render_index(template, mapdata_gdf, counts):
         mapdata=mapdata_gdf.to_json(),
         counts = counts
     )
-    
+
     index_location = str(output_root) + '/index.html'
     # Save the rendered output to a file in the "output" folder.
     with open(index_location, mode='w+') as outfile:
@@ -21,9 +21,7 @@ def render_index(template, mapdata_gdf, counts):
 
 def render_station_pages(template, station_data):
     for index, row in station_data.iterrows():
-        lon = row['lon']
-        lat = row['lat']        
-        mapdata_df = pd.read_gbq(f"SELECT * FROM `musa509-lab09.finalproj.combined_stations` WHERE ST_INTERSECTS( ST_BUFFER(  ST_GEOGPOINT({lon}, {lat}), 600 ), the_geom)")
+        mapdata_df = pd.read_gbq(f"SELECT * FROM `musa509-lab09.finalproj.indego_neighbor_stations` WHERE station_id='{row.station_id}'")
         mapdata_df.the_geom = gpd.GeoSeries.from_wkt(mapdata_df.the_geom)
         mapdata_gdf = gpd.GeoDataFrame(mapdata_df, geometry='the_geom')
         print(mapdata_df)
@@ -49,7 +47,7 @@ def main():
             'subway': textdata_df[textdata_df['Modal']=='Subway']['count'].item(),
             'bus': textdata_df[textdata_df['Modal']=='Bus']['count'].item() }
     indego_df = pd.read_gbq("SELECT * FROM musa509-lab09.finalproj.indego_stations")
-    # mapdata_gdf[mapdatagdf['Modal'] == ]
+
     # Render the data into the template.
     env = Environment(loader=FileSystemLoader(template_root))
 
