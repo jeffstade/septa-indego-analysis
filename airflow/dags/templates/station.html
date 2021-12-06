@@ -43,6 +43,7 @@
             });
 
         </script>
+        <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
           <!-- Leaflet stylesheet is below -->
         <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css"
         integrity="sha512-xodZBNTC5n17Xt2atTPuE1HxjVMSvLVW9ocqUKLsCC5CXdbqCmblAshOMAS6/keqq/sMZMZ19scR4PsZChSR7A=="
@@ -113,11 +114,28 @@
 
   <div id="stationmap"></div>
   <div>
-    <p>Info about {{station_name}}.</p>
+    <h1>{{station_name}}.</h1>
+    <p>Address: {{station_address}} ({{lon}}, {{lat}})</p>
+
+    <p>There are {{nearby_bikes}} bike stations nearby.</p>
+
+    <h3>Accessible SEPTA routes</h3>
+    
+    <p>There are 12 unique nearby routes (and 87 stops). All station average is 3.<p>
+
+    <p>The following routes are accessible from this Indego station:</p>
+
+    <div id="accessiblerouteschart"></div>
+
+    <h3>Explore nearby Indego stations</h3>
+    <ul>
+      <li>Station #1</li>
+      <li>Station #2</li>
+    </ul>
 </div>
 
 
-          <script>
+  <script>
     var initialCenter = [{{lat}}, {{lon}}];  // <-- Latitude, Longitude
     var initialZoom = 16;
     var stationmap = L.map('stationmap', {
@@ -146,7 +164,6 @@
           iconToUse = iconBike;
           break;
       }
-      console.log(location.properties);
       if(location.properties.neighbor_lat != {{lat}} && location.properties.neighbor_lon != {{lon}}) {
         var marker = L.marker([location.properties.neighbor_lat, location.properties.neighbor_lon], {icon: iconToUse}).addTo(stationmap);
         marker.bindPopup(
@@ -156,6 +173,31 @@
         var indego_marker = L.marker([{{lat}}, {{lon}}], {icon: iconBikePrimary}).addTo(stationmap);
       }
     });
+
+    var nearbychartcategories = ['Bus routes','Subway routes','Bike stations'];
+    var nearbychartseries = [
+      {
+        name: 'This station',
+        data: [32,0,12]
+      },
+      {
+        name: 'All station average',
+        data: [12,0.8,8]
+      }
+    ];
+
+    var nearbychart = new ApexCharts(document.querySelector("#accessiblerouteschart"), {
+      chart: {
+        type: 'bar',
+        height: 200
+      },
+      series: nearbychartseries,
+      xaxis: {
+        categories: nearbychartcategories,
+      }
+    });
+    nearbychart.render();
+
   </script>
 
     </body>
