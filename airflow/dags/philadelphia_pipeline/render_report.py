@@ -3,6 +3,7 @@ import pandas as pd
 from pathlib import Path
 from jinja2 import Environment, FileSystemLoader
 from pipeline_tools import upload_to_gcs
+import json
 
 output_root = Path(__file__).parent.parent / 'output'
 template_root = Path(__file__).parent.parent / 'templates'
@@ -21,11 +22,13 @@ def render_index(template, mapdata_gdf, counts):
 
 def render_station_pages(template, station_data):
     for index, row in station_data.iterrows():
-        mapdata_df = pd.read_gbq(f"SELECT * FROM `musa509-lab09.finalproj.indego_neighbor_stations` WHERE station_id='{row.station_id}'")
+        # test id: 'bcycle_indego_3004'
+        mapdata_df = pd.read_gbq(f"SELECT * FROM `musa509-lab09.finalproj.indego_neighbor_stations` WHERE station_id='{row.station_id}' AND neighbor_StationID != '{row.station_id}'")
         mapdata_df.the_geom = gpd.GeoSeries.from_wkt(mapdata_df.the_geom)
         mapdata_gdf = gpd.GeoDataFrame(mapdata_df, geometry='the_geom')
         neighbors_nunique = mapdata_df[['neighbor_route', 'neighbor_modal','neighbor_station']].groupby('neighbor_modal').nunique()
         neighbors_count = mapdata_df[['neighbor_route', 'neighbor_modal','neighbor_station']].groupby('neighbor_modal').count()
+        neighboring_bike_stations = mapdata_gdf[mapdata_gdf['neighbor_modal']=='Bike'][['neighbor_station','neighbor_StationID']]
         print(mapdata_df)
         output_station = template.render(
             station_name = row['name'],
@@ -35,7 +38,9 @@ def render_station_pages(template, station_data):
             mapdata = mapdata_gdf.to_json(),
             neighbors_count = neighbors_count.to_json(),
             neighbors_nunique = neighbors_nunique.to_json(),
-            nearby_bikes = neighbors_count['neighbor_station']['Bike'])
+            nearby_bikes = len(neighboring_bike_stations),
+            neighboring_bike_stations = json.loads(neighboring_bike_stations.to_json(orient='records'))
+            )
         pagename = row.station_id + '.html'
         page_location = str(output_root) + '/' + pagename
         with open(page_location, mode='w+') as outfile:

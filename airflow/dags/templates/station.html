@@ -17,7 +17,8 @@
         <script src="https://kit.fontawesome.com/457a87d66e.js" crossorigin="anonymous"></script>
         <script type='text/javascript'>
             var mapdata = {{mapdata}};
-
+            var neighboring_bike_stations = {{neighboring_bike_stations}};
+            console.log(neighboring_bike_stations);
             const iconSubway = L.divIcon({
                 html: '<i class="fas fa-subway fa-2x"></i>',
                 iconSize: [20, 20],
@@ -114,26 +115,26 @@
 
   <div id="stationmap"></div>
   <div>
-    <h1>{{station_name}}.</h1>
+    <h1>{{station_name}}</h1>
     <p>Address: {{station_address}} ({{lon}}, {{lat}})</p>
-
-    <p>There are {{nearby_bikes}} bike stations nearby.</p>
 
     <h3>Accessible SEPTA routes</h3>
     
     <p>There are 12 unique nearby routes (and 87 stops). All station average is 3.<p>
 
-    <p>The following routes are accessible from this Indego station:</p>
+    <p>The following routes are accessible from this Indego station: </p>
 
     <div id="accessiblerouteschart"></div>
 
     <h3>Explore nearby Indego stations</h3>
+    <p>There are {{nearby_bikes}} bike stations nearby:</p>
     <ul>
-      <li>Station #1</li>
-      <li>Station #2</li>
+      {% for station in neighboring_bike_stations %}
+      <li><a href="{{ station['neighbor_StationID'] }}.html">{{ station['neighbor_station'] }}</a></li>
+      {% endfor %}
     </ul>
-</div>
 
+</div>
 
   <script>
     var initialCenter = [{{lat}}, {{lon}}];  // <-- Latitude, Longitude
@@ -164,15 +165,13 @@
           iconToUse = iconBike;
           break;
       }
-      if(location.properties.neighbor_lat != {{lat}} && location.properties.neighbor_lon != {{lon}}) {
+        console.log("other stations")
         var marker = L.marker([location.properties.neighbor_lat, location.properties.neighbor_lon], {icon: iconToUse}).addTo(stationmap);
         marker.bindPopup(
             location.properties.neighbor_station + "<br />(" + location.properties.neighbor_modal + " on the " + location.properties.neighbor_route + " route)"
         );
-      } else {
-        var indego_marker = L.marker([{{lat}}, {{lon}}], {icon: iconBikePrimary}).addTo(stationmap);
-      }
     });
+    var indego_marker = L.marker([{{lat}}, {{lon}}], {icon: iconBikePrimary}).addTo(stationmap);
 
     var nearbychartcategories = ['Bus routes','Subway routes','Bike stations'];
     var nearbychartseries = [
