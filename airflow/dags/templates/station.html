@@ -18,6 +18,7 @@
         <script type='text/javascript'>
             var mapdata = {{mapdata}};
             var neighboring_bike_stations = {{neighboring_bike_stations}};
+            var abc = 123;
             console.log(neighboring_bike_stations);
             const iconSubway = L.divIcon({
                 html: '<i class="fas fa-subway fa-2x"></i>',
@@ -120,14 +121,27 @@
 
     <h3>Accessible SEPTA routes</h3>
     
-    <p>There are 12 unique nearby routes (and 87 stops). All station average is 3.<p>
+    <p>There are {{n_unique.bus_routes}} nearby bus routes and {{n_unique.subway_routes}} nearby subway routes accessible from this Indego station.<p>
+    {% if n_unique.bus_routes > 0 %}
+      <p><i class="fas fa-bus "></i> Nearby bus routes: 
+      {% for route in unique_bus_routes %}
+      {{ route }}, 
+      {% endfor %}
+      </p>
+    {% endif %}
 
-    <p>The following routes are accessible from this Indego station: </p>
+    {% if n_unique.subway_routes > 0 %}
+      <p><i class="fas fa-subway "></i> Nearby subway routes: 
+      {% for route in unique_subway_routes %}
+      {{ route }},
+      {% endfor %}
+      </p>
+    {% endif %}
 
     <div id="accessiblerouteschart"></div>
 
     <h3>Explore nearby Indego stations</h3>
-    <p>There are {{nearby_bikes}} bike stations nearby:</p>
+    <p><i class="fas fa-bicycle "></i> There are {{n_unique.bike}} bike stations nearby:</p>
     <ul>
       {% for station in neighboring_bike_stations %}
       <li><a href="{{ station['neighbor_StationID'] }}.html">{{ station['neighbor_station'] }}</a></li>
@@ -177,7 +191,7 @@
     var nearbychartseries = [
       {
         name: 'This station',
-        data: [32,0,12]
+        data: [{{n_unique.bus_routes}},{{n_unique.subway_routes}},{{n_unique.bike}}]
       },
       {
         name: 'All station average',
