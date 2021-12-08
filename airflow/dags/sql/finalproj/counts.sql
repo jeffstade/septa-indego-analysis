@@ -1,3 +1,3 @@
-SELECT Modal, COUNT(*) AS count
+SELECT DISTINCT Modal, Route as routes, COUNT(*) AS stop_count
 FROM finalproj.combined_stations
-GROUP BY Modal
+GROUP BY Modal, Route

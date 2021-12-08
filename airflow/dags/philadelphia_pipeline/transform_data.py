@@ -42,9 +42,11 @@ def main():
         gdf = gpd.GeoDataFrame(df_prop).set_geometry('the_geom').set_crs('epsg:32129')
         geopandas_to_gbq(gdf, 'finalproj', tablename, replace_table=True)
    
-  #  run_transform_gbq('finalproj', 'combined_stations', sql_root)
-  #  run_transform_gbq('finalproj', 'combined_stations_fewer_buses', sql_root)
-  #  run_transform_gbq('finalproj', 'counts', sql_root)
+    run_transform_gbq('finalproj', 'combined_stations', sql_root)
+    run_transform_gbq('finalproj', 'combined_stations_fewer_buses', sql_root)
+    run_transform_gbq('finalproj', 'counts', sql_root)
+    run_transform_gbq('finalproj', 'counts_neighbor_stops', sql_root)
+    run_transform_gbq('finalproj', 'counts_neighbor_routes', sql_root)
     run_transform_gbq('finalproj', 'indego_neighbor_stations', sql_root)
 
 if __name__ == '__main__':

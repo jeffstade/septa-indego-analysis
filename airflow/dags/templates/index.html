@@ -104,12 +104,12 @@
   <div>
     <h3>About Philadelphia transit</h3>
 
-    <p><i class="fas fa-bicycle "></i> As of today, Indego operates {{counts.bike}} bike share stations.</p>
+    <p><i class="fas fa-bicycle "></i> As of today, Indego operates {{counts.bike.total_stops}} bike share stations.</p>
     
     <p>Meanwhile SEPTA operates a system with:</p>
      <ul>
-      <li><i class="fas fa-bus "></i> XX distinct bus routes with {{counts.bus}} total stops</li>
-      <li><i class="fas fa-subway"></i> 2 distinct subway routes with {{counts.subway}} total stops</li>
+      <li><i class="fas fa-bus "></i> {{counts.bus.total_routes}} distinct bus routes with {{counts.bus.total_stops}} total stops</li>
+      <li><i class="fas fa-subway"></i> {{counts.subway.total_routes}} distinct subway routes with {{counts.subway.total_stops}} total stops</li>
     </ul> 
 
     <p>This interactive dashboard helps make decisions about further connecting Indego stations to SEPTA routes.
@@ -117,9 +117,22 @@
 
     <h3>Indego connectivity</h3>
     
-    <p>The average Indego station is connected to XX bus routes (and XX stops) and XX subway routes (and XX stops).</p>
+    <p>The average Indego station is connected to {{counts.bus.avg_neighbor_routes }} bus routes (via {{counts.bus.avg_neighbor_stops }} stops) and {{counts.subway.avg_neighbor_routes }} subway routes (via {{counts.subway.avg_neighbor_stops }} stops).</p>
     
-    <p>The most connected Indego station is the <a href="bcycle_indego_3004.html">Municipal Services Building</a> station.</p>
+    <p>The most connected Indego stations are:</p>
+    <ul>
+    {% for station in most_connected %}
+      <li><a href=" {{station['station_id'] }}.html">{{ station['name'] }}</a> - {{ station['n_routes'] }} bus routes nearby</li>
+    {% endfor %}
+    </ul>
+
+    <p>The least connected Indego stations are:</p>
+    <ul>
+    {% for station in least_connected %}
+      <li><a href=" {{station['station_id'] }}.html">{{ station['name'] }}</a> - {{ station['n_routes'] }} bus route nearby</li>
+    {% endfor %}
+    </ul>
+
 </div>
 
   <script>
